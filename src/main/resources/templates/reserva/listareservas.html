@@ -11,7 +11,7 @@ xmlns="http://www.w3.org/1999/xhtml"
 <body>
 <section layout:fragment="header">
     <h1>
-       Lista de Cursos
+       Lista de Reservas
         
     </h1>
     <ol class="breadcrumb">
@@ -25,13 +25,13 @@ xmlns="http://www.w3.org/1999/xhtml"
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Lista de Cursos</h3>
+                    <h3 class="box-title">Lista de Reservas</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
                     <div class="box-footer center">
-                        <a th:href="@{/curso/novo}">
-                            <button type="button" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Cadastrar Curso</button>
+                        <a th:href="@{/reserva/novo}">
+                            <button type="button" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Cadastrar Nova Reserva</button>
                         </a>
                         <!--<form th:action="@{/product/list}" method="get">
                             <input type="search" th:value="${param.search}" name='search' placeholder="search">
@@ -63,7 +63,7 @@ xmlns="http://www.w3.org/1999/xhtml"
 										    <th>ID</th>
 										    <th>NOME</th>
 										    <th>CURSO</th>
-										    <th>Ação</th>
+										    <th>AÇÕES</th>
 		                              </tr>
                                     </thead>
                                     <tbody>
