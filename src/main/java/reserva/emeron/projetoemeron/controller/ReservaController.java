@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -19,6 +20,7 @@ import reserva.emeron.projetoemeron.service.ReservaService;
 
 
 @Controller
+@RequestMapping("/reserva")
 public class ReservaController {
 	
 	@Autowired
@@ -31,10 +33,10 @@ public class ReservaController {
 	
 	
 	
-	@GetMapping("/reserva/novo")
+	@GetMapping("/novo")
 	private ModelAndView curso() {
 		
-		ModelAndView mv = new ModelAndView("/reservaform");
+		ModelAndView mv = new ModelAndView("reserva/reservaform.html");
 		List<Curso> cursoList = this.cursoService.buscarTodos();
 		mv.addObject("cursolist", cursoList);
 		return mv;
@@ -42,7 +44,7 @@ public class ReservaController {
 	
 
 	
-	@PostMapping("/reserva/add/salvar")
+	@PostMapping("/add/salvar")
 	private String salvar(@Valid Reserva reserva, BindingResult result, RedirectAttributes redirect) {
 		
 		if(result.hasErrors()){
@@ -54,12 +56,20 @@ public class ReservaController {
 		
 		//reservaRepository.save(reserva);
 		
-		return "redirect:/";
+		return "redirect:/reserva/novo";
 	}
 	
 	
-	
-	
+	@GetMapping("/listar")
+	private ModelAndView listarReserva() {
+		
+		List<Reserva> reservaList =  reservaService.buscarTodos();
+		ModelAndView mv = new ModelAndView("reserva/listareservas.html");
+		mv.addObject("reservas", reservaList);
+		
+		return mv;
+		
+	}
 	
 
 }

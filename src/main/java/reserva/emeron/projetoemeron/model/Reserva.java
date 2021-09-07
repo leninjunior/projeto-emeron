@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 
 @Table(name = "reserva")
@@ -19,6 +20,8 @@ public class Reserva {
 	private Long id;
 	
 	
+	
+	@NotBlank
 	private String nome;
 
 	@ManyToOne
