@@ -23,7 +23,8 @@ public class IndexController {
 	
 	
 	List<Reserva> reservaList = this.reservaService.buscarTodos();
-	ModelAndView mv = new ModelAndView("index");
+
+	ModelAndView mv = new ModelAndView("index2.html");
 	mv.addObject("reservas", reservaList);
 	return mv;
 				

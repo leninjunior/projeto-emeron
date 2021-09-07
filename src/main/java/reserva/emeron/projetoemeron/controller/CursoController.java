@@ -1,5 +1,7 @@
 package reserva.emeron.projetoemeron.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,7 @@ public class CursoController {
 	@GetMapping("/novo")
 	private ModelAndView curso( Curso curso) {
 		
-		ModelAndView mv = new ModelAndView("/cursoform");
+		ModelAndView mv = new ModelAndView("curso/cursoform.html");
 	
 		return mv;
 	}
@@ -36,7 +38,7 @@ public class CursoController {
 	private String salvar(@Valid Curso curso, BindingResult result, RedirectAttributes redirect) {
 		
 		if(result.hasErrors()){
-			redirect.addFlashAttribute("mensagem", "verifique os campos obrigatorios "); //mensagem na view
+			redirect.addFlashAttribute("mensagem", "Verifique os campos Obrigatórios "); //mensagem na view
 			return "redirect:/curso/novo"; //na rota
 		}
 		
@@ -47,6 +49,17 @@ public class CursoController {
 		//reservaRepository.save(reserva);
 		
 		return "redirect:/reserva/novo";
+	}
+	
+	
+	@GetMapping("/listar")
+	private ModelAndView listarCursos() {
+		
+		List<Curso> cursoList =  cursoService.buscarTodos();
+		ModelAndView mv = new ModelAndView("/curso/listacursos.html");
+		mv.addObject("cursos", cursoList);
+		
+		return mv;
 	}
 	
 }
