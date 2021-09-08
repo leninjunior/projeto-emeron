@@ -71,12 +71,13 @@ xmlns="http://www.w3.org/1999/xhtml"
 									    <td th:text="${g.id}">Alfreds Futterkiste</td>
 									     <td th:text="${g.nome}">Alfreds Futterkiste</td>
 									      <td th:text="${g.curso.nome}"></td>
-									      <td>
+									    
 									      
-									      	<a><i class='fas fa-edit'></i>	</a>
-											<a><i class='fas fa-eraser'></i></a>
-									      
-									      </td>
+									      	 <td>
+                                            <a href="#" class="btn btn-primary btn purple editView" title="Edit" ><i class="fa fa-edit"></i> Edit</a>
+                                            <a href="#" class="btn btn-danger btn purple deleteView" title="Delete"><i class="fa fa-trash-o"></i> Delete</a>
+                                       		 </td>
+									     
 									    </tr>
                                     	
                                     </tbody>

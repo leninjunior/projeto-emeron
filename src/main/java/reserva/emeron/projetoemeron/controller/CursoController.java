@@ -38,11 +38,11 @@ public class CursoController {
 	private String salvar(@Valid Curso curso, BindingResult result, RedirectAttributes redirect) {
 		
 		if(result.hasErrors()){
-			redirect.addFlashAttribute("mensagem", "Verifique os campos Obrigatórios "); //mensagem na view
+			redirect.addFlashAttribute("mensagem", "Verifique os Campos Obrigatórios "); //mensagem na view
 			return "redirect:/curso/novo"; //na rota
 		}
 		
-		
+		redirect.addFlashAttribute("mensagemsucesso", "Curso Adicionado com Sucesso!");
 		cursoService.salvar(curso);
 		//reservaService.salvarDados(reserva);
 		

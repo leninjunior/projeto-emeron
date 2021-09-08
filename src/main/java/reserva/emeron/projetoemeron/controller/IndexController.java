@@ -29,4 +29,10 @@ public class IndexController {
 	return mv;
 				
 	}
+
+@GetMapping("/index")
+public String testeDashbord() {
+	
+	return "admin/dashboard/index.html";
+}
 }
