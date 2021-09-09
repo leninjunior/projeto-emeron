@@ -1,6 +1,7 @@
 package reserva.emeron.projetoemeron.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,6 +23,10 @@ import reserva.emeron.projetoemeron.service.exception.NomeCursoJaCadastradoExcep
 @RequestMapping("/curso")
 public class CursoController {
 	
+	//private  static final String CADASTRO_CURSO = "curso/cursoform.html";
+	 
+	
+	
 	@Autowired
 	private CursoService cursoService;
 	
@@ -28,9 +34,14 @@ public class CursoController {
 	@GetMapping("/novo")
 	private ModelAndView curso( Curso curso) {
 		
-		ModelAndView mv = new ModelAndView("curso/cursoform.html");
-	
+		ModelAndView mv = new ModelAndView("/curso/cursoform.html");
+		List<Curso> cursoList =  cursoService.buscarTodos();
+		
+		mv.addObject("cursosAdmin", cursoList);
+		
 		return mv;
+	
+
 	}
 	
 	
@@ -69,8 +80,9 @@ public class CursoController {
 		
 		return mv;
 	}
+
 	
-	
+
 
 	
 }

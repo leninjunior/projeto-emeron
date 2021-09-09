@@ -47,7 +47,7 @@
                             <label  id="nome" class=" control-label">Nome do Curso</label>
 
                             <div class="col-sm-10">
-                                <input name="nome"  class="form-control" placeholder="Nome" th:field="*{nome}">
+                                <input name="nome"  class="form-control" placeholder="Nome" >
                             </div>
                         </div>
 
@@ -63,6 +63,8 @@
                 </form>
                 
                 
+                
+                
                 	  <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
                                        aria-describedby="example1_info">
                                     <thead class="thead">
@@ -73,7 +75,7 @@
 		                              </tr>
                                     </thead>
                                     <tbody>
-                                   <tr th:each="c : ${cursos}">
+                                   <tr th:each="c : ${cursosAdmin}">
 										    <td th:text="${c.id}">Alfreds Futterkiste</td>
 										     <td th:text="${c.nome}">Alfreds Futterkiste</td>
                                         <td>
@@ -83,6 +85,8 @@
                                     </tr>
                                     </tbody>
                                 </table>
+                                
+  
                
 
 

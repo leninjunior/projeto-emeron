@@ -38,20 +38,7 @@ xmlns="http://www.w3.org/1999/xhtml"
                             <button type="submit">Search</button>
                         </form>-->
                     </div>
-                    <div th:if="${param.success}">
-                        <div class="alert alert-success alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">Ã—</button>
-                            <h4><i class="icon fa fa-check"></i> Success!</h4>
-                            Information saved successfully.
-                        </div>
-                    </div>
-                    <div th:if="${param.deleted}">
-                        <div class="alert alert-info alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">Ã—</button>
-                            <h4><i class="icon fa fa-check"></i> Deleted!</h4>
-                            Information deleted successfully.
-                        </div>
-                    </div>
+               
 
                     <!--<div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">-->
                         <div class="row">
@@ -60,23 +47,16 @@ xmlns="http://www.w3.org/1999/xhtml"
                                        aria-describedby="example1_info">
                                     <thead class="thead">
 						            <tr>
-										    <th>ID</th>
-										     <th>CURSO</th>
-										 	<th>AÇÕES</th>
+										     <th>CURSOS CADASTRADOS:</th>
+										 	
 										 	
 		                              </tr>
                                     </thead>
                                     <tbody>
                                   <tr th:each="c : ${cursos}">
-										    <td th:text="${c.id}">Alfreds Futterkiste</td>
+										   
 										     <td th:text="${c.nome}">Alfreds Futterkiste</td>
-										
-                                        <td>
-                                            <a href="#" class="btn btn-primary btn purple editView" title="Edit" ><i class="fa fa-edit"></i> Edit</a>
-                                            <a href="#" class="btn btn-danger btn purple deleteView" title="Delete"><i class="fa fa-trash-o"></i> Delete</a>
-                                        </td>
-                                       
-                                    </tr>
+                                 </tr>
                                     	
                                     </tbody>
                                 </table>
@@ -113,7 +93,7 @@ xmlns="http://www.w3.org/1999/xhtml"
           'lengthChange': false,
           'searching'   : true,
           'ordering'    : true,
-          'info'        : true,
+          'info'        : false,
           'autoWidth'   : false
         })
 
