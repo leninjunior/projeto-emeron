@@ -8,12 +8,16 @@ import org.springframework.stereotype.Service;
 
 import reserva.emeron.projetoemeron.model.Curso;
 import reserva.emeron.projetoemeron.repository.CursoRepository;
+import reserva.emeron.projetoemeron.service.exception.NomeCursoJaCadastradoException;
 
 @Service
 public class CursoService {
 	
 	@Autowired
 	private CursoRepository cursoRepository;
+	
+	
+
 	
 	/*public List<Curso> getCursoAll(){
 		return cursoRepository.findAll();
@@ -25,10 +29,22 @@ public class CursoService {
 	   }
 
 	   public void salvar(Curso curso){
-	        this.cursoRepository.save(curso);
-
-	    }
+		   
+		 
+		 
+	 List<Curso> cursoList = cursoRepository.findByNomeIgnoreCase(curso.getNome());
+		 System.out.println("nome do curso  é " + curso.getNome());
+		 System.out.println("cursos repetidos são" + cursoList);
+		 
+		 
+		   if(!cursoList.isEmpty()) {
+			   throw new NomeCursoJaCadastradoException("Curso já Cadastrado!!"); 
+			   
+		   }
+		   
+		   
+		   	
+			   this.cursoRepository.save(curso);
+}
 	   
-	   
-
 }

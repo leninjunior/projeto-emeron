@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import reserva.emeron.projetoemeron.model.Curso;
 import reserva.emeron.projetoemeron.service.CursoService;
+import reserva.emeron.projetoemeron.service.exception.NomeCursoJaCadastradoException;
 
 @Controller
 @RequestMapping("/curso")
@@ -42,13 +43,20 @@ public class CursoController {
 			return "redirect:/curso/novo"; //na rota
 		}
 		
-		redirect.addFlashAttribute("mensagemsucesso", "Curso Adicionado com Sucesso!");
-		cursoService.salvar(curso);
-		//reservaService.salvarDados(reserva);
+		try {
+			
+			cursoService.salvar(curso);
+			redirect.addFlashAttribute("mensagemsucesso", "Curso Adicionado com Sucesso!");
+			
+		} catch (NomeCursoJaCadastradoException e) {
+			
+			redirect.addFlashAttribute("mensagemiguais", e.getMessage());
+			return "redirect:/curso/novo";
+		}
 		
-		//reservaRepository.save(reserva);
 		
-		return "redirect:/reserva/novo";
+		//cursoService.salvar(curso);
+		return "redirect:/curso/novo"; //na rota
 	}
 	
 	
@@ -61,5 +69,8 @@ public class CursoController {
 		
 		return mv;
 	}
+	
+	
+
 	
 }

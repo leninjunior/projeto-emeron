@@ -30,9 +30,7 @@
                     <h3 class="box-title">Adicionar Reserva</h3>
                 </div>
 				
-				<div th:if="${mensagem}" th:text="${mensagem}" class="alert alert-danger" role="alert">
-  					 
-				</div>
+			
 			
 			
 			
@@ -41,13 +39,10 @@
 <!--                 <form th:action="@{/product/save}" th:object="${product}" method="post" class="form-horizontal"> -->
                 <form action="/reserva/add/salvar" method="post" th:object="${reserva}">
                 
-                  <div  th:if="${!#strings.isEmpty(mensagemsucesso)}">
-                        <div class="alert alert-success alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
-                            <h4><i class="icon fa fa-check"></i> Sucesso!</h4>
-                           	<span th:text="${mensagemsucesso}"></span>
-                        </div>
-                    </div>
+                  
+                <th:block th:include="fragments/Mensagens">  </th:block>
+  				
+               
                 
                     <div class="box-body">
                         <div class="form-group">

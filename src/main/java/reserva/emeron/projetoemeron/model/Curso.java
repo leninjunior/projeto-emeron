@@ -1,5 +1,6 @@
 package reserva.emeron.projetoemeron.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,8 +20,10 @@ public class Curso {
 	private Long id;
 	
 	
-	@NotBlank
+	@NotBlank(message = "Campo Nome é obrigatorio")
+	@Column(unique = true)
 	private String nome;
+	
 	
 	
 	public Curso() {
