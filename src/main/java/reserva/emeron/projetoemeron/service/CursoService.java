@@ -30,8 +30,7 @@ public class CursoService {
 
 		public void salvar(Curso curso) {
 
-			List<Curso> cursoList = cursoRepository.findByNomeIgnoreCase(
-					curso.getNome());
+			List<Curso> cursoList = cursoRepository.findByNomeIgnoreCase(curso.getNome());
 			System.out.println("nome do curso  é " + curso.getNome());
 			System.out.println("cursos repetidos são" + cursoList);
 

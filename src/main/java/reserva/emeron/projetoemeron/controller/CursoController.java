@@ -8,12 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import reserva.emeron.projetoemeron.model.Curso;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;import reserva.emeron.projetoemeron.model.Curso;
 import reserva.emeron.projetoemeron.service.CursoService;
 import reserva.emeron.projetoemeron.service.exception.NomeCursoJaCadastradoException;
 
@@ -77,6 +76,23 @@ public class CursoController {
 		mv.addObject("cursos", cursoList);
 		
 		return mv;
+	}
+	
+	
+	@GetMapping("{id}")
+	private ModelAndView editCurso(@PathVariable("id") Long id) {
+		List<Curso> cursoList =  cursoService.buscarTodos();
+		ModelAndView mv = new ModelAndView("/curso/cursoform.html");
+		mv.addObject("cursosAdmin", cursoList);
+		
+		Curso cursoEdit = this.cursoService.findById(id);
+		
+		
+		mv.addObject("curso", cursoEdit);
+		
+		return mv;
+		
+		
 	}
 
 	
