@@ -20,9 +20,12 @@ public class Curso {
 	private Long id;
 	
 	
-	@NotBlank(message = "Campo Nome é obrigatorio")
+	@NotBlank
 	@Column(unique = true)
 	private String nome;
+	
+	@NotBlank
+	private String descricao;
 	
 	
 	
@@ -32,10 +35,23 @@ public class Curso {
 
 
 
-	public Curso(String nome) {
+	public Curso(String nome, String descricao) {
 	
 		this.nome = nome;
+		this.descricao = descricao;
 		
+	}
+
+
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 

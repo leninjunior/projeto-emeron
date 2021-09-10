@@ -41,13 +41,23 @@
                 
                 <th:block th:include="fragments/Mensagens">  </th:block>
   				
-        
+        	
+        	<label type="text" readonly="readonly" id="id" th:field="*{id}"></label>
+        	
                     <div class="box-body">
                         <div class="form-group">
                             <label  id="nome" class=" control-label">Nome do Curso</label>
 
                             <div class="col-sm-10">
-                                <input name="nome"  class="form-control" placeholder="Nome" >
+                                <input name="nome"  class="form-control" placeholder="Nome" th:field="*{nome}">
+                            </div>
+                        </div>
+                        
+                           <div class="form-group">
+                            <label  id="descricao" class=" control-label">Descrição</label>
+
+                            <div class="col-sm-10">
+                                <input name="descricao"  class="form-control" placeholder="descricao" th:field="*{descricao}">
                             </div>
                         </div>
 
@@ -70,14 +80,16 @@
                                     <thead class="thead">
 						             <tr>
 										    <th>ID</th>
-										     <th>CURSO</th>
-										 	<th>AÇÕES</th>
+										     <th>Curso</th>
+										     <th>Descrição do Curso</th>
+										 	<th>Ações</th>
 		                              </tr>
                                     </thead>
                                     <tbody>
                                    <tr th:each="c : ${cursosAdmin}">
 										    <td th:text="${c.id}">Alfreds Futterkiste</td>
 										     <td th:text="${c.nome}">Alfreds Futterkiste</td>
+										      <td th:text="${c.descricao}">Alfreds Futterkiste</td>
                                         <td>
                                             <a href="#" class="btn btn-primary btn purple editView" title="Edit" ><i class="fa fa-edit"></i> Edit</a>
                                             <a href="#" class="btn btn-danger btn purple deleteView" title="Delete"><i class="fa fa-trash-o"></i> Delete</a>

@@ -1,7 +1,6 @@
 package reserva.emeron.projetoemeron.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Streamable;
@@ -31,7 +30,8 @@ public class CursoService {
 
 		public void salvar(Curso curso) {
 
-			List<Curso> cursoList = cursoRepository.findByNomeIgnoreCase(curso.getNome());
+			List<Curso> cursoList = cursoRepository.findByNomeIgnoreCase(
+					curso.getNome());
 			System.out.println("nome do curso  é " + curso.getNome());
 			System.out.println("cursos repetidos são" + cursoList);
 
