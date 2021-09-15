@@ -66,8 +66,6 @@ public class Curso {
 		this.id = id;
 	}
 
-
-
 	public String getNome() {
 		return nome;
 	}

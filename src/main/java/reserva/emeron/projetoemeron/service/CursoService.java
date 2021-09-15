@@ -8,47 +8,43 @@ import org.springframework.stereotype.Service;
 
 import reserva.emeron.projetoemeron.model.Curso;
 import reserva.emeron.projetoemeron.repository.CursoRepository;
-import reserva.emeron.projetoemeron.service.exception.NomeCursoJaCadastradoException;
+//import reserva.emeron.projetoemeron.service.exception.NomeCursoJaCadastradoException;
 
 @Service
 public class CursoService {
-	
+
 	@Autowired
 	private CursoRepository cursoRepository;
-	
-	
 
-	
-	/*public List<Curso> getCursoAll(){
-		return cursoRepository.findAll();
-	}*/
-		
-	   public List<Curso> buscarTodos(){
-	        Iterable<Curso> cursoIterable = this.cursoRepository.findAll();
-	       return Streamable.of(cursoIterable).toList();
-	   }
+	public boolean cursoExiste(String nome) {
 
-		public void salvar(Curso curso) {
+		return cursoRepository.cursoJaExiste(nome);
 
-			List<Curso> cursoList = cursoRepository.findByNomeIgnoreCase(curso.getNome());
-			System.out.println("nome do curso  é " + curso.getNome());
-			System.out.println("cursos repetidos são" + cursoList);
+	}
 
-			if (!cursoList.isEmpty()) {
-				throw new NomeCursoJaCadastradoException("Curso já Cadastrado!!");
+	public void update(Curso curso) {
+		cursoRepository.save(curso);
 
-			}
+	}
 
-			this.cursoRepository.save(curso);
-		}
+	/*
+	 * public List<Curso> getCursoAll(){ return cursoRepository.findAll(); }
+	 */
 
-		public Curso findById(Long id) {
-			
-			return this.cursoRepository.findById(id).get();
-		}
+	public List<Curso> buscarTodos() {
+		Iterable<Curso> cursoIterable = this.cursoRepository.findAll();
+		return Streamable.of(cursoIterable).toList();
+	}
 
-	
-		
-	
-	   
+	public void salvar(Curso curso) {
+
+		this.cursoRepository.save(curso);
+
+	}
+
+	public Curso findById(Long id) {
+
+		return this.cursoRepository.findById(id).get();
+	}
+
 }

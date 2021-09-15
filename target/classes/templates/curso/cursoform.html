@@ -35,15 +35,15 @@
                 <!-- /.box-header -->
                 <!-- form start -->
 <!--                 <form th:action="@{/product/save}" th:object="${product}" method="post" class="form-horizontal"> -->
-                <form th:action="@{/curso/salvar}" method="post" th:object="${curso}">
-                
+<!--                 <form th:action=" ${curso.id == null} ?  @{/curso/salvar} : @{/curso/editar}" method="post" th:object="${curso}"> -->
+                  <form th:action="@{/curso/salvar}" method="post" th:object="${curso}">
                
                 
                 <th:block th:include="fragments/Mensagens">  </th:block>
   				
-        	<div  th:if="${curso}">
-        	<input type="text" readonly id="id" name="id" th:value="${curso?.id}"/>
-        	</div>
+        	
+        	<input type="hidden" readonly id="id" name="id" th:value="${curso?.id}"/>
+        	
                     <div class="box-body">
                         <div class="form-group">
                             <label  id="nome" class=" control-label">Nome do Curso</label>
@@ -68,7 +68,7 @@
                         <a th:href="@{/curso/listar}">
                             <button type="button" class="btn btn-default"><i class="fa fa-right"></i> Listar Cursos</button>
                         </a>
-                        <button type="submit" class="btn btn-info pull-right" th:href="@{/curso/salvar}"><i class="fa fa-save"></i> Salvar Curso</button>
+                        <button type="submit" class="btn btn-info pull-right" ><i class="fa fa-save"></i> Salvar Curso</button>
                     </div>
                     <!-- /.box-footer -->
                 </form>
@@ -93,8 +93,11 @@
 										      <td th:text="${c.descricao}">Alfreds Futterkiste</td>
                                         <td>
                                             <a th:href="@{/curso/{id}(id=${c.id})}" class="btn btn-primary btn purple editView" title="Edit" ><i class="fa fa-edit"></i> Edit</a>
-                                            <a href="#" class="btn btn-danger btn purple deleteView" title="Delete"><i class="fa fa-trash-o"></i> Delete</a>
-                                        </td>
+                                            <a th:href="@{curso/excluir/{id}(id=${c.id})}" class="btn btn-danger btn purple deleteView" title="Delete"><i class="fa fa-trash-o"></i> Delete</a>
+
+									
+								
+								</td>
                                     </tr>
                                     </tbody>
                                 </table>
