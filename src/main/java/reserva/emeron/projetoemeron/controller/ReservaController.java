@@ -48,12 +48,13 @@ public class ReservaController {
 	private String salvar(@Valid Reserva reserva, BindingResult result, RedirectAttributes redirect) {
 		
 		if(result.hasErrors()){
-			redirect.addFlashAttribute("mensagem", "verifique os campos obrigatorios "); //mensagem na view
+			redirect.addFlashAttribute("mensagem", "Verifique os Campos Obrigatorios "); //mensagem na view
 			return "redirect:/reserva/novo"; //na rota
 		}
 		
-		reservaService.salvarDados(reserva);
 		
+		redirect.addFlashAttribute("mensagemsucesso", "Reserva feita com Sucesso!");
+		reservaService.salvarDados(reserva);
 		//reservaRepository.save(reserva);
 		
 		return "redirect:/reserva/novo";

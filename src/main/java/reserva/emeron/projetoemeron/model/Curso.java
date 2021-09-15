@@ -1,5 +1,6 @@
 package reserva.emeron.projetoemeron.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,7 +21,12 @@ public class Curso {
 	
 	
 	@NotBlank
+	@Column(unique = true)
 	private String nome;
+	
+	@NotBlank
+	private String descricao;
+	
 	
 	
 	public Curso() {
@@ -29,10 +35,23 @@ public class Curso {
 
 
 
-	public Curso(String nome) {
+	public Curso(String nome, String descricao) {
 	
 		this.nome = nome;
+		this.descricao = descricao;
 		
+	}
+
+
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 
@@ -46,8 +65,6 @@ public class Curso {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-
 
 	public String getNome() {
 		return nome;
