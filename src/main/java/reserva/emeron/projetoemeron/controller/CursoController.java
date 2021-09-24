@@ -103,7 +103,7 @@ public class CursoController {
 			cursoService.excluir(id);
 			redirect.addFlashAttribute("cursodeletado", "Curso Excluido  com Sucesso!");
 		} catch (Exception e) {
-			redirect.addFlashAttribute("cursocomreserva", "Curso Já pertece a uma reserva, Por favor Verifique a lista de reservas!!");
+			redirect.addFlashAttribute("cursocomreserva", "Este Curso Pertece a uma reserva!!");
 			return "redirect:/curso/novo";
 		}
 		
