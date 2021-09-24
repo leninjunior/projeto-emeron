@@ -97,11 +97,21 @@ public class CursoController {
 	}
 	
 	@GetMapping("excluir/{id}")
-	private String excluir(@PathVariable ("id") Long id) {
+	private String excluir(@PathVariable ("id") Long id , RedirectAttributes redirect) {
 		
+		try {
+			
+			cursoService.excluir(id);
+			redirect.addFlashAttribute("mensagemsucesso", "Curso Excluido  com Sucesso!");
+		} catch (Exception e) {
+			redirect.addFlashAttribute("mensagemiguais", "Curso Já pertece a uma reserva, Por favor Verifique a lista de reservas!!");
+			return "redirect:/curso/novo";
+			
+			
+		}
 		
-		cursoService.excluir(id);
 		return "redirect:/curso/novo";
+		
 	}
 
 }
