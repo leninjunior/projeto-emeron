@@ -7,7 +7,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -102,12 +101,10 @@ public class CursoController {
 		try {
 			
 			cursoService.excluir(id);
-			redirect.addFlashAttribute("mensagemsucesso", "Curso Excluido  com Sucesso!");
+			redirect.addFlashAttribute("cursodeletado", "Curso Excluido  com Sucesso!");
 		} catch (Exception e) {
-			redirect.addFlashAttribute("mensagemiguais", "Curso Já pertece a uma reserva, Por favor Verifique a lista de reservas!!");
+			redirect.addFlashAttribute("cursocomreserva", "Curso Já pertece a uma reserva, Por favor Verifique a lista de reservas!!");
 			return "redirect:/curso/novo";
-			
-			
 		}
 		
 		return "redirect:/curso/novo";

@@ -40,5 +40,21 @@
                            	<span th:text="${mensagemeditado}"></span>
                         </div>
                     </div>  
+                    
+                        <div  th:if="${!#strings.isEmpty(cursodeletado)}">
+                        <div class="alert alert-success alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
+                            <h4><i class="icon fa fa-check"></i> Sucessafasfasfo!</h4>
+                           	<span th:text="${cursodeletado}"></span>
+                        </div>
+                    </div>  
+                    
+                    	 <div  th:if="${!#strings.isEmpty(cursocomreserva)}">
+                        <div class="alert alert-warning alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
+                            <h4><i class="icon fa fa-warning"></i> Atençãoasfasf!</h4>
+                           	<span th:text="${cursocomreserva}"></span>
+                        </div>
+                    </div>
 </body>
 </html>
