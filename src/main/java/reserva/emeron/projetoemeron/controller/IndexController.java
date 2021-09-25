@@ -35,4 +35,12 @@ public String testeDashbord() {
 	
 	return "admin/dashboard/index.html";
 }
+
+@GetMapping("/teste")
+public String testepagina() {
+	
+	return "fragments/_main-sidebar.html";
+}
+
+
 }

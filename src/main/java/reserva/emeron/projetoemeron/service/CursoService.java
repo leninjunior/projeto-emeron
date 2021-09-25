@@ -21,6 +21,11 @@ public class CursoService {
 		return cursoRepository.cursoJaExiste(nome);
 
 	}
+	
+	public void excluir(Long id) {
+		
+		cursoRepository.deleteById(id);
+	}
 
 	public void update(Curso curso) {
 		cursoRepository.save(curso);

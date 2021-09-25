@@ -70,6 +70,7 @@ public class CursoController {
 		}
 		return "redirect:/curso/novo"; // na rota
 	}
+	
 
 	@GetMapping("/listar")
 	private ModelAndView listarCursos() {
@@ -92,6 +93,22 @@ public class CursoController {
 		mv.addObject("curso", cursoEdit);
 
 		return mv;
+	}
+	
+	@GetMapping("excluir/{id}")
+	private String excluir(@PathVariable ("id") Long id , RedirectAttributes redirect) {
+		
+		try {
+			
+			cursoService.excluir(id);
+			redirect.addFlashAttribute("cursodeletado", "Curso Excluido  com Sucesso!");
+		} catch (Exception e) {
+			redirect.addFlashAttribute("cursocomreserva", "Este Curso Pertece a uma reserva!!");
+			return "redirect:/curso/novo";
+		}
+		
+		return "redirect:/curso/novo";
+		
 	}
 
 }
