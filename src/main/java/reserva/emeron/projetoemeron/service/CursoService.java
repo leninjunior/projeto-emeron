@@ -21,9 +21,9 @@ public class CursoService {
 		return cursoRepository.cursoJaExiste(nome);
 
 	}
-	
+
 	public void excluir(Long id) {
-		
+
 		cursoRepository.deleteById(id);
 	}
 
@@ -50,6 +50,11 @@ public class CursoService {
 	public Curso findById(Long id) {
 
 		return this.cursoRepository.findById(id).get();
+	}
+	
+	public Integer countCursos() {
+	 return cursoRepository.quantidadeDeCurso();
+	 
 	}
 
 }

@@ -6,6 +6,7 @@
       layout:decorate="layout">
 <head>
     <title>Product Details</title>
+   
 </head>
 <body>
 <section layout:fragment="header">
@@ -13,6 +14,7 @@
         Cadastrar Reserva
         
     </h1>
+
     <ol class="breadcrumb">
         <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Cadastrar Reserva</li>
@@ -30,48 +32,59 @@
                     <h3 class="box-title">Adicionar Reserva</h3>
                 </div>
 				
-			
-			
-			
-			
-                <!-- /.box-header -->
+	
                 <!-- form start -->
 <!--                 <form th:action="@{/product/save}" th:object="${product}" method="post" class="form-horizontal"> -->
-                <form action="/reserva/add/salvar" method="post" th:object="${reserva}">
-                
-                  
-                <th:block th:include="fragments/Mensagens">  </th:block>
-  				
-               
-                
-                    <div class="box-body">
-                        <div class="form-group">
-                            <label  id="nome" class=" control-label">Nome do Reserva</label>
 
-                            <div class="col-sm-10">
-                                <input name="nome"  class="form-control" placeholder="Nome">
-                            </div>
-                        </div>
-                        
-		<select name="curso"  class="form-select" aria-label="Default select example">
-		        <option th:each="c: ${cursolist}"
-		                th:value="${c.id}"
-		                th:text="${c.nome}">
-   		</select>
 
-                    </div>
-<!--                     /.box-body -->
-                    <div class="box-footer center">
-                        <a th:href="@{/reserva/listar}">
-                            <button type="button" class="btn btn-default"><i class="fa fa-right"></i> Listar Reservas</button>
-                        </a>
-                       <button type="submit" class="btn btn-info pull-right" th:href="@{/reserva/add/salvar}"><i class="fa fa-save"></i> Salvar Reserva</button> 
-                    </div>
-                    <!-- /.box-footer -->
-                </form>
-                
-                
-<!--                 	  <table id="example1" class="table table-bordered table-striped dataTable" role="grid" -->
+					<form action="/reserva/add/salvar" method="post"
+						th:object="${reserva}">
+
+
+						<th:block th:include="fragments/Mensagens">
+						</th:block>
+
+
+
+						<div class="box-body">
+						
+							<div class="form-group">
+							<label id="nome" class=" control-label">Nome do Reserva</label>
+							<input name="nome" class="form-control" placeholder="Nome">
+								
+								
+							<div>
+							<select name="curso" class="form-selectl">
+								<option th:each="c: ${cursolist}" th:value="${c.id}"
+									th:text="${c.nome}">
+							</select>
+							
+							</div>	
+							</div>
+
+
+
+
+
+
+						</div>
+						<!--                     /.box-body -->
+						<div class="box-footer center">
+							<a th:href="@{/reserva/listar}">
+								<button type="button" class="btn btn-default">
+									<i class="fa fa-right"></i> Listar Reservas
+								</button>
+							</a>
+							<button type="submit" class="btn btn-info pull-right"
+								th:href="@{/reserva/add/salvar}">
+								<i class="fa fa-save"></i> Salvar Reserva
+							</button>
+						</div>
+						<!-- /.box-footer -->
+					</form>
+
+
+					<!--                 	  <table id="example1" class="table table-bordered table-striped dataTable" role="grid" -->
 <!--                                        aria-describedby="example1_info"> -->
 <!--                                     <thead class="thead"> -->
 <!-- 						             <tr> -->
@@ -101,9 +114,12 @@
 </div>
 
 <th:block layout:fragment="script">
-    <script>
-    </script>
+<script >
+
+</script>
+
 </th:block>
+
 
 </body>
 
