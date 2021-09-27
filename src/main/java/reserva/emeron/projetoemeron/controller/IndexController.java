@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import reserva.emeron.projetoemeron.model.Reserva;
+import reserva.emeron.projetoemeron.service.CursoService;
 import reserva.emeron.projetoemeron.service.ReservaService;
 
 @Controller
@@ -16,6 +17,9 @@ public class IndexController {
 	
 	@Autowired
 	private ReservaService reservaService;
+	
+	@Autowired
+	private CursoService cursoService;
 	
 	
 @GetMapping("/")
@@ -31,9 +35,16 @@ public class IndexController {
 	}
 
 @GetMapping("/index")
-public String testeDashbord() {
+public ModelAndView testeDashbord() {
 	
-	return "admin/dashboard/index.html";
+	
+	 ModelAndView mv = new ModelAndView("admin/dashboard/index.html");
+	 mv.addObject("quantidade", cursoService.countCursos());
+	 System.out.println("quanridade de cyurss são>>>" +cursoService.countCursos());
+	 
+	
+	
+	return mv;
 }
 
 @GetMapping("/teste")

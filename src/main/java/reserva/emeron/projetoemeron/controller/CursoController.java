@@ -34,6 +34,7 @@ public class CursoController {
 
 		mv.addObject("cursosAdmin", cursoList);
 
+			
 		return mv;
 
 	}
@@ -78,7 +79,8 @@ public class CursoController {
 		List<Curso> cursoList = cursoService.buscarTodos();
 		ModelAndView mv = new ModelAndView("/curso/listacursos.html");
 		mv.addObject("cursos", cursoList);
-
+		
+		
 		return mv;
 	}
 
