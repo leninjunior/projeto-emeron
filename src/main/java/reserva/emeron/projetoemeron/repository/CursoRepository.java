@@ -21,6 +21,6 @@ public interface CursoRepository extends JpaRepository<Curso, Long>{
 
 
 		@Query(value = "SELECT COUNT(*) FROM curso", nativeQuery = true)
-	public Integer quantidadeDeCurso();
+		public Integer quantidadeDeCurso();
 	
 }
