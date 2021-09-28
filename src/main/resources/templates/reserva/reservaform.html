@@ -1,40 +1,38 @@
 <!DOCTYPE html>
-<html 
-		xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
-      layout:decorate="layout">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorate="layout">
 <head>
-    <title>Product Details</title>
-   
+<title>Product Details</title>
+
 </head>
 <body>
-<section layout:fragment="header">
-    <h1>
-        Cadastrar Reserva
-        
-    </h1>
+	<section layout:fragment="header">
+		<h1>Cadastrar Reserva</h1>
 
-    <ol class="breadcrumb">
-        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Cadastrar Reserva</li>
-    </ol>
-</section>
+		<ol class="breadcrumb">
+			<li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+			<li class="active">Cadastrar Reserva</li>
+		</ol>
 
 
+	</section>
 
-<div layout:fragment="content">
-    <div class="row">
-        <div class="col-md-12">
-            <!-- Horizontal Form -->
-            <div class="box box-info">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Adicionar Reserva</h3>
-                </div>
-				
-	
-                <!-- form start -->
-<!--                 <form th:action="@{/product/save}" th:object="${product}" method="post" class="form-horizontal"> -->
+
+
+	<div layout:fragment="content">
+		<div class="row">
+			<div class="col-md-12">
+				<!-- Horizontal Form -->
+				<div class="box box-info">
+					<div class="box-header with-border">
+						<h3 class="box-title">Adicionar Reserva</h3>
+					</div>
+
+
+					<!-- form start -->
+					<!--                 <form th:action="@{/product/save}" th:object="${product}" method="post" class="form-horizontal"> -->
 
 
 					<form action="/reserva/add/salvar" method="post"
@@ -47,24 +45,24 @@
 
 
 						<div class="box-body">
-						
+
 							<div class="form-group">
-							<label id="nome" class=" control-label">Nome do Reserva</label>
-							<input name="nome" class="form-control" placeholder="Nome">
-								
-								
-							<div>
-							<select name="curso" class="form-selectl">
-								<option th:each="c: ${cursolist}" th:value="${c.id}"
-									th:text="${c.nome}">
-							</select>
-							
-							</div>	
+								<label id="nome" class=" control-label">Nome do Reserva</label>
+								<input name="nome" class="form-control" placeholder="Nome">
+
+
+
+
+
 							</div>
 
-
-
-
+							<div class="form-group">
+								<label>Selecionar Curso</label> <select name="curso"
+									class="form-control">
+									<option th:each="c: ${cursolist}" th:value="${c.id}"
+										th:text="${c.nome}">
+								</select>
+							</div>
 
 
 						</div>
@@ -85,40 +83,40 @@
 
 
 					<!--                 	  <table id="example1" class="table table-bordered table-striped dataTable" role="grid" -->
-<!--                                        aria-describedby="example1_info"> -->
-<!--                                     <thead class="thead"> -->
-<!-- 						             <tr> -->
-<!-- 										    <th>ID</th> -->
-<!-- 										     <th>Reserva</th> -->
-<!-- 										 	<th>AÇÕES</th> -->
-<!-- 		                              </tr> -->
-<!--                                     </thead> -->
-<!--                                     <tbody> -->
-<!--                                    <tr th:each="c : ${reservas}"> -->
-<!-- 										    <td th:text="${c.id}">Alfreds Futterkiste</td> -->
-<!-- 										     <td th:text="${c.nome}">Alfreds Futterkiste</td> -->
-<!--                                         <td> -->
-<!--                                             <a href="#" class="btn btn-primary btn purple editView" title="Edit" ><i class="fa fa-edit"></i> Edit</a> -->
-<!--                                             <a href="#" class="btn btn-danger btn purple deleteView" title="Delete"><i class="fa fa-trash-o"></i> Delete</a> -->
-<!--                                         </td> -->
-<!--                                     </tr> -->
-<!--                                     </tbody> -->
-<!--                                 </table> -->
-               
+					<!--                                        aria-describedby="example1_info"> -->
+					<!--                                     <thead class="thead"> -->
+					<!-- 						             <tr> -->
+					<!-- 										    <th>ID</th> -->
+					<!-- 										     <th>Reserva</th> -->
+					<!-- 										 	<th>AÇÕES</th> -->
+					<!-- 		                              </tr> -->
+					<!--                                     </thead> -->
+					<!--                                     <tbody> -->
+					<!--                                    <tr th:each="c : ${reservas}"> -->
+					<!-- 										    <td th:text="${c.id}">Alfreds Futterkiste</td> -->
+					<!-- 										     <td th:text="${c.nome}">Alfreds Futterkiste</td> -->
+					<!--                                         <td> -->
+					<!--                                             <a href="#" class="btn btn-primary btn purple editView" title="Edit" ><i class="fa fa-edit"></i> Edit</a> -->
+					<!--                                             <a href="#" class="btn btn-danger btn purple deleteView" title="Delete"><i class="fa fa-trash-o"></i> Delete</a> -->
+					<!--                                         </td> -->
+					<!--                                     </tr> -->
+					<!--                                     </tbody> -->
+					<!--                                 </table> -->
 
 
-            </div>
-            <!-- /.box -->
-        </div>
-    </div>
-</div>
 
-<th:block layout:fragment="script">
-<script >
+				</div>
+				<!-- /.box -->
+			</div>
+		</div>
+	</div>
+
+	<th:block layout:fragment="script">
+		<script>
 
 </script>
 
-</th:block>
+	</th:block>
 
 
 </body>
