@@ -47,10 +47,10 @@ public ModelAndView testeDashbord() {
 	return mv;
 }
 
-@GetMapping("/teste")
+@GetMapping("/login")
 public String testepagina() {
 	
-	return "fragments/_main-sidebar.html";
+	return "admin/auth/login.html";
 }
 
 

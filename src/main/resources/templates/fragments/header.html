@@ -25,8 +25,7 @@
                     <li class="user-header">
                         <img src="/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                         <p>
-                            Welcome <span sec:authentication="principal.username"></span> !
-                            <small>Member since Nov. 2021</small>
+                            Seja Bem-vindo <span sec:authentication="principal.username"></span> !
                         </p>
                     </li>
                     <!-- Menu Footer-->
@@ -35,7 +34,7 @@
                             <!--<a href="#" class="btn btn-default btn-flat">Profile</a>-->
                         </div>
                         <div class="pull-right" sec:authorize="isAuthenticated()">
-                            <a th:href="@{/logout}" class="btn btn-default btn-flat">Sign out</a>
+                            <a th:href="@{/logout}" class="btn btn-default btn-flat"><strong>Sair</strong></a>
                         </div>
                     </li>
                 </ul>

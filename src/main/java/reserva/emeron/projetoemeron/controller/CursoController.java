@@ -55,10 +55,6 @@ public class CursoController {
 					cursoService.salvar(curso);
 					redirect.addFlashAttribute("mensagemsucesso", "Curso Adicionado com Sucesso!");
 
-				} else {
-
-					redirect.addFlashAttribute("mensagemiguais", "Curso Já cadastrado!!");
-
 				}
 
 			} else {
@@ -68,6 +64,7 @@ public class CursoController {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			redirect.addFlashAttribute("mensagemiguais", "Curso Já cadastrado!!");
 		}
 		return "redirect:/curso/novo"; // na rota
 	}

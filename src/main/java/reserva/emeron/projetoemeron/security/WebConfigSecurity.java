@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+@SuppressWarnings("deprecation")
 @Configuration
 @EnableWebSecurity
 public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
@@ -20,7 +21,10 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
 		http.csrf().disable() // Desativa as configurações padrão de memória.
 				.authorizeRequests() // Pertimir restringir acessos
 				.antMatchers(HttpMethod.GET, "/").permitAll() // Qualquer usuário acessa a pagina inicial
-				.anyRequest().authenticated().and().formLogin().permitAll() // permite qualquer usuário
+				.anyRequest().authenticated().and()
+					.formLogin()
+					.loginPage("/login")
+					.permitAll() // permite qualquer usuário
 				.and().logout() // Mapeia URL de Logout e invalida usuário autenticado
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
 
@@ -28,8 +32,10 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
 
 	@Override // Cria autenticação do usuário com banco de dados ou em memória
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().passwordEncoder(NoOpPasswordEncoder.getInstance()).withUser("lenin")
-				.password("123").roles("ADMIN");
+		auth.inMemoryAuthentication().passwordEncoder(NoOpPasswordEncoder.getInstance())
+				.withUser("lenin")
+				.password("123")
+				.roles("ADMIN");
 	}
 
 	@Override // Ignora URL especificas
