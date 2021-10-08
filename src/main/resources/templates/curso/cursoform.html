@@ -16,6 +16,7 @@
     <ol class="breadcrumb">
         <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Cadastrar Curso</li>
+
     </ol>
 </section>
 
@@ -41,7 +42,7 @@
            
           
                   <form th:action="@{/curso/salvar}" method="post" th:object="${curso}">
-               
+          
        			   <th:block th:include="fragments/Mensagens">  </th:block>
 
 

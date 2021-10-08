@@ -39,7 +39,8 @@ public ModelAndView testeDashbord() {
 	
 	
 	 ModelAndView mv = new ModelAndView("admin/dashboard/index.html");
-	 mv.addObject("quantidade", cursoService.countCursos());
+	 mv.addObject("quantidadecurso", cursoService.countCursos());
+	 mv.addObject("quantidadereserva", reservaService.countReserva());
 	 System.out.println("quanridade de cyurss são>>>" +cursoService.countCursos());
 	 
 	

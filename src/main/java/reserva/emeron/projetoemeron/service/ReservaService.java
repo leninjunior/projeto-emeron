@@ -28,5 +28,9 @@ public class ReservaService {
 	}
 	
 	
+	public Integer countReserva() {
+		 return reservaRepository.quantidadeDeReserva();
+		 
+		}
 
 }
