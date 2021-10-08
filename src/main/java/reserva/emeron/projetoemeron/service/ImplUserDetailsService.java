@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import reserva.emeron.projetoemeron.model.Usuario;
 import reserva.emeron.projetoemeron.repository.UsuarioRepository;
 
 
@@ -18,7 +19,15 @@ public class ImplUserDetailsService  implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		return null;
+		
+		
+		 Usuario usuario = usuarioRepository.findUserByLogin(username);
+		 
+		 if(usuario == null) {
+			 throw new UsernameNotFoundException ("Usuario não encontrado");
+			 
+		 }
+		return usuario;
 	}
 
 	
