@@ -29,7 +29,7 @@
             <div class="small-box bg-aqua">
                 <div class="inner">
                 <h4> Cursos Cadastrados:</h4>
-                    <h2 id="count_product" th:text="${quantidadecurso}"></h2>
+                    <h2 th:text="${quantidadecurso}"></h2>
                    
                   
                 </div>
@@ -44,7 +44,7 @@
             <!-- small box -->
             <div class="small-box bg-green">
                 <div class="inner">
-                   <h4>Reservas No sistema</h4>
+                   <h4>Reservas Cadastradas:</h4>
                   <h2 th:text="${quantidadereserva}"></h2>
                 </div>
                 <div class="icon">
@@ -58,8 +58,8 @@
             <!-- small box -->
             <div class="small-box bg-yellow">
                 <div class="inner">
-                    <h3 id="count_user"></h3>
-                    <p>User Registrations</p>
+                    <h4>Usuarios Registrados:</h4>
+                  <h2 th:text="${quantidadeusuarios}"></h2>
                 </div>
                 <div class="icon">
                     <i class="ion ion-person-add"></i>

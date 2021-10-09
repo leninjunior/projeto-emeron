@@ -12,6 +12,9 @@
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu">
         <li class="header"><strong>MENU</strong></li>
+        
+       	<li class="active"><a href="/"><i class="fa fa-dashboard"></i> DASHBOARD</a></li>
+        
         <li class="active treeview">
             <a href="#">
                 <i class="fa fa-th"></i> <span>CADASTRO</span>
@@ -24,7 +27,9 @@
                 <li class="active"><a href="/"><i class="fa fa-dashboard"></i> Dashboard v1</a></li>
 -->
 
-                <li class="active"><a th:href="@{/curso/novo}"><i class="fa fa-circle-o"></i> Curso</a></li>
+                <li class="active"><a th:href="@{/curso/novo}"><i class="fa fa-circle-o"></i> Cadastrar Curso</a></li>
+                 <li class="active"><a th:href="@{/curso/novo}"><i class="fa fa-circle-o"></i> Cadastrar Laboratorio</a></li>
+                  <li class="active"><a th:href="@{/curso/novo}"><i class="fa fa-circle-o"></i> Cadastrar Professores</a></li>
                 <li><a th:href="@{/reserva/novo}"><i class="fa fa-circle-o"></i> Cadastrar Reserva</a></li>
                 <li><a th:href="@{/usuario/novo}"><i class="fa fa-circle-o"></i> Cadastrar Usuario</a></li>
                 <!--  <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}"><i class="fa fa-circle-o"></i> Logout</a></li> -->

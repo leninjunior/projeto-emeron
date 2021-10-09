@@ -85,13 +85,12 @@ public class CursoController {
 	private ModelAndView editCurso(@PathVariable("id") Long id) {
 		List<Curso> cursoList = cursoService.buscarTodos();
 		ModelAndView mv = new ModelAndView("/curso/cursoform.html");
-		mv.addObject("cursosAdmin", cursoList);
+	mv.addObject("cursosAdmin", cursoList);
 
 		Curso cursoEdit = this.cursoService.findById(id);
+	mv.addObject("curso", cursoEdit);
 
-		mv.addObject("curso", cursoEdit);
-
-		return mv;
+	return mv;
 	}
 	
 	@GetMapping("excluir/{id}")
