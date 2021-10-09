@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import reserva.emeron.projetoemeron.model.Reserva;
 import reserva.emeron.projetoemeron.service.CursoService;
 import reserva.emeron.projetoemeron.service.ReservaService;
+import reserva.emeron.projetoemeron.service.UsuarioService;
 
 @Controller
 public class IndexController {
@@ -21,6 +22,8 @@ public class IndexController {
 	@Autowired
 	private CursoService cursoService;
 	
+	@Autowired
+	private UsuarioService usuarioService;
 	
 @GetMapping("/")
 	public ModelAndView listarReservas() {
@@ -39,18 +42,20 @@ public ModelAndView testeDashbord() {
 	
 	
 	 ModelAndView mv = new ModelAndView("admin/dashboard/index.html");
-	 mv.addObject("quantidade", cursoService.countCursos());
-	 System.out.println("quanridade de cyurss são>>>" +cursoService.countCursos());
+	 mv.addObject("quantidadecurso", cursoService.countCursos());
+	 mv.addObject("quantidadereserva", reservaService.countReserva());
+	 mv.addObject("quantidadeusuarios", usuarioService.countUsuarios());
+	
 	 
 	
 	
 	return mv;
 }
 
-@GetMapping("/teste")
+@GetMapping("/login")
 public String testepagina() {
 	
-	return "fragments/_main-sidebar.html";
+	return "admin/auth/login.html";
 }
 
 

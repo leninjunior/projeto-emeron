@@ -55,10 +55,6 @@ public class CursoController {
 					cursoService.salvar(curso);
 					redirect.addFlashAttribute("mensagemsucesso", "Curso Adicionado com Sucesso!");
 
-				} else {
-
-					redirect.addFlashAttribute("mensagemiguais", "Curso Já cadastrado!!");
-
 				}
 
 			} else {
@@ -68,6 +64,7 @@ public class CursoController {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			redirect.addFlashAttribute("mensagemiguais", "Curso Já cadastrado!!");
 		}
 		return "redirect:/curso/novo"; // na rota
 	}
@@ -88,13 +85,12 @@ public class CursoController {
 	private ModelAndView editCurso(@PathVariable("id") Long id) {
 		List<Curso> cursoList = cursoService.buscarTodos();
 		ModelAndView mv = new ModelAndView("/curso/cursoform.html");
-		mv.addObject("cursosAdmin", cursoList);
+	mv.addObject("cursosAdmin", cursoList);
 
 		Curso cursoEdit = this.cursoService.findById(id);
+	mv.addObject("curso", cursoEdit);
 
-		mv.addObject("curso", cursoEdit);
-
-		return mv;
+	return mv;
 	}
 	
 	@GetMapping("excluir/{id}")

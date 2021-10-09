@@ -23,24 +23,20 @@
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
-        <p class="login-box-msg">Sign in to start your session</p>
+        <p class="login-box-msg">Sistema de Gerenciamento de Locais</p>
         <div th:if="${param.error}">
             <div class="alert alert-danger">
-                Invalid username and password.
+               Senha Invalida
             </div>
         </div>
-        <div th:if="${param.logout}">
-            <div class="alert alert-info">
-                You have been logged out.
-            </div>
-        </div>
+      
         <form th:action="@{/login}" method="post">
             <div class="form-group has-feedback">
-                <input type="email" class="form-control" name="username" required placeholder="Email">
+                <input type="text" class="form-control" name="username" required placeholder="Usuario">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="password" class="form-control" name="password" required placeholder="Password">
+                <input type="password" class="form-control" name="password" required placeholder="Senha">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="row">
@@ -53,13 +49,13 @@
                 </div>
                 <!-- /.col -->
                 <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">entrar</button>
                 </div>
                 <!-- /.col -->
             </div>
         </form>
 
-        <a th:href="@{/register}" class="text-center">Register a new membership</a>
+<!--         <a th:href="@{/register}" class="text-center">Register a new membership</a> -->
 
     </div>
     <!-- /.login-box-body -->

@@ -40,6 +40,8 @@ public class CursoService {
 		Iterable<Curso> cursoIterable = this.cursoRepository.findAll();
 		return Streamable.of(cursoIterable).toList();
 	}
+	
+	
 
 	public void salvar(Curso curso) {
 

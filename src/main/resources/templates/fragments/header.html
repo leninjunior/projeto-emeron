@@ -17,25 +17,29 @@
             <!-- User Account: style can be found in dropdown.less -->
             <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <img src="/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                    <span class="hidden-xs" sec:authentication="principal.username"></span>
+<!--                     <img src="/dist/img/user2-160x160.jpg" class="user-image" alt="User Image"> -->
+                  
+                  <h5>  <strong> <span   sec:authentication="name"></span></strong> </h5> 
+                   
                 </a>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu" sec:authorize="isAuthenticated()" >
                     <!-- User image -->
-                    <li class="user-header">
+                    <li class="user-header" >
                         <img src="/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                         <p>
-                            Welcome <span sec:authentication="principal.username"></span> !
-                            <small>Member since Nov. 2021</small>
+                      <span sec:authentication="name"></span>
+                           
+                            
                         </p>
                     </li>
                     <!-- Menu Footer-->
                     <li class="user-footer">
                         <div class="pull-left">
-                            <!--<a href="#" class="btn btn-default btn-flat">Profile</a>-->
+                            <a href="#" class="btn btn-default btn-flat">Profile</a>
                         </div>
-                        <div class="pull-right" sec:authorize="isAuthenticated()">
-                            <a th:href="@{/logout}" class="btn btn-default btn-flat">Sign out</a>
+                        <div class="pull-right">
+                     
+                            <a th:href="@{/logout}" class="btn btn-default btn-flat" ><strong>Sair</strong></a>
                         </div>
                     </li>
                 </ul>
