@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import reserva.emeron.projetoemeron.model.Role;
 import reserva.emeron.projetoemeron.model.Usuario;
+import reserva.emeron.projetoemeron.service.RoleService;
 import reserva.emeron.projetoemeron.service.UsuarioService;
 
 @Controller
@@ -23,9 +25,24 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioService usuarioService;
 	
+	@Autowired
+	private RoleService roleService;
+	
+	
 	
 	
 	@GetMapping("/novo")
+	public ModelAndView novo(Usuario usuario) {
+		Iterable<Usuario> usuariosIT = this.usuarioService.listarUsuarios();
+		ModelAndView mv = new ModelAndView("usuario/usuarioform.html");
+		mv.addObject("grupos", roleService.buscarTodosPerfil());
+		mv.addObject("userList", usuariosIT );
+		
+		
+		return mv;
+	}
+	
+	@GetMapping("/novo13")
 	private ModelAndView usuario() {
 		
 		Iterable<Usuario> usuariosIT = this.usuarioService.listarUsuarios();
@@ -33,6 +50,7 @@ public class UsuarioController {
 		mv.addObject("userList", usuariosIT );
 		return mv;
 	}
+	
 	
 	
 	
@@ -65,7 +83,7 @@ public class UsuarioController {
 	
 	
 	@PostMapping("/salvar")
-	private String salvar(@Valid Usuario usuario, BindingResult result, RedirectAttributes redirect) {
+	private String salvar(@Valid Usuario usuario,  BindingResult result, RedirectAttributes redirect) {
 
 		if (result.hasErrors()) {
 			redirect.addFlashAttribute("mensagem", "Verifique os Campos Obrigatórios "); // mensagem na view
@@ -104,7 +122,7 @@ public class UsuarioController {
 		
 		ModelAndView mv = new ModelAndView("usuario/usuarioform.html");
 		mv.addObject("listUser", usuariosIT);
-
+		mv.addObject("grupos", roleService.buscarTodosPerfil());
 		
 		Usuario userEdit = this.usuarioService.findById(id);
 

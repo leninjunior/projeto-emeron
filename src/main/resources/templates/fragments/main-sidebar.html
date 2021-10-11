@@ -1,19 +1,30 @@
 <!-- sidebar: style can be found in sidebar.less -->
 <section class="sidebar" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
     <!-- Sidebar user panel -->
+    
     <div class="user-panel">
         <div class="pull-left image">
-            <img src="/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+          <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
-<!--         <div class="pull-left info"  sec:authorize="isAuthenticated()" > -->
-<!--             <p sec:authentication="${login}"></p> -->
+        <div class="pull-left info">
+         <strong>   <p> <span sec:authentication="name"></span></p> </strong>
+        
+          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+        </div>
+      </div>
+<!--     <div class="user-panel"> -->
+<!--         <div class="pull-left image"> -->
+<!--             <img src="/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" /> -->
 <!--         </div> -->
-    </div>
+<!-- <!--         <div class="pull-left info"  sec:authorize="isAuthenticated()" > --> -->
+<!-- <!--             <p sec:authentication="${login}"></p> --> -->
+<!-- <!--         </div> --> -->
+<!--     </div> -->
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu">
         <li class="header"><strong>MENU</strong></li>
         
-       	<li class="active"><a href="/"><i class="fa fa-dashboard"></i> DASHBOARD</a></li>
+       	<li class=""><a th:href="@{/index}"><i class="fa fa-dashboard"></i> DASHBOARD</a></li>
         
         <li class="active treeview">
             <a href="#">
@@ -23,13 +34,13 @@
         </span>
             </a>
             <ul class="treeview-menu">
-<!--
-                <li class="active"><a href="/"><i class="fa fa-dashboard"></i> Dashboard v1</a></li>
--->
 
-                <li class="active"><a th:href="@{/curso/novo}"><i class="fa fa-circle-o"></i> Cadastrar Curso</a></li>
-                 <li class="active"><a th:href="@{/curso/novo}"><i class="fa fa-circle-o"></i> Cadastrar Laboratorio</a></li>
-                  <li class="active"><a th:href="@{/curso/novo}"><i class="fa fa-circle-o"></i> Cadastrar Professores</a></li>
+<!--                 <li class="active"><a href="/"><i class="fa fa-dashboard"></i> Dashboard v1</a></li> -->
+
+
+                <li class=""><a th:href="@{/curso/novo}"><i class="fa fa-circle-o"></i> Cadastrar Curso</a></li>
+                 <li class=""><a th:href="@{/curso/novo}"><i class="fa fa-circle-o"></i> Cadastrar Laboratorio</a></li>
+                  <li class="" ><a  th:href="@{/curso/novo}"><i class="fa fa-circle-o"></i> Cadastrar Professores</a></li>
                 <li><a th:href="@{/reserva/novo}"><i class="fa fa-circle-o"></i> Cadastrar Reserva</a></li>
                 <li><a th:href="@{/usuario/novo}"><i class="fa fa-circle-o"></i> Cadastrar Usuario</a></li>
                 <!--  <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}"><i class="fa fa-circle-o"></i> Logout</a></li> -->
@@ -50,11 +61,12 @@
                 <li class="active"><a href="/"><i class="fa fa-dashboard"></i> Dashboard v1</a></li>
 -->
 
-                <li class="active"><a th:href="@{/product/list}"><i class="fa fa-circle-o"></i> Minhas Reservas</a></li>
+                <li ><a th:href="@{/product/list}"><i class="fa fa-circle-o"></i> Minhas Reservas</a></li>
                 <li><a th:href="@{/producttype/list}"><i class="fa fa-circle-o"></i> Reservas Pendentes</a></li>
               <!--  <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}"><i class="fa fa-circle-o"></i> Logout</a></li> -->
             </ul>
-        </li>	
+             <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}"><i class="fa fa-close"></i> Sair</a></li>
+       	
     
     </ul>
 </section>

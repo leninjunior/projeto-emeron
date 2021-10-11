@@ -25,7 +25,7 @@ public class UsuarioService {
 		
 		usuario.setSenha(this.passwordEncoder.encode(usuario.getSenha()));
 		this.usuarioRepository.save(usuario);
-		System.out.println("senha  criptografada >>>>>>>>>>>>>>>>>> " + usuario.getSenha());
+		//System.out.println("senha  criptografada >>>>>>>>>>>>>>>>>> " + usuario.getSenha());
 	}
 	
 	
@@ -51,9 +51,8 @@ public class UsuarioService {
 	public void update(Usuario usuario) {
 		usuario.setSenha(this.passwordEncoder.encode(usuario.getSenha()));
 		this.usuarioRepository.save(usuario);
-		System.out.println("senha  criptografada  update>>>>>>>>>>>>>>>>>> " + usuario.getSenha());
-		usuarioRepository.save(usuario);
-
+	//	System.out.println("senha  criptografada  update>>>>>>>>>>>>>>>>>> " + usuario.getSenha());
+	
 	}
 	
 	public Usuario findById(Long id) {
