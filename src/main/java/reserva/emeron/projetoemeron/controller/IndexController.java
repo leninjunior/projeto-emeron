@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import reserva.emeron.projetoemeron.model.Reserva;
 import reserva.emeron.projetoemeron.service.CursoService;
 import reserva.emeron.projetoemeron.service.ReservaService;
+import reserva.emeron.projetoemeron.service.RoleService;
 import reserva.emeron.projetoemeron.service.UsuarioService;
 
 @Controller
@@ -24,6 +25,9 @@ public class IndexController {
 	
 	@Autowired
 	private UsuarioService usuarioService;
+	
+	@Autowired
+	private RoleService roleService;
 	
 @GetMapping("/")
 	public ModelAndView listarReservas() {
@@ -56,6 +60,7 @@ public ModelAndView testeDashbord() {
 	 mv.addObject("quantidadecurso", cursoService.countCursos());
 	 mv.addObject("quantidadereserva", reservaService.countReserva());
 	 mv.addObject("quantidadeusuarios", usuarioService.countUsuarios());
+	 mv.addObject("grupos", roleService.buscarTodosPerfil());
 	
 	 
 	

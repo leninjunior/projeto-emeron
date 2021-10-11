@@ -19,4 +19,10 @@ public class RoleService {
 	public List<Role> buscarTodosPerfil(){
 		return roleRepository.findAll();
 	}
+	
+	
+	public Integer countPerfil() {
+		 return roleRepository.quantidadeDePerfil();
+		 
+		}
 }

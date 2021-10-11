@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -42,7 +43,7 @@ public class Usuario implements UserDetails {
 	@NotBlank
 	private String senha;
 	
-	
+	@Size(min = 1, message = "Selecionar pelo menos 1 grupo")
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "usuarios_role", 
     joinColumns = @JoinColumn(name = "usuario_id", 
