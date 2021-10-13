@@ -28,8 +28,23 @@ public class Reserva {
     @JoinColumn(name = "curso_id")
 	private Curso curso;
 	
+
 	
 	
+	@ManyToOne
+	@JoinColumn(name = "codigo_usuario")
+	private Usuario usuario;
+
+
+	
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 
 	public Reserva() {
 	

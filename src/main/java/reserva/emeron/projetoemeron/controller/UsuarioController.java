@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import reserva.emeron.projetoemeron.model.Role;
 import reserva.emeron.projetoemeron.model.Usuario;
+import reserva.emeron.projetoemeron.repository.UsuarioRepository;
 import reserva.emeron.projetoemeron.service.RoleService;
 import reserva.emeron.projetoemeron.service.UsuarioService;
 
@@ -27,6 +27,9 @@ public class UsuarioController {
 	
 	@Autowired
 	private RoleService roleService;
+	
+	@Autowired
+	private UsuarioRepository usuarioRepository;
 	
 	
 	
@@ -51,6 +54,21 @@ public class UsuarioController {
 		return mv;
 	}
 	
+	@GetMapping("excluir/{id}")
+	private String excluir(@PathVariable ("id") Long id , RedirectAttributes redirect) {
+		
+		try {
+			
+			usuarioRepository.deleteById(id);
+			redirect.addFlashAttribute("cursodeletado", "Curso Excluido  com Sucesso!");
+		} catch (Exception e) {
+			redirect.addFlashAttribute("cursocomreserva", "Este Curso Pertece a uma reserva!!");
+			return "redirect:/usuario/novo";
+		}
+		
+		return "redirect:/usuario/novo";
+		
+	}
 	
 	
 	
@@ -121,8 +139,9 @@ public class UsuarioController {
 		Iterable<Usuario> usuariosIT = this.usuarioService.listarUsuarios();
 		
 		ModelAndView mv = new ModelAndView("usuario/usuarioform.html");
-		mv.addObject("listUser", usuariosIT);
+		mv.addObject("userList", usuariosIT);
 		mv.addObject("grupos", roleService.buscarTodosPerfil());
+		
 		
 		Usuario userEdit = this.usuarioService.findById(id);
 
