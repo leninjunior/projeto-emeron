@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -33,12 +34,15 @@ public class ReservaController {
 	
 	
 	
+	
 	@GetMapping("/novo")
-	private ModelAndView curso() {
-		
-		ModelAndView mv = new ModelAndView("reserva/reservaform.html");
+	private ModelAndView reserva() {
 		List<Curso> cursoList = this.cursoService.buscarTodos();
+		List<Reserva> reservaList = this.reservaService.buscarTodos();
+		ModelAndView mv = new ModelAndView("reserva/reservaform.html");
+		
 		mv.addObject("cursolist", cursoList);
+		mv.addObject("reservalist", reservaList);
 		return mv;
 	}
 	
@@ -47,6 +51,9 @@ public class ReservaController {
 	@PostMapping("/add/salvar")
 	private String salvar(@Valid Reserva reserva, BindingResult result, RedirectAttributes redirect) {
 		
+
+
+			
 		if(result.hasErrors()){
 			redirect.addFlashAttribute("mensagem", "Verifique os Campos Obrigatorios "); //mensagem na view
 			return "redirect:/reserva/novo"; //na rota
@@ -61,15 +68,36 @@ public class ReservaController {
 	}
 	
 	
-	@GetMapping("/listar")
-	private ModelAndView listarReserva() {
+	
+	
+	
+//	@GetMapping("/listar")
+//	private ModelAndView listarReserva() {
+//		
+//		List<Reserva> reservaList =  reservaService.buscarTodos();
+//		ModelAndView mv = new ModelAndView("reserva/listareservas.html");
+//		mv.addObject("reservas", reservaList);
+//		
+//		return mv;
+//		
+//	}
+
+
+
+	@GetMapping("{id}")
+	private ModelAndView editCurso(@PathVariable("id") Long id) {
+		Iterable<Reserva> reservaIT = this.reservaService.buscarTodos();
+		List<Curso> cursoList = cursoService.buscarTodos();
+		ModelAndView mv = new ModelAndView("reserva/reservaform.html");
+		mv.addObject("reservaList", reservaIT);
+		mv.addObject("cursolist", cursoList);
 		
-		List<Reserva> reservaList =  reservaService.buscarTodos();
-		ModelAndView mv = new ModelAndView("reserva/listareservas.html");
-		mv.addObject("reservas", reservaList);
 		
+		Reserva reservaEdit = this.reservaService.findById(id);
+
+		mv.addObject("reserva", reservaEdit);
+
 		return mv;
-		
 	}
 	
 

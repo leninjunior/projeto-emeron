@@ -117,7 +117,23 @@
 
 <th:block layout:fragment="script">
     <script>
-    </script>
+   
+    $(function () {
+
+      $('#example1').DataTable({
+        'paging'      : true,
+        'lengthChange': false,
+        'searching'   : true,
+        'ordering'    : true,
+        'info'        : false,
+        'autoWidth'   : false
+      })
+
+      jQuery('#example1_wrapper input').addClass("form-control input-sm"); // modify table search input
+    })
+
+
+</script>
 </th:block>
 
 </body>

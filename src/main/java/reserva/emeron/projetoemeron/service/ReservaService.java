@@ -33,4 +33,12 @@ public class ReservaService {
 		 
 		}
 
+	
+	
+	public Reserva findById(Long id) {
+		
+		return this.reservaRepository.findById(id).get();
+		
+		
+	}
 }

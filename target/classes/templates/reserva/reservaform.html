@@ -38,7 +38,7 @@
 					<form action="/reserva/add/salvar" method="post"
 						th:object="${reserva}">
 
-
+			<input type="hidden" readonly id="id" name="id" th:value="${reserva?.id}"/>
 						<th:block th:include="fragments/Mensagens">
 						</th:block>
 
@@ -48,20 +48,22 @@
 
 							<div class="form-group">
 								<label id="nome" class=" control-label">Nome do Reserva</label>
-								<input name="nome" class="form-control" placeholder="Nome">
-
-
-
-
+								<input name="nome" class="form-control" placeholder="Nome" th:value="${reserva?.nome}">
 
 							</div>
 
 							<div class="form-group">
 								<label>Selecionar Curso</label> <select name="curso"
 									class="form-control">
-									<option th:each="c: ${cursolist}" th:value="${c.id}"
-										th:text="${c.nome}">
+									<option th:each="c: ${cursolist}" th:value="${c?.id}"
+										th:text="${c?.nome}">
 								</select>
+							</div>
+							
+							<div class="form-group">
+								
+								<label  > </label>
+									
 							</div>
 
 
@@ -80,6 +82,42 @@
 						</div>
 						<!-- /.box-footer -->
 					</form>
+					
+					
+					<div class="row">
+                            <div class="col-sm-12">
+                                <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
+                                       aria-describedby="example1_info">
+                                    <thead class="thead">
+						            <tr>
+										    <th>ID RESERVA</th>
+										     <th>SOLICITANTE</th>
+										    <th>NOME</th>
+										    <th>CURSO</th>
+										  	 <th>AÇÕES</th>
+		                              </tr>
+                                    </thead>
+                                    <tbody>
+                                   <tr th:each="g : ${reservalist}">
+                                   <td th:text="${g.id}">Alfreds Futterkiste</td>
+                                 	  <td th:text="${g.usuario}"></td>
+									    
+									     <td th:text="${g.nome}">Alfreds Futterkiste</td>
+									      <td th:text="${g.curso.nome}"></td>
+									    
+									      
+									      	 <td>
+                                            <a th:href="@{/reserva/{id}(id=${g.id})}"class="btn btn-primary btn purple editView" title="Edit" ><i class="fa fa-edit"></i> Edit</a>
+<!--                                             <a th:href="@{excluir/{id}(id=${g.id})}" class="btn btn-danger btn purple deleteView" title="Delete"><i class="fa fa-trash-o"></i> Delete</a> -->
+                                       		 </td>
+									     
+									    </tr>
+                                    	
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+					
 
 
 					<!--                 	  <table id="example1" class="table table-bordered table-striped dataTable" role="grid" -->
@@ -113,8 +151,24 @@
 
 	<th:block layout:fragment="script">
 		<script>
+		
+	      $(function () {
 
-</script>
+	        $('#example1').DataTable({
+	          'paging'      : true,
+	          'lengthChange': false,
+	          'searching'   : true,
+	          'ordering'    : true,
+	          'info'        : true,
+	          'autoWidth'   : false
+	        })
+
+	        jQuery('#example1_wrapper input').addClass("form-control input-sm"); // modify table search input
+	      })
+
+
+	</script>
+
 
 	</th:block>
 

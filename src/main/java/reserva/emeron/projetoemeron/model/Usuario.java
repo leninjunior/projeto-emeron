@@ -43,12 +43,14 @@ public class Usuario implements UserDetails {
 	@NotBlank
 	private String senha;
 	
+	
+	
 	@Size(min = 1, message = "Selecionar pelo menos 1 grupo")
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "usuarios_role", 
     joinColumns = @JoinColumn(name = "usuario_id", 
                   referencedColumnName = "id",
-                  table = "usuario"),  // cria tabela de acesso do usuário
+                  table = "usuario"),  
 		
 		inverseJoinColumns = @JoinColumn(name="role_id",
 							referencedColumnName = "id",
@@ -57,6 +59,24 @@ public class Usuario implements UserDetails {
 
 
 	
+	
+	
+	@OneToMany(mappedBy = "usuario")
+	private List<Reserva> reservas;
+	
+	
+	
+	
+
+
+	public List<Reserva> getReservas() {
+		return reservas;
+	}
+
+	public void setReservas(List<Reserva> reservas) {
+		this.reservas = reservas;
+	}
+
 	public List<Role> getRoles() {
 		return roles;
 	}
@@ -91,6 +111,11 @@ public class Usuario implements UserDetails {
 	
 	
 	
+
+	@Override
+	public String toString() {
+		return login;
+	}
 
 	@Override
 	public int hashCode() {

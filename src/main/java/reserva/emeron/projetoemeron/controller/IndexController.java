@@ -40,17 +40,17 @@ public class IndexController {
 	return mv;
 				
 	}
-@GetMapping("/todasreservas")
-public ModelAndView todasReservas() {
-
-
-List<Reserva> reservaList = this.reservaService.buscarTodos();
-
-ModelAndView mv = new ModelAndView("todasreservas.html");
-mv.addObject("reservas1", reservaList);
-return mv;
-			
-}
+	@GetMapping("/todasreservas")
+	public ModelAndView todasReservas() {
+	
+	
+	List<Reserva> reservaList = this.reservaService.buscarTodos();
+	
+	ModelAndView mv = new ModelAndView("todasreservas.html");
+	mv.addObject("reservas1", reservaList);
+	return mv;
+				
+	}
 
 @GetMapping("/index")
 public ModelAndView testeDashbord() {
