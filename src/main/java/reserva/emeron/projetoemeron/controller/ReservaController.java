@@ -16,8 +16,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import reserva.emeron.projetoemeron.model.Curso;
 import reserva.emeron.projetoemeron.model.Reserva;
+import reserva.emeron.projetoemeron.model.Usuario;
+import reserva.emeron.projetoemeron.repository.UsuarioRepository;
 import reserva.emeron.projetoemeron.service.CursoService;
 import reserva.emeron.projetoemeron.service.ReservaService;
+import reserva.emeron.projetoemeron.service.UsuarioService;
 
 
 @Controller
@@ -30,19 +33,27 @@ public class ReservaController {
 	@Autowired
 	private ReservaService reservaService;
 
-	
-	
+	@Autowired
+	private UsuarioService usuarioService;
 	
 	
 	
 	@GetMapping("/novo")
 	private ModelAndView reserva() {
+		 
+		Usuario usuario = usuarioService.getUser();	 
+		
+		
 		List<Curso> cursoList = this.cursoService.buscarTodos();
 		List<Reserva> reservaList = this.reservaService.buscarTodos();
-		ModelAndView mv = new ModelAndView("reserva/reservaform.html");
 		
+		
+		
+		ModelAndView mv = new ModelAndView("reserva/reservaform.html");
+		mv.addObject("usuarioid", usuario.getId());
 		mv.addObject("cursolist", cursoList);
 		mv.addObject("reservalist", reservaList);
+	
 		return mv;
 	}
 	
@@ -51,8 +62,8 @@ public class ReservaController {
 	@PostMapping("/add/salvar")
 	private String salvar(@Valid Reserva reserva, BindingResult result, RedirectAttributes redirect) {
 		
-
-
+		Usuario usuario = usuarioService.getUser();	 
+		reserva.setUsuario(usuario);
 			
 		if(result.hasErrors()){
 			redirect.addFlashAttribute("mensagem", "Verifique os Campos Obrigatorios "); //mensagem na view

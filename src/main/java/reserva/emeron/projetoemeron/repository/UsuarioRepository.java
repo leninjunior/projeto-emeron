@@ -13,7 +13,7 @@ import reserva.emeron.projetoemeron.model.Usuario;
 public interface UsuarioRepository  extends JpaRepository<Usuario, Long>{
 
 	
-		@Query("select u from Usuario u where u.login = ?1")
+		@Query("select u from Usuario u where u.login =:login")
 		Usuario findUserByLogin(String login);
 		
 		
