@@ -16,4 +16,11 @@ public interface  ReservaRepository extends JpaRepository<Reserva, Long>{
 	public Integer quantidadeDeReserva();
 	
 
+	@Query(value = "select count (1) > 0 as existe from reserva where nome = ?", nativeQuery = true)
+	public boolean reservaExistente(String nome);
+
+
+
+//@Query(value = "select count(1) > 0 as existe from curso where nome = ?", nativeQuery = true)
+//public boolean cursoJaExiste(String nome);
 }

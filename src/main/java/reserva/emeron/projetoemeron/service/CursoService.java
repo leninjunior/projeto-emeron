@@ -15,6 +15,8 @@ public class CursoService {
 
 	@Autowired
 	private CursoRepository cursoRepository;
+	
+	
 
 	public boolean cursoExiste(String nome) {
 

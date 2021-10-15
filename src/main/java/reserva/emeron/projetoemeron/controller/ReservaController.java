@@ -15,10 +15,11 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import reserva.emeron.projetoemeron.model.Curso;
+import reserva.emeron.projetoemeron.model.Locais;
 import reserva.emeron.projetoemeron.model.Reserva;
 import reserva.emeron.projetoemeron.model.Usuario;
-import reserva.emeron.projetoemeron.repository.UsuarioRepository;
 import reserva.emeron.projetoemeron.service.CursoService;
+import reserva.emeron.projetoemeron.service.LocaisService;
 import reserva.emeron.projetoemeron.service.ReservaService;
 import reserva.emeron.projetoemeron.service.UsuarioService;
 
@@ -36,7 +37,8 @@ public class ReservaController {
 	@Autowired
 	private UsuarioService usuarioService;
 	
-	
+	@Autowired
+	private LocaisService locaisService;
 	
 	@GetMapping("/novo")
 	private ModelAndView reserva() {
@@ -46,13 +48,15 @@ public class ReservaController {
 		
 		List<Curso> cursoList = this.cursoService.buscarTodos();
 		List<Reserva> reservaList = this.reservaService.buscarTodos();
-		
+		List<Locais> locaisList =  this.locaisService.buscarTodosLocais();
 		
 		
 		ModelAndView mv = new ModelAndView("reserva/reservaform.html");
 		mv.addObject("usuarioid", usuario.getId());
 		mv.addObject("cursolist", cursoList);
+		mv.addObject("locaislist", locaisList);
 		mv.addObject("reservalist", reservaList);
+		
 	
 		return mv;
 	}
@@ -71,12 +75,43 @@ public class ReservaController {
 		}
 		
 		
-		redirect.addFlashAttribute("mensagemsucesso", "Reserva feita com Sucesso!");
-		reservaService.salvarDados(reserva);
-		//reservaRepository.save(reserva);
-		
-		return "redirect:/reserva/novo";
+		try {
+
+			if (reserva.getId() == null || (reserva.getId() != null && reserva.getId() <= 0)) {
+
+				if (reservaService.reservaExiste(reserva.getNome()) == false) {
+					reservaService.salvarDados(reserva);
+					redirect.addFlashAttribute("mensagemsucesso", "Reserva  Adicionado com Sucesso!");
+
+				}
+
+			} else {
+
+				reservaService.updateReserva(reserva);
+				redirect.addFlashAttribute("mensagemeditado", "rESERVA Editado com Sucesso!");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			redirect.addFlashAttribute("mensagemiguais", "Reserva  Já cadastrado!!");
+		}
+		return "redirect:/reserva/novo"; // na rota
 	}
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+//		redirect.addFlashAttribute("mensagemsucesso", "Reserva feita com Sucesso!");
+//		reservaService.salvarDados(reserva);
+//		//reservaRepository.save(reserva);
+//		
+//		return "redirect:/reserva/novo";
+	
 	
 	
 	
@@ -99,9 +134,11 @@ public class ReservaController {
 	private ModelAndView editCurso(@PathVariable("id") Long id) {
 		Iterable<Reserva> reservaIT = this.reservaService.buscarTodos();
 		List<Curso> cursoList = cursoService.buscarTodos();
+		List<Locais> locaisList =  this.locaisService.buscarTodosLocais();
 		ModelAndView mv = new ModelAndView("reserva/reservaform.html");
 		mv.addObject("reservaList", reservaIT);
 		mv.addObject("cursolist", cursoList);
+		mv.addObject("locaislist", locaisList);
 		
 		
 		Reserva reservaEdit = this.reservaService.findById(id);
