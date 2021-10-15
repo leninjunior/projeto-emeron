@@ -17,6 +17,13 @@ public class ReservaService {
 	
 	
 	
+	
+	public boolean reservaExiste(String nome) {
+
+		return reservaRepository.reservaExistente(nome);
+
+	}
+	
 	public void salvarDados(Reserva reserva){
 	     
 		reservaRepository.save(reserva);
@@ -32,6 +39,13 @@ public class ReservaService {
 		 return reservaRepository.quantidadeDeReserva();
 		 
 		}
+	
+	
+	public void updateReserva(Reserva reserva){
+	     
+		reservaRepository.save(reserva);
+		  
+	  }
 
 	
 	
