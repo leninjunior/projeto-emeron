@@ -63,7 +63,7 @@
 
                             <div class="form-group">
                              <label  id="localQuant" class=" control-label">Quantidade de Pessoas na sala</label>
-                             <input type="number" class="form-control" id="localQuant"  name="localQuant"  th:value="${locais?.localQuant}">
+                             <input type="number" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required="required"  min="10" max="100" size="100" class="form-control" id="localQuant"  name="localQuant"  th:value="${locais?.localQuant}">
                              
 <!--                                 <input name="descricao"  class="form-control" placeholder="descrição" th:field="*{descricao}"> -->
                             </div>
@@ -81,33 +81,33 @@
                 
                 
                 
-<!--                 	  <table id="example1" class="table table-bordered table-striped dataTable" role="grid" -->
-<!--                                        aria-describedby="example1_info"> -->
-<!--                                     <thead class="thead"> -->
-<!-- 						             <tr> -->
-<!-- 										    <th>ID</th> -->
-<!-- 										     <th>Curso</th> -->
-<!-- 										     <th>Descrição do Curso</th> -->
-<!-- 										 	<th>Ações</th> -->
-<!-- 		                              </tr> -->
-<!--                                     </thead> -->
-<!--                                     <tbody> -->
-<!--                                    <tr th:each="c : ${cursosAdmin}"> -->
-<!-- 										    <td th:text="${c.id}">Alfreds Futterkiste</td> -->
-<!-- 										     <td th:text="${c.nome}">Alfreds Futterkiste</td> -->
-<!-- 										      <td th:text="${c.descricao}">Alfreds Futterkiste</td> -->
-<!--                                         <td> -->
+                	  <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
+                                       aria-describedby="example1_info">
+                                    <thead class="thead">
+						             <tr>
+										    <th>ID LOCAL:</th>
+										     <th>LOCAL:</th>
+										     <th>QUANTIDADE DE PESSOAS NO LOCAL:</th>
+										 	<th>AÇÕES:</th>
+		                              </tr>
+                                    </thead>
+                                    <tbody>
+                                   <tr th:each="l : ${listlocais}">
+										    <td th:text="${l.id}">Alfreds Futterkiste</td>
+										     <td th:text="${l.nomeLocal}">Alfreds Futterkiste</td>
+										      <td th:text="${l.localQuant}">Alfreds Futterkiste</td>
+                                        <td>
                                         
-<!--                                             <a  th:href="@{/curso/{id}(id=${c.id})}" class="btn btn-primary btn purple editView" title="Edit" ><i class="fa fa-edit" ></i> Edit</a> -->
-<!--                                             <a th:href="@{excluir/{id}(id=${c.id})}" class="btn btn-danger btn purple deleteView" title="Delete"><i class="fa fa-trash-o"></i> Delete</a> -->
+                                            <a  th:href="@{/local/{id}(id=${l.id})}" class="btn btn-primary btn purple editView" title="Edit" ><i class="fa fa-edit" ></i> Edit</a>
+                                            <a th:href="@{excluir/{id}(id=${l.id})}" class="btn btn-danger btn purple deleteView" title="Delete"><i class="fa fa-trash-o"></i> Delete</a>
 										
 									
 									
 								 
-<!-- 								</td> -->
-<!--                                     </tr> -->
-<!--                                     </tbody> -->
-<!--                                 </table> -->
+								</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                                 
   
                

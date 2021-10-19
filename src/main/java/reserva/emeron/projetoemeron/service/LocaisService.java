@@ -27,5 +27,10 @@ public class LocaisService {
 		return this.locaisRepository.save(local);
 	}
 	
+	public boolean locaisExiste(String nome) {
+
+		return locaisRepository.localExiste(nome);
+
+	}
 
 }

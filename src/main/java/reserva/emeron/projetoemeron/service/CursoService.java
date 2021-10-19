@@ -38,8 +38,8 @@ public class CursoService {
 	 * public List<Curso> getCursoAll(){ return cursoRepository.findAll(); }
 	 */
 
-	public List<Curso> buscarTodos() {
-		Iterable<Curso> cursoIterable = this.cursoRepository.findAll();
+	public List<Curso> buscarTodosCursos() {
+		Iterable <Curso> cursoIterable = this.cursoRepository.findAll();
 		return Streamable.of(cursoIterable).toList();
 	}
 	

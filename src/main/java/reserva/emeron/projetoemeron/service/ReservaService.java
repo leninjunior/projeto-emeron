@@ -41,11 +41,20 @@ public class ReservaService {
 		}
 	
 	
-	public void updateReserva(Reserva reserva){
-	     
-		reservaRepository.save(reserva);
+		
+		/*
+		 * public void updateReserva(Reserva reserva ){
+		 * 
+		 * reservaRepository.updateReserva(reserva.getNome(), reserva.getId());
+		 * 
+		 * }
+		 */
 		  
-	  }
+		  public void updateTeste(Reserva reserva) {
+			  reservaRepository.updateTesteAgora(reserva.getNome(), reserva.getCurso(), reserva.getLocais() , reserva.getId());
+		  }
+		  
+		 
 
 	
 	
@@ -55,4 +64,15 @@ public class ReservaService {
 		
 		
 	}
+
+
+	/*
+	 * public void updateReserva(String nome, Long id_curso, LocalDate data,
+	 * LocalTime hora_inicial, LocalTime hora_final, Long codigo_locais ){
+	 * 
+	 * reservaRepository.updateReserva(nome, id_curso, data, hora_inicial,
+	 * hora_final, codigo_locais);
+	 * 
+	 * }
+	 */
 }
