@@ -56,14 +56,14 @@
 
 							<div class="form-group">
 								<label id="nomeLocal" class=" control-label">Nome do Local</label> 
-								<input type="text" class="form-control" id="nomeLocal" name="nomeLocal" th:value="${locais?.nomeLocal}">
+								<input  placeholder="Nome do Local" type="text" class="form-control" id="nomeLocal" name="nomeLocal" th:value="${locais?.nomeLocal}">
 							</div>
 							
 							
 
                             <div class="form-group">
                              <label  id="localQuant" class=" control-label">Quantidade de Pessoas na sala</label>
-                             <input type="number" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required="required"  min="10" max="100" size="100" class="form-control" id="localQuant"  name="localQuant"  th:value="${locais?.localQuant}">
+                             <input type="number" placeholder="Mínimo 10 e Máximo 100" required="required"  min="10" max="100" size="100" class="form-control" id="localQuant"  name="localQuant"  th:value="${locais?.localQuant}">
                              
 <!--                                 <input name="descricao"  class="form-control" placeholder="descrição" th:field="*{descricao}"> -->
                             </div>

@@ -32,5 +32,18 @@ public class LocaisService {
 		return locaisRepository.localExiste(nome);
 
 	}
+	
+	
+	public Locais findById(Long id) {
+
+		return this.locaisRepository.findById(id).get();
+	}
+
+
+	public void excluir(Long id) {
+		// TODO Auto-generated method stub
+		this.locaisRepository.deleteById(id);
+		
+	}
 
 }
