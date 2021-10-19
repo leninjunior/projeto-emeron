@@ -1,8 +1,5 @@
 package reserva.emeron.projetoemeron.model;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,7 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotBlank;
 
 
@@ -35,6 +31,7 @@ public class Reserva {
 
 	
 	
+	
 	@ManyToOne
 	@JoinColumn(name = "codigo_usuario")
 	private Usuario usuario;
@@ -44,13 +41,14 @@ public class Reserva {
 	@JoinColumn(name = "codigo_locais")
 	private Locais locais;
 	
-	@FutureOrPresent
-	private LocalDate data;
 	
-	@FutureOrPresent
-	private LocalTime horaInicial;
-	
-	private LocalTime horaFinal;
+	/*
+	 * @FutureOrPresent private LocalDate data;
+	 * 
+	 * @FutureOrPresent private LocalTime horaInicial;
+	 * 
+	 * private LocalTime horaFinal;
+	 */
 	
 	
 
@@ -65,29 +63,20 @@ public class Reserva {
 		this.locais = locais;
 	}
 
-	public LocalDate getData() {
-		return data;
-	}
-
-	public void setData(LocalDate data) {
-		this.data = data;
-	}
-
-	public LocalTime getHoraInicial() {
-		return horaInicial;
-	}
-
-	public void setHoraInicial(LocalTime horaInicial) {
-		this.horaInicial = horaInicial;
-	}
-
-	public LocalTime getHoraFinal() {
-		return horaFinal;
-	}
-
-	public void setHoraFinal(LocalTime horaFinal) {
-		this.horaFinal = horaFinal;
-	}
+	/*
+	 * public LocalDate getData() { return data; }
+	 * 
+	 * public void setData(LocalDate data) { this.data = data; }
+	 * 
+	 * public LocalTime getHoraInicial() { return horaInicial; }
+	 * 
+	 * public void setHoraInicial(LocalTime horaInicial) { this.horaInicial =
+	 * horaInicial; }
+	 * 
+	 * public LocalTime getHoraFinal() { return horaFinal; }
+	 * 
+	 * public void setHoraFinal(LocalTime horaFinal) { this.horaFinal = horaFinal;
+	 }*/	
 
 	public Usuario getUsuario() {
 		return usuario;

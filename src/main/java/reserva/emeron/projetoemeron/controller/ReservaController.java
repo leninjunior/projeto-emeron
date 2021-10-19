@@ -46,7 +46,7 @@ public class ReservaController {
 		Usuario usuario = usuarioService.getUser();	 
 		
 		
-		List<Curso> cursoList = this.cursoService.buscarTodos();
+		List<Curso> cursoList = this.cursoService.buscarTodosCursos();
 		List<Reserva> reservaList = this.reservaService.buscarTodos();
 		List<Locais> locaisList =  this.locaisService.buscarTodosLocais();
 		
@@ -67,7 +67,10 @@ public class ReservaController {
 	private String salvar(@Valid Reserva reserva, BindingResult result, RedirectAttributes redirect) {
 		
 		Usuario usuario = usuarioService.getUser();	 
+		
 		reserva.setUsuario(usuario);
+		
+		
 			
 		if(result.hasErrors()){
 			redirect.addFlashAttribute("mensagem", "Verifique os Campos Obrigatorios "); //mensagem na view
@@ -80,24 +83,55 @@ public class ReservaController {
 			if (reserva.getId() == null || (reserva.getId() != null && reserva.getId() <= 0)) {
 
 				if (reservaService.reservaExiste(reserva.getNome()) == false) {
+					
 					reservaService.salvarDados(reserva);
+			
 					redirect.addFlashAttribute("mensagemsucesso", "Reserva  Adicionado com Sucesso!");
 
 				}
+				
+				}
+				
+				
+				if(usuario.getId() != null) {
+					reservaService.updateTeste(reserva); 
+					redirect.addFlashAttribute("mensagemeditado", "Reserva Editado com Sucesso!");
+					
 
-			} else {
-
-				reservaService.updateReserva(reserva);
-				redirect.addFlashAttribute("mensagemeditado", "rESERVA Editado com Sucesso!");
-			}
+			} 
+			
+			/*
+			 * else {
+			 * 
+			 * 
+			 * redirect.addFlashAttribute("mensagemeditado",
+			 * "Reserva Editado com Sucesso!"); }
+			 */
 		} catch (Exception e) {
 			e.printStackTrace();
-			redirect.addFlashAttribute("mensagemiguais", "Reserva  Já cadastrado!!");
+			redirect.addFlashAttribute("mensagemiguais", "Reserva  Já cadastrado(EXCEPTION)!!");
 		}
 		return "redirect:/reserva/novo"; // na rota
 	}
 	
+	
+	/*
+	 * 
+	 */	
+	
+	@PostMapping("/add/update")
+	private String updateReserva(Reserva reserva) {
 		
+		
+		Usuario usuario = usuarioService.getUser();	 
+		usuario.getUsername();
+		
+		System.out.println( ">>>>>>>>>>>>>>>>" + usuario.getUsername());
+		
+		reservaService.updateTeste(reserva);
+		
+		return "redirect:/reserva/novo"; // na rota
+	}
 		
 		
 		
@@ -131,17 +165,26 @@ public class ReservaController {
 
 
 	@GetMapping("{id}")
-	private ModelAndView editCurso(@PathVariable("id") Long id) {
-		Iterable<Reserva> reservaIT = this.reservaService.buscarTodos();
-		List<Curso> cursoList = cursoService.buscarTodos();
-		List<Locais> locaisList =  this.locaisService.buscarTodosLocais();
-		ModelAndView mv = new ModelAndView("reserva/reservaform.html");
-		mv.addObject("reservaList", reservaIT);
-		mv.addObject("cursolist", cursoList);
-		mv.addObject("locaislist", locaisList);
-		
+	private ModelAndView editReserva(@PathVariable("id") Long id) {
 		
 		Reserva reservaEdit = this.reservaService.findById(id);
+		ModelAndView mv = new ModelAndView("reserva/reservaform.html");
+		
+
+		List<Curso> cursoList = this.cursoService.buscarTodosCursos();
+		List<Reserva> reservaList = this.reservaService.buscarTodos();
+		List<Locais> locaisList =  this.locaisService.buscarTodosLocais();
+		
+		
+		
+		mv.addObject("cursolist", cursoList);
+		mv.addObject("locaislist", locaisList);
+		mv.addObject("reservalist", reservaList);
+		
+		
+		
+		
+		
 
 		mv.addObject("reserva", reservaEdit);
 

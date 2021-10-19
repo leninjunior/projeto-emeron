@@ -30,7 +30,7 @@ public class CursoController {
 	private ModelAndView curso(Curso curso) {
 
 		ModelAndView mv = new ModelAndView("/curso/cursoform.html");
-		List<Curso> cursoList = cursoService.buscarTodos();
+		List<Curso> cursoList = cursoService.buscarTodosCursos();
 
 		mv.addObject("cursosAdmin", cursoList);
 
@@ -73,7 +73,7 @@ public class CursoController {
 	@GetMapping("/listar")
 	private ModelAndView listarCursos() {
 
-		List<Curso> cursoList = cursoService.buscarTodos();
+		List<Curso> cursoList = cursoService.buscarTodosCursos();
 		ModelAndView mv = new ModelAndView("/curso/listacursos.html");
 		mv.addObject("cursos", cursoList);
 		
@@ -83,15 +83,16 @@ public class CursoController {
 
 	@GetMapping("{id}")
 	private ModelAndView editCurso(@PathVariable("id") Long id) {
-		List<Curso> cursoList = cursoService.buscarTodos();
+		List<Curso> cursoList = cursoService.buscarTodosCursos();
 		ModelAndView mv = new ModelAndView("/curso/cursoform.html");
-	mv.addObject("cursosAdmin", cursoList);
+		mv.addObject("cursosAdmin", cursoList);
 
 		Curso cursoEdit = this.cursoService.findById(id);
 	mv.addObject("curso", cursoEdit);
 
 	return mv;
 	}
+	
 	
 	@GetMapping("excluir/{id}")
 	private String excluir(@PathVariable ("id") Long id , RedirectAttributes redirect) {
