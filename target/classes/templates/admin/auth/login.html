@@ -17,19 +17,25 @@
     <link rel="stylesheet" href="/dist/css/AdminLTE.min.css" />
 </head>
 <body class="hold-transition login-page">
+
 <div class="login-box">
-    <div class="login-logo">
-        <a href="#"><b>EMERON</b></a>
-    </div>
-    <!-- /.login-logo -->
-    <div class="login-box-body">
-        <p class="login-box-msg">Sistema de Gerenciamento de Locais</p>
-        <div th:if="${param.error}">
-            <div class="alert alert-danger">
-              Usuario não Encontrado
-            </div>
-        </div>
+
+	<div class="login-box-body"> 
+      <div class="login-logo" style="background:#ffffff; margin-bottom: 0px;">
+   <img alt="Emeron" src="/imagens/emeron.png"/>
+   <a href="https://emeron.tjro.jus.br/" target="_blank"><b>EMERON</b></a>
+  </div>
+  
+    
+     <div th:if="${#bools.isTrue(param.error)}" align="center">
+   <span class="text-danger"> usuário e/ou senha não conferem. </span>
+ </div>
       
+      <div class="card">
+      
+      <div class="card-body login-card-body">
+    
+      <p class="login-box-msg">Por favor, faça o login.</p>
         <form th:action="@{/login}" method="post">
             <div class="form-group has-feedback">
                 <input type="text" class="form-control" name="username" required placeholder="Usuario">
@@ -40,25 +46,26 @@
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="row">
-                <div class="col-xs-8">
-                   <!-- <div class="checkbox icheck">
+                <!-- <div class="col-xs-8">
+                   <div class="checkbox icheck">
                         <label>
                             <input type="checkbox"> Remember Me
                         </label>
-                    </div>-->
-                </div>
+                    </div>
+                </div> -->
                 <!-- /.col -->
-                <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">entrar</button>
-                </div>
+                  <div class="social-auth-links text-center mb-3">
+      
+         <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+       
+      </div>
                 <!-- /.col -->
             </div>
         </form>
-
+</div>
+</div>
+</div>
 <!--         <a th:href="@{/register}" class="text-center">Register a new membership</a> -->
-
-    </div>
-    <!-- /.login-box-body -->
 </div>
 <!-- /.login-box -->
 

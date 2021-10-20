@@ -50,7 +50,7 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
 
 	@Override // Ignora URL especificas
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/bootstrap/**" , "/dist/**", "/extra/**", "/plugins/**", "/favicon.ico");
+		web.ignoring().antMatchers("/bootstrap/**" , "/dist/**", "/extra/**", "/plugins/**", "/favicon.ico", "/imagens/**");
 	}
 	
 		@Bean
