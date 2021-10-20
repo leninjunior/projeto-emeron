@@ -69,17 +69,13 @@
 							</div>
 							
 								
-								<label id="local">Selecionar Local:</label> 
-								<select name="local" class="form-control">
+								<label id="locais">Selecionar Local:</label> 
+								<select name="locais" class="form-control">
 									<option th:each="local: ${locaislist}" th:value="${local?.id}"
 										th:text="${local?.nomeLocal}">
 								</select>
 							
-							<div class="form-group">
-								
-								<label  > </label>
-									
-							</div>
+						
 
 		<input type="hidden" readonly id="idusuario" name="idusuario" th:value="${reserva?.usuario?.id}"/>
 						</div>

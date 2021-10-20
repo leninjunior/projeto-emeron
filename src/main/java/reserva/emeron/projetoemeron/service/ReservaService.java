@@ -40,6 +40,14 @@ public class ReservaService {
 		 
 		}
 	
+		/*
+		 * public List<Reserva> buscarReservaPorUsuario(Long usuario) {
+		 * 
+		 * return this.reservaRepository.findByReservaUser(usuario); }
+		 */
+	
+	
+
 	
 		
 		/*

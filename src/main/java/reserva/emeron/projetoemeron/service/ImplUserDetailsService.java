@@ -30,6 +30,8 @@ public class ImplUserDetailsService  implements UserDetailsService {
 			 throw new UsernameNotFoundException ("Usuario não encontrado");
 			 
 		 }
+		 
+		 
 		return new User(usuario.getLogin(), usuario.getPassword(), usuario.isEnabled(), true, true, true, usuario.getAuthorities());
 	}
 

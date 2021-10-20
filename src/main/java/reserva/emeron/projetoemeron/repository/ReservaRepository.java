@@ -16,6 +16,7 @@ import reserva.emeron.projetoemeron.model.Reserva;
 public interface  ReservaRepository extends JpaRepository<Reserva, Long>{
 	
 
+	
 	@Query(value = "SELECT COUNT(*) FROM reserva", nativeQuery = true)
 	public Integer quantidadeDeReserva();
 	
@@ -39,6 +40,13 @@ public interface  ReservaRepository extends JpaRepository<Reserva, Long>{
 	@Query(value = "update reserva  r set r.nome =:nome, r.curso =:curso, r.locais =:codigo_locais where r.id=:id")
 	public void updateTesteAgora(@Param("nome") String nome, @Param("curso") Curso curso,@Param("codigo_locais") Locais locais ,@Param("id") Long id);
 	
+	/*
+	 * @Modifying
+	 * 
+	 * @Query(value = "select * from reserva r where r.id =: codigo_usuario = ?")
+	 * public List<Reserva> findByReservaUser(@Param("codigo_usuario") Long id);
+	 */
+
 	
 	
 //@Query(value = "select count(1) > 0 as existe from curso where nome = ?", nativeQuery = true)
