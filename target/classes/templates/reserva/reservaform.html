@@ -35,16 +35,15 @@
 					<!--                 <form th:action="@{/product/save}" th:object="${product}" method="post" class="form-horizontal"> -->
 
 
-					<form th:action="@{/reserva/add/salvar}" method="post"
-						th:object="${reserva}">
+					<form th:action="@{/reserva/add/salvar}" method="post" th:object="${reserva}">
 						
 <!-- 						${reserva?.id == null}? @{/reserva/add/salvar} : @{/reserva/add/update} -->
-
+	<th:block th:include="fragments/Mensagens">
+						</th:block>
 			<input type="hidden" readonly id="id" name="id" th:value="${reserva?.id}"/>
 			
 			
-						<th:block th:include="fragments/Mensagens">
-						</th:block>
+					
 
 
 
