@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import reserva.emeron.projetoemeron.model.Reserva;
+import reserva.emeron.projetoemeron.model.Usuario;
 import reserva.emeron.projetoemeron.repository.ReservaRepository;
 
 @Service
@@ -40,11 +41,8 @@ public class ReservaService {
 		 
 		}
 	
-		/*
-		 * public List<Reserva> buscarReservaPorUsuario(Long usuario) {
-		 * 
-		 * return this.reservaRepository.findByReservaUser(usuario); }
-		 */
+		
+		 
 	
 	
 
@@ -71,6 +69,10 @@ public class ReservaService {
 		return this.reservaRepository.findById(id).get();
 		
 		
+	}
+
+	public List<Reserva> buscarReservaPorUsuario(Usuario usuario) {
+		return reservaRepository.findByReservaUser(usuario);
 	}
 
 

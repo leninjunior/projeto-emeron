@@ -1,5 +1,7 @@
 package reserva.emeron.projetoemeron.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -10,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import reserva.emeron.projetoemeron.model.Curso;
 import reserva.emeron.projetoemeron.model.Locais;
 import reserva.emeron.projetoemeron.model.Reserva;
+import reserva.emeron.projetoemeron.model.Usuario;
 
 @Repository
 @Transactional
@@ -40,12 +43,11 @@ public interface  ReservaRepository extends JpaRepository<Reserva, Long>{
 	@Query(value = "update reserva  r set r.nome =:nome, r.curso =:curso, r.locais =:codigo_locais where r.id=:id")
 	public void updateTesteAgora(@Param("nome") String nome, @Param("curso") Curso curso,@Param("codigo_locais") Locais locais ,@Param("id") Long id);
 	
-	/*
-	 * @Modifying
-	 * 
-	 * @Query(value = "select * from reserva r where r.id =: codigo_usuario = ?")
-	 * public List<Reserva> findByReservaUser(@Param("codigo_usuario") Long id);
-	 */
+	
+	  @Modifying
+	  @Query(value = "select r from reserva r where r.usuario =:codigo_usuario")
+	  public List<Reserva> findByReservaUser(@Param("codigo_usuario") Usuario id);
+	 
 
 	
 	
