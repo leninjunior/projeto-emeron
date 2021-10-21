@@ -192,28 +192,28 @@ public class ReservaController {
 		return mv;
 	}
 	
-	/*
-	 * @GetMapping("/minhasreservas") private ModelAndView
-	 * listarReservaPorUsuario(Long usuario) {
-	 * 
-	 * 
-	 * List<Reserva> reservaPorIdUsuario =
-	 * this.reservaService.buscarReservaPorUsuario(usuario);
-	 * 
-	 * 
-	 * ModelAndView mv = new ModelAndView("reserva/minhasreservas.html");
-	 * 
-	 * 
-	 * mv.addObject("reservalist", reservaPorIdUsuario);
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * return mv; }
-	 */
+	
+	  @GetMapping("/minhasreservas") 
+	  private ModelAndView  listarReservaPorUsuario() {
+	  
+		  Usuario usuario = usuarioService.getUser();	 
+		  
+	  List<Reserva> reservaPorIdUsuario = reservaService.buscarReservaPorUsuario(usuario);
+	  
+	  
+	  ModelAndView mv = new ModelAndView("reserva/minhasreservas.html");
+	  
+	  
+	  mv.addObject("reservalist", reservaPorIdUsuario);
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  return mv; }
+	 
 	
 
 }
