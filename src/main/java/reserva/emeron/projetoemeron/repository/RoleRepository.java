@@ -15,8 +15,5 @@ public interface RoleRepository  extends JpaRepository<Role, Long>{
 	
 	
 
-	@Query(value = "SELECT COUNT(*) FROM role", nativeQuery = true)
-	public Integer quantidadeDePerfil();
-	
 
 }

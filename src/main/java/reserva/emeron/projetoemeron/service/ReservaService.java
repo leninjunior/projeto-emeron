@@ -37,7 +37,7 @@ public class ReservaService {
 	
 	
 	public Integer countReserva() {
-		 return reservaRepository.quantidadeDeReserva();
+		 return (int) reservaRepository.count();
 		 
 		}
 	

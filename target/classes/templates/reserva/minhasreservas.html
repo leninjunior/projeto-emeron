@@ -64,6 +64,7 @@ xmlns="http://www.w3.org/1999/xhtml"
 										     <th>SOLICITANTE</th>
 										    <th>NOME</th>
 										    <th>CURSO</th>
+										     <th>LOCAL</th>
 										  	 <th>AÇÕES</th>
 		                              </tr>
                                     </thead>
@@ -71,15 +72,15 @@ xmlns="http://www.w3.org/1999/xhtml"
                                    <tr th:each="g : ${reservalist}">
                                    <td th:text="${g.id}">Alfreds Futterkiste</td>
                                  	  <td th:text="${g.usuario}"></td>
-									    
+									   
 									     <td th:text="${g.nome}">Alfreds Futterkiste</td>
 									      <td th:text="${g.curso.nome}"></td>
-									    
+									     <td th:text="${g.locais.nomeLocal}"></td>
 									      
-<!-- 									      	 <td> -->
-<!--                                             <a th:href="@{/usuario/{id}(id=${g.id})}"class="btn btn-primary btn purple editView" title="Edit" ><i class="fa fa-edit"></i> Edit</a> -->
-<!--                                             <a th:href="@{excluir/{id}(id=${c.id})}" class="btn btn-danger btn purple deleteView" title="Delete"><i class="fa fa-trash-o"></i> Delete</a> -->
-<!--                                        		 </td> -->
+									      	 <td>
+                                           <a th:href="@{/reserva/{id}(id=${g.id})}"class="btn btn-primary btn purple editView" title="Edit" ><i class="fa fa-edit"></i> Editar</a>
+<!--                                            <a th:href="@{excluir/{id}(id=${c.id})}" class="btn btn-danger btn purple deleteView" title="Delete"><i class="fa fa-trash-o"></i> Cancelar</a> -->
+                                        		 </td> 
 									     
 									    </tr>
                                     	
