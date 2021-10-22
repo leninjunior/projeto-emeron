@@ -20,10 +20,8 @@ public interface  ReservaRepository extends JpaRepository<Reserva, Long>{
 	
 
 	
-	@Query(value = "SELECT COUNT(*) FROM reserva", nativeQuery = true)
-	public Integer quantidadeDeReserva();
-	
 
+	@Transactional(readOnly = true)
 	@Query(value = "select count (1) > 0 as existe from reserva where nome = ?", nativeQuery = true)
 	public boolean reservaExistente(String nome);
 
@@ -44,7 +42,7 @@ public interface  ReservaRepository extends JpaRepository<Reserva, Long>{
 	public void updateTesteAgora(@Param("nome") String nome, @Param("curso") Curso curso,@Param("codigo_locais") Locais locais ,@Param("id") Long id);
 	
 	
-	  @Modifying
+	 
 	  @Query(value = "select r from reserva r where r.usuario =:codigo_usuario")
 	  public List<Reserva> findByReservaUser(@Param("codigo_usuario") Usuario id);
 	 

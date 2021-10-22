@@ -41,7 +41,7 @@ public class ReservaController {
 	private LocaisService locaisService;
 	
 	@GetMapping("/novo")
-	private ModelAndView reserva() {
+	private ModelAndView reserva( Reserva reserva) {
 		 
 		Usuario usuario = usuarioService.getUser();	 
 		ModelAndView mv = new ModelAndView("reserva/reservaform.html");
@@ -167,56 +167,38 @@ public class ReservaController {
 
 	@GetMapping("{id}")
 	private ModelAndView editReserva(@PathVariable("id") Long id) {
-		
-		Reserva reservaEdit = this.reservaService.findById(id);
-		ModelAndView mv = new ModelAndView("reserva/reservaform.html");
-		
 
 		List<Curso> cursoList = this.cursoService.buscarTodosCursos();
+		List<Locais> locaisList = this.locaisService.buscarTodosLocais();
 		List<Reserva> reservaList = this.reservaService.buscarTodos();
-		List<Locais> locaisList =  this.locaisService.buscarTodosLocais();
-		
-		
-		
+
+		ModelAndView mv = new ModelAndView("reserva/reservaform.html");
+
+		mv.addObject("reservalist", reservaList);
 		mv.addObject("cursolist", cursoList);
 		mv.addObject("locaislist", locaisList);
-		mv.addObject("reservalist", reservaList);
-		
-		
-		
-		
-		
+
+		Reserva reservaEdit = this.reservaService.findById(id);
 
 		mv.addObject("reserva", reservaEdit);
 
 		return mv;
 	}
 	
-	
-	  @GetMapping("/minhasreservas") 
-	  private ModelAndView  listarReservaPorUsuario() {
-	  
-		  Usuario usuario = usuarioService.getUser();	 
-		  
-	  List<Reserva> reservaPorIdUsuario = reservaService.buscarReservaPorUsuario(usuario);
-	  
-	  
-	  ModelAndView mv = new ModelAndView("reserva/minhasreservas.html");
-	  
-	  
-	  mv.addObject("reservalist", reservaPorIdUsuario);
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  return mv; }
-	 
-	
+	@GetMapping("/minhasreservas")
+	private ModelAndView listarReservaPorUsuario() {
+
+		Usuario usuario = usuarioService.getUser();
+
+		List<Reserva> reservaPorIdUsuario = reservaService.buscarReservaPorUsuario(usuario);
+
+		ModelAndView mv = new ModelAndView("reserva/minhasreservas.html");
+
+		mv.addObject("reservalist", reservaPorIdUsuario);
+
+		return mv;
+	}
 
 }
-
 
 

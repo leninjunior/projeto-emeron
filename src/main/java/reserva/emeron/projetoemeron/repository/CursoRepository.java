@@ -19,7 +19,6 @@ public interface CursoRepository extends JpaRepository<Curso, Long>{
 	public boolean cursoJaExiste(String nome);
 
 
-		@Query(value = "SELECT COUNT(*) FROM curso", nativeQuery = true)
-		public Integer quantidadeDeCurso();
+	
 	
 }

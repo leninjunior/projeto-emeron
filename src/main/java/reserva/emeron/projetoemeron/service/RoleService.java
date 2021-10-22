@@ -22,7 +22,7 @@ public class RoleService {
 	
 	
 	public Integer countPerfil() {
-		 return roleRepository.quantidadeDePerfil();
+		 return (int) roleRepository.count();
 		 
 		}
 }

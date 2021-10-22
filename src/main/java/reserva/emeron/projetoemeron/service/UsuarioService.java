@@ -76,7 +76,7 @@ public class UsuarioService {
 	}
 
 	public Integer countUsuarios() {
-		 return usuarioRepository.quantidadeDeUsuarios();
+		 return (int) usuarioRepository.count();
 		 
 		}
 }

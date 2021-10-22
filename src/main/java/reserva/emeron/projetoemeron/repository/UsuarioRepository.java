@@ -21,10 +21,7 @@ public interface UsuarioRepository  extends JpaRepository<Usuario, Long>{
 		@Query(value = "select count(1) > 0 as existe from usuario where login = ?", nativeQuery = true)
 		public boolean usuarioJaExiste(String login);
 		
-		
-		@Query(value = "SELECT COUNT(*) FROM usuario", nativeQuery = true)
-		public Integer quantidadeDeUsuarios();
-		
+	
 		
 		
 		

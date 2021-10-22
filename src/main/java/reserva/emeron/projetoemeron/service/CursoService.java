@@ -57,8 +57,7 @@ public class CursoService {
 	}
 	
 	public Integer countCursos() {
-	 return cursoRepository.quantidadeDeCurso();
-	 
+	 return (int) cursoRepository.count();
 	}
 
 }
