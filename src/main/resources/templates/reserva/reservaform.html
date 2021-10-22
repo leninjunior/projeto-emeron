@@ -59,25 +59,26 @@
 								<label hidden="" class=" control-label" th:text="${usuarioid}" th:value="${usuarioid}">Nome do Reserva</label>
 
 							</div>
+							
 							<div class="form-group">
-								<label id="curso">Selecionar Curso:</label> 
-								<select id="curso" name="curso"
+								<label for="curso" id="curso">Selecionar Curso:</label> 
+								<select id="curso" th:field="*{curso}"
 									class="form-control">
 									<option th:each="c: ${cursolist}" th:value="${c?.id}"
 										th:text="${c?.nome}">
 								</select>
 							</div>
-							
-								
-								<label id="locais">Selecionar Local:</label> 
-								<select name="locais" class="form-control">
+
+							<div class="form-group">
+								<label for="locais" id="locais">Selecionar Local:</label> <select
+									name="locais" class="form-control" th:field="*{locais}">
 									<option th:each="local: ${locaislist}" th:value="${local?.id}"
 										th:text="${local?.nomeLocal}">
 								</select>
-							
-						
 
-		<input type="hidden" readonly id="idusuario" name="idusuario" th:value="${reserva?.usuario?.id}"/>
+							</div>
+
+							<input type="hidden" readonly id="idusuario" name="idusuario" th:value="${reserva?.usuario?.id}"/>
 						</div>
 						<!--                     /.box-body -->
 						<div class="box-footer center">

@@ -84,8 +84,9 @@ public class LocaisController {
 		ModelAndView mv = new ModelAndView("locais/localform.html");
 		mv.addObject("listlocais", localList);
 
+		
 		Locais locaisEdit = this.locaisService.findById(id);
-	mv.addObject("locais", locaisEdit);
+		mv.addObject("locais", locaisEdit);
 
 	return mv;
 	}
