@@ -50,9 +50,7 @@
  		
  			
  				<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Launch demo modal
-</button>
+
 			<input type="hidden" readonly id="id" name="id" th:value="${curso?.id}"/>
 
 						<div class="box-body">
@@ -103,10 +101,14 @@
 										      <td th:text="${c.descricao}">Alfreds Futterkiste</td>
                                         <td>
                                         
-                                            <a  th:href="@{/curso/{id}(id=${c.id})}" class="btn btn-primary btn purple editView" title="Edit" ><i class="fa fa-edit" ></i> Edit</a>
-                                            <a th:href="@{excluir/{id}(id=${c.id})}" class="btn btn-danger btn purple deleteView" title="Delete"><i class="fa fa-trash-o"></i> Delete</a>
+                                            <a  th:href="@{/curso/{id}(id=${c.id})}" class="btn btn-primary btn-sm" title="Editar" ><i class="fa fa-edit" ></i> Editar</a>
+                                         <!--    <a th:href="@{excluir/{id}(id=${c.id})}" class="btn btn-danger btn purple deleteView" title="Delete"><i class="fa fa-trash-o"></i> Delete</a> -->
 										
-									
+									 <button th:id="${ 'btn_curso/excluir/' + c.id}" type="button" class="btn btn-danger btn-sm"
+		                            		data-toggle="modal" data-target="#myModal">
+		                                <span title="Exclusão desabilitada"  ><i class="fa fa-trash-o"></i> Excluir</span>
+		                                
+		                            </button>
 									
 								 
 								</td>
