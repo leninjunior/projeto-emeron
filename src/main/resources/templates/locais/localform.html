@@ -98,10 +98,14 @@
 										      <td th:text="${l.localQuant}">Alfreds Futterkiste</td>
                                         <td>
                                         
-                                            <a  th:href="@{/local/{id}(id=${l.id})}" class="btn btn-primary btn purple editView" title="Edit" ><i class="fa fa-edit" ></i> Edit</a>
-                                            <a th:href="@{excluir/{id}(id=${l.id})}" class="btn btn-danger btn purple deleteView" title="Delete"><i class="fa fa-trash-o"></i> Delete</a>
+                                            <a  th:href="@{/local/{id}(id=${l.id})}" class="btn btn-primary btn-sm" title="Editar" ><i class="fa fa-edit" ></i> Editar</a>
+                                          
 										
-									
+									 <button th:id="${ 'btn_local/excluir/' + l.id}" type="button" class="btn btn-danger btn-sm"
+		                            		data-toggle="modal" data-target="#myModal">
+		                                <span title="Exclusão desabilitada"  ><i class="fa fa-trash-o"></i> Excluir</span>
+		                                
+		                            </button>
 									
 								 
 								</td>

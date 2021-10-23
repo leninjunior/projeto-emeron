@@ -109,7 +109,18 @@
 <script type="text/javascript" src="/plugins/custom-datatable/datatable.js"></script>
 <script type="text/javascript" src="/plugins/custom-datatable/datatables.min.js"></script>
 <script type="text/javascript" src="/plugins/custom-datatable/DT_bootstrap.js"></script>
+<script type="text/javascript">
+var url = '';
 
+$('button[id*="btn_"]').click(function() {
+	url = "http://localhost:8080/" + $(this).attr('id').split("_")[1];
+});
+
+$('#ok_confirm').click(function() {
+	document.location.href = url;
+});
+
+</script>
 
 <th:block layout:fragment="script"></th:block>
 
