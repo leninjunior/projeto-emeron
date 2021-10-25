@@ -63,6 +63,12 @@ xmlns="http://www.w3.org/1999/xhtml"
 									     <td th:text="${g.nome}">Alfreds Futterkiste</td>
 									      <td th:text="${g.curso.nome}"></td>
 									     <td th:text="${g.locais.nomeLocal}"></td>
+									        <td  class="text-center">
+									        	<span class="label label-success" th:text="${g.statusReserva.nome}"></span>
+									        
+									        </td>
+									        
+									        
 									      
 									      	 <td>
                                            <a th:href="@{/reserva/{id}(id=${g.id})}" class="btn btn-primary btn-sm" title="Editar" ><i class="fa fa-edit" ></i> Editar</a>

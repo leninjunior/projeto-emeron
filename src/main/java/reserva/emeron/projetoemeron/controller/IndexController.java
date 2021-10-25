@@ -17,8 +17,7 @@ import reserva.emeron.projetoemeron.service.UsuarioService;
 public class IndexController {
 	
 	
-	@Autowired
-	private ReservaService reservaService;
+
 	
 	@Autowired
 	private CursoService cursoService;
@@ -28,6 +27,10 @@ public class IndexController {
 	
 	@Autowired
 	private RoleService roleService;
+	
+	
+	@Autowired
+	private ReservaService reservaService;
 	
 	@GetMapping("/")
 	public ModelAndView listarReservas() {

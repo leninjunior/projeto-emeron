@@ -77,8 +77,32 @@
 								</select>
 
 							</div>
+							
+					<!-- 		
+							<div class="form-group">
+								<label for="statusReserva" id="statusReserva">Status:</label> <select
+									name="statusReserva" class="form-control" th:field="*{statusReserva}">
+									<option th:each="status: ${todosStatusReserva}" th:value="${statusReserva}"
+										th:text="${status?.nome}">
+								</select>
 
+							</div>
+		 -->
+			
+			
+			 <div class="form-group">
+				 <label for="reservaStatus" class="active">TesteEstatusREserva</label>
+				 <select class="form-control" th:field="*{reservaStatus}" id="reservastatus">
+						<option th:each = "l : ${T(reserva.emeron.projetoemeron.model.ReservaStatus).values()}" 
+						th:value="${l}" th:text="${l?.nome}">
+				 </select>
+			 </div>
+				
+							
 							<input type="hidden" readonly id="idusuario" name="idusuario" th:value="${reserva?.usuario?.id}"/>
+							
+
+
 						</div>
 						<!--                     /.box-body -->
 						<div class="box-footer center">
@@ -107,6 +131,7 @@
 										    <th>NOME</th>
 										    <th>CURSO</th>
 										    <th>LOCAL</th>
+										     <th>STATUS</th>
 										  	 <th>AÇÕES</th>
 		                              </tr>
                                     </thead>
@@ -118,6 +143,8 @@
 									     <td th:text="${g.nome}">Alfreds Futterkiste</td>
 									      <td th:text="${g.curso.nome}"></td>
 									      <td th:text="${g.locais.nomeLocal}"></td>
+									       <td th:text="${g.reservaStatus.nome}"></td>
+									      
 									    
 									      
 									      	 <td>

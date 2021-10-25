@@ -40,6 +40,8 @@ public class ReservaController {
 	@Autowired
 	private LocaisService locaisService;
 	
+	
+	
 	@GetMapping("/novo")
 	private ModelAndView reserva( Reserva reserva) {
 		 
@@ -50,7 +52,6 @@ public class ReservaController {
 		List<Curso> cursoList = this.cursoService.buscarTodosCursos();
 		
 		List<Locais> locaisList =  this.locaisService.buscarTodosLocais();
-		
 		
 		
 		mv.addObject("reservalist", reservaList);
@@ -173,7 +174,7 @@ public class ReservaController {
 		List<Reserva> reservaList = this.reservaService.buscarTodos();
 
 		ModelAndView mv = new ModelAndView("reserva/reservaform.html");
-
+		
 		mv.addObject("reservalist", reservaList);
 		mv.addObject("cursolist", cursoList);
 		mv.addObject("locaislist", locaisList);
@@ -198,7 +199,11 @@ public class ReservaController {
 
 		return mv;
 	}
-
+	
+	/*
+	 * @ModelAttribute("todosStatusReserva") public List<ReservaStatus>
+	 * todosStatusReserva() { return Arrays.asList(ReservaStatus.values()); }
+	 */
 }
 
 

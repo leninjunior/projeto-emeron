@@ -38,13 +38,14 @@ public interface  ReservaRepository extends JpaRepository<Reserva, Long>{
 
 	
 	@Modifying
-	@Query(value = "update reserva  r set r.nome =:nome, r.curso =:curso, r.locais =:codigo_locais where r.id=:id")
+	@Query(value = "update reserva  r set r.nome =:nome, r.curso =:curso, r.locais =:codigo_locais  where r.id=:id")
 	public void updateTesteAgora(@Param("nome") String nome, @Param("curso") Curso curso,@Param("codigo_locais") Locais locais ,@Param("id") Long id);
 	
 	
 	 
 	  @Query(value = "select r from reserva r where r.usuario =:codigo_usuario")
 	  public List<Reserva> findByReservaUser(@Param("codigo_usuario") Usuario id);
+	  
 	 
 
 	
