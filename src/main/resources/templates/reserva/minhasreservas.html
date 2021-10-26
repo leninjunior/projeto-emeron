@@ -63,9 +63,13 @@ xmlns="http://www.w3.org/1999/xhtml"
 									     <td th:text="${g.nome}">Alfreds Futterkiste</td>
 									      <td th:text="${g.curso.nome}"></td>
 									     <td th:text="${g.locais.nomeLocal}"></td>
-									        <td  class="text-center">
-									        	<span class="label label-success" th:text="${g.statusReserva.nome}"></span>
-									        
+									         <td > 
+
+									       	<span th:text="${g.reservaStatus.nome}" class="label"
+									       	th:classappend="${#strings.toString(g.reservaStatus) == 'CANCELADO' ? 'label-danger' : #strings.toString(g.reservaStatus) == 'RESERVADO' ? 'label-success' : 'label-warning'}"
+									       	
+									       	></span>
+									       
 									        </td>
 									        
 									        
