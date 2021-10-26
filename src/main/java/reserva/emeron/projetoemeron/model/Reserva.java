@@ -1,6 +1,8 @@
 package reserva.emeron.projetoemeron.model;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,9 +31,6 @@ public class Reserva {
 	private Curso curso;
 	
 
-	
-	
-	
 	@ManyToOne
 	@JoinColumn(name = "codigo_usuario")
 	private Usuario usuario;
@@ -41,6 +40,10 @@ public class Reserva {
 	@JoinColumn(name = "codigo_locais")
 	private Locais locais;
 	
+	
+	@JoinColumn(name = "reserva_status")
+	@Enumerated(EnumType.STRING)
+	private ReservaStatus reservaStatus;
 	
 	/*
 	 * @FutureOrPresent private LocalDate data;
@@ -58,6 +61,17 @@ public class Reserva {
 	public Locais getLocais() {
 		return locais;
 	}
+
+
+	public ReservaStatus getReservaStatus() {
+		return reservaStatus;
+	}
+
+
+	public void setReservaStatus(ReservaStatus reservaStatus) {
+		this.reservaStatus = reservaStatus;
+	}
+
 
 	public void setLocais(Locais locais) {
 		this.locais = locais;
