@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	layout:decorate="layout">
 <head>
 <title>Product Details</title>
@@ -89,8 +90,9 @@
 							</div>
 		 -->
 			
+			<div sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_DEPED')">
 			
-			 <div class="form-group">
+			 <div class="form-group"  >
 				 <label for="reservaStatus" class="active">TesteEstatusREserva</label>
 				 <select class="form-control" th:field="*{reservaStatus}" id="reservastatus">
 						<option th:each = "l : ${T(reserva.emeron.projetoemeron.model.ReservaStatus).values()}" 
@@ -98,7 +100,7 @@
 				 </select>
 			 </div>
 				
-							
+				</div>			
 							<input type="hidden" readonly id="idusuario" name="idusuario" th:value="${reserva?.usuario?.id}"/>
 							
 

@@ -32,7 +32,7 @@ public class IndexController {
 	@Autowired
 	private ReservaService reservaService;
 	
-	@GetMapping("/")
+	@GetMapping("/todasreservas")
 	public ModelAndView listarReservas() {
 	
 	
@@ -42,11 +42,13 @@ public class IndexController {
 	mv.addObject("reservas", reservaList);
 	return mv;
 				
+	
 	}
-	@GetMapping("/todasreservas")
+	
+	@GetMapping("/todasreserva1s")
 	public ModelAndView todasReservas() {
-	
-	
+	 
+	//TESTECOMRESERVAVIACARD
 	List<Reserva> reservaList = this.reservaService.buscarTodos();
 	
 	ModelAndView mv = new ModelAndView("todasreservas.html");

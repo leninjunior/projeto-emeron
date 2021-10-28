@@ -43,7 +43,13 @@ public class ReservaService {
 		 
 		}
 	
-		
+	
+	
+	
+		public void confirmarReserva(Reserva id) {
+			
+			reservaRepository.comfirmarReserva(id);
+		}
 		 
 	
 	
@@ -58,10 +64,14 @@ public class ReservaService {
 		 * }
 		 */
 		  
-		  public void updateTeste(Reserva reserva) {
+		  public void usuarioUpdate(Reserva reserva) {
 			  reservaRepository.updateTesteAgora(reserva.getNome(), reserva.getCurso(), reserva.getLocais() , reserva.getId());
 		  }
 		  
+		  
+		  public void adminUpdate(Reserva reserva) {
+			  reservaRepository.adminUpdate(reserva.getNome(), reserva.getCurso(), reserva.getLocais() , reserva.getReservaStatus(), reserva.getId());
+		  }
 		 
 
 	
@@ -77,7 +87,11 @@ public class ReservaService {
 		return reservaRepository.findByReservaUser(usuario);
 	}
 
+	public List<Reserva> reservaEmAnalise() {
+		return reservaRepository.listaDeReservaEmAnalise();
+	}
 
+	
 	/*
 	 * public void updateReserva(String nome, Long id_curso, LocalDate data,
 	 * LocalTime hora_inicial, LocalTime hora_final, Long codigo_locais ){

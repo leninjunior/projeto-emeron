@@ -2,6 +2,7 @@ package reserva.emeron.projetoemeron.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import reserva.emeron.projetoemeron.model.Curso;
 import reserva.emeron.projetoemeron.model.Locais;
 import reserva.emeron.projetoemeron.model.Reserva;
+import reserva.emeron.projetoemeron.model.ReservaStatus;
 import reserva.emeron.projetoemeron.model.Usuario;
 import reserva.emeron.projetoemeron.service.CursoService;
 import reserva.emeron.projetoemeron.service.LocaisService;
@@ -67,7 +69,7 @@ public class ReservaController {
 
 	
 	@PostMapping("/add/salvar")
-	private String salvar(@Valid Reserva reserva, BindingResult result, RedirectAttributes redirect) {
+	private String salvar(@Valid Reserva reserva, BindingResult result, RedirectAttributes redirect, HttpServletRequest request) {
 		
 		Usuario usuario = usuarioService.getUser();	 
 		
@@ -75,35 +77,62 @@ public class ReservaController {
 		
 		
 			
-		if(result.hasErrors()){
-			
-			
-			redirect.addFlashAttribute("mensagem", "Verifique os Campos Obrigatorios "); //mensagem na view
-			return "redirect:/reserva/novo"; //na rota
+		if (result.hasErrors()) {
+
+			redirect.addFlashAttribute("mensagem", "Verifique os Campos Obrigatorios "); // mensagem na view
+			return "redirect:/reserva/novo"; // na rota
 		}
-		
-		
+
 		try {
 
 			if (reserva.getId() == null || (reserva.getId() != null && reserva.getId() <= 0)) {
 
 				if (reservaService.reservaExiste(reserva.getNome()) == false) {
+
+					if (request.isUserInRole("ROLE_ADMIN") || request.isUserInRole("ROLE_DEPED")) {
+
+						reservaService.salvarDados(reserva);
+						redirect.addFlashAttribute("mensagemsucesso",
+								"Reserva  Adicionado com Sucesso (ADMINISTRADOR)!");
+					} else {
+
+						reserva.setReservaStatus(ReservaStatus.ANALISE);
+						reservaService.salvarDados(reserva);
+
+						redirect.addFlashAttribute("mensagemsucesso", "Reserva  Adicionado com Sucesso pelo um usuario comum!" );
+					}
+
+				} else { 
 					
-					reservaService.salvarDados(reserva);
+					
+					redirect.addFlashAttribute("mensagemsucesso", "ja existe caralhoo!" ); 
+					return "redirect:/reserva/novo"; // na rota
+					
+				
+				}
+				
+
+			} 
+			 
+			 
 			
-					redirect.addFlashAttribute("mensagemsucesso", "Reserva  Adicionado com Sucesso!");
+			else {
+				
+				if (request.isUserInRole("ROLE_ADMIN") || request.isUserInRole("ROLE_DEPED")) {
+				
+					reservaService.adminUpdate(reserva);
+					redirect.addFlashAttribute("mensagemeditado", "Reserva Editado com SucessoPOR ADMINCARAI!!");
+					return "redirect:/reserva/novo"; // na rota
 
 				}
 				
 				
-				
-				} else {
-					reservaService.updateTeste(reserva); 
-					redirect.addFlashAttribute("mensagemeditado", "Reserva Editado com Sucesso!!");
 
-				}
-	
-			
+				reservaService.usuarioUpdate(reserva);
+				redirect.addFlashAttribute("mensagemeditado", "Reserva Editado com Sucesso!!");
+
+			}
+
 			/*
 			 * else {
 			 * 
@@ -117,7 +146,6 @@ public class ReservaController {
 		}
 		return "redirect:/reserva/novo"; // na rota
 	}
-	
 	
 	/*
 	 * 
@@ -199,6 +227,40 @@ public class ReservaController {
 
 		return mv;
 	}
+	
+	
+	
+	@GetMapping("/reservaspendentes")
+	private ModelAndView reservasPendentes() {
+
+		Usuario usuario = usuarioService.getUser();	 
+		ModelAndView mv = new ModelAndView("reserva/reservaspendentes.html");
+		
+		List<Reserva> reservaList = this.reservaService.reservaEmAnalise();
+		List<Curso> cursoList = this.cursoService.buscarTodosCursos();
+		
+		List<Locais> locaisList =  this.locaisService.buscarTodosLocais();
+		
+		
+		mv.addObject("reservalist", reservaList);
+		mv.addObject("usuarioid", usuario.getId());
+		mv.addObject("cursolist", cursoList);
+		mv.addObject("locaislist", locaisList);
+	
+
+		return mv;
+	}
+	
+	
+	
+	@GetMapping("/confirmar/{id}")
+	private String aceitarReserva(Reserva id) {
+		
+		reservaService.confirmarReserva(id);
+		
+		return "redirect:/reserva/reservaspendentes"; // na rota
+	}
+	
 	
 	/*
 	 * @ModelAttribute("todosStatusReserva") public List<ReservaStatus>

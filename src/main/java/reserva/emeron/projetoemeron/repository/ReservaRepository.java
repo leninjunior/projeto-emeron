@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import reserva.emeron.projetoemeron.model.Curso;
 import reserva.emeron.projetoemeron.model.Locais;
 import reserva.emeron.projetoemeron.model.Reserva;
+import reserva.emeron.projetoemeron.model.ReservaStatus;
 import reserva.emeron.projetoemeron.model.Usuario;
 
 @Repository
@@ -42,13 +43,32 @@ public interface  ReservaRepository extends JpaRepository<Reserva, Long>{
 	public void updateTesteAgora(@Param("nome") String nome, @Param("curso") Curso curso,@Param("codigo_locais") Locais locais ,@Param("id") Long id);
 	
 	
+	@Modifying
+	@Query(value = "update reserva  r set r.nome =:nome, r.curso =:curso, r.locais =:codigo_locais, r.reservaStatus =:reserva_status where r.id=:id")
+	public void adminUpdate(@Param("nome") String nome, @Param("curso") Curso curso,@Param("codigo_locais") Locais locais,@Param("reserva_status") ReservaStatus reservaStatus ,@Param("id") Long id);
 	 
 	  @Query(value = "select r from reserva r where r.usuario =:codigo_usuario")
 	  public List<Reserva> findByReservaUser(@Param("codigo_usuario") Usuario id);
 	  
 	 
-
-	
+	  
+	  @Query(value = "select * from reserva where reserva_status = 'ANALISE'", nativeQuery = true)
+	  public List<Reserva> listaDeReservaEmAnalise();
+	  
+	  
+	  
+	  	@Modifying
+		@Query(value = "update reserva set reserva_status='RESERVADO' where id=?1", nativeQuery = true)
+		public void comfirmarReserva(Reserva id);
+	  	
+	  	
+	  	
+	  	
+	  	
+	  	
+	  	
+	  	
+	  	
 	
 //@Query(value = "select count(1) > 0 as existe from curso where nome = ?", nativeQuery = true)
 //public boolean cursoJaExiste(String nome);
