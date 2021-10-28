@@ -62,7 +62,9 @@ public interface  ReservaRepository extends JpaRepository<Reserva, Long>{
 		public void comfirmarReserva(Reserva id);
 	  	
 	  	
-	  	
+		@Modifying
+		@Query(value = "update reserva set reserva_status='CANCELADO' where id=?1", nativeQuery = true)
+		public void cancelarReserva(Reserva id);
 	  	
 	  	
 	  	

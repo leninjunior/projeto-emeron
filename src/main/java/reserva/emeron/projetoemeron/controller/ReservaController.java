@@ -233,7 +233,7 @@ public class ReservaController {
 	@GetMapping("/reservaspendentes")
 	private ModelAndView reservasPendentes() {
 
-		Usuario usuario = usuarioService.getUser();	 
+//		Usuario usuario = usuarioService.getUser();	 
 		ModelAndView mv = new ModelAndView("reserva/reservaspendentes.html");
 		
 		List<Reserva> reservaList = this.reservaService.reservaEmAnalise();
@@ -243,7 +243,7 @@ public class ReservaController {
 		
 		
 		mv.addObject("reservalist", reservaList);
-		mv.addObject("usuarioid", usuario.getId());
+//		mv.addObject("usuarioid", usuario.getId());
 		mv.addObject("cursolist", cursoList);
 		mv.addObject("locaislist", locaisList);
 	
@@ -257,6 +257,14 @@ public class ReservaController {
 	private String aceitarReserva(Reserva id) {
 		
 		reservaService.confirmarReserva(id);
+		
+		return "redirect:/reserva/reservaspendentes"; // na rota
+	}
+	
+	@GetMapping("/cancelar/{id}")
+	private String cancelarReserva(Reserva id) {
+		
+		reservaService.cancelarReserva(id);
 		
 		return "redirect:/reserva/reservaspendentes"; // na rota
 	}

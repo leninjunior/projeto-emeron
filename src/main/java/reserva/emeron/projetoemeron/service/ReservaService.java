@@ -54,6 +54,11 @@ public class ReservaService {
 	
 	
 
+		public void cancelarReserva(Reserva id) {
+			
+			reservaRepository.cancelarReserva(id);
+		}
+		 
 	
 		
 		/*
