@@ -21,6 +21,9 @@ xmlns="http://www.w3.org/1999/xhtml"
 </section>
 <div layout:fragment="content">
 
+
+	<th:block th:include="fragments/modalconfirm">  </th:block>
+	
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
@@ -75,13 +78,25 @@ xmlns="http://www.w3.org/1999/xhtml"
 									        
 									      
 									      	 <td>
-                                           <a th:href="@{/reserva/confirmar/{id}(id=${g.id})}" class="btn btn-primary btn-sm" title="aceitar" ><i class="fa fa-edit" ></i> Aceitar</a>
+                                          <!--  <a th:href="@{/reserva/confirmar/{id}(id=${g.id})}" class="btn btn-primary btn-sm" title="aceitar" ><i class="fa fa-edit" ></i> Aceitar</a> -->
                                            
                                            
                                            
                                            
-                                             <a th:href="@{/reserva/cancelar/{id}(id=${g.id})}" class="btn btn-primary btn-sm" title="Editar" ><i class="fa fa-edit" ></i> Cancelar</a>
-<!--                                            <a th:href="@{excluir/{id}(id=${c.id})}" class="btn btn-danger btn purple deleteView" title="Delete"><i class="fa fa-trash-o"></i> Cancelar</a> -->
+                                           
+                                         <button th:id="${ 'btn_reserva/confirmar/' + g.id}" type="button" class="btn btn-success btn-sm"
+		                            		data-toggle="modal" data-target="#myModal">
+		                                <span title="Aceitar Reserva"  ><i class="icon fa fa-check"></i> Aceitar</span>
+		                                
+		                            </button>
+		                            
+		                               <button th:id="${ 'btn_reserva/cancelar/' + g.id}" type="button" class="btn btn-danger btn-sm"
+		                            		data-toggle="modal" data-target="#modalCancelar">
+		                                <span title="Cancelar Reserva"  ><i class="icon fa fa-close"></i> Cancelar</span>
+		                                
+		                            </button>
+<!--                                              <a th:href="@{/reserva/cancelar/{id}(id=${g.id})}" class="btn btn-primary btn-sm" title="Editar" ><i class="fa fa-edit" ></i> Cancelar</a>
+ --><!--                                            <a th:href="@{excluir/{id}(id=${c.id})}" class="btn btn-danger btn purple deleteView" title="Delete"><i class="fa fa-trash-o"></i> Cancelar</a> -->
                                         		 </td> 
 									     
 									    </tr>
