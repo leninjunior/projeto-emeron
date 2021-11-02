@@ -65,6 +65,9 @@ public ModelAndView testeDashbord() {
 	 mv.addObject("quantidadecurso", cursoService.countCursos());
 	 mv.addObject("quantidadereserva", reservaService.countReserva());
 	 mv.addObject("quantidadeusuarios", usuarioService.countUsuarios());
+	 mv.addObject("reservaanalise", reservaService.countReservaAnalise());
+	 mv.addObject("reservacancelado", reservaService.countReservaCancelado());
+	 mv.addObject("reservaconfirmada", reservaService.countReservaConfirmado());
 	 mv.addObject("grupos", roleService.buscarTodosPerfil());
 	
 	 
