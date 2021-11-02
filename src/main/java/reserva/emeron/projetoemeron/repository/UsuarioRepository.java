@@ -22,8 +22,12 @@ public interface UsuarioRepository  extends JpaRepository<Usuario, Long>{
 		public boolean usuarioJaExiste(String login);
 		
 	
-		
-		
+		/*
+		 * @Query(value = " select\r\n" + "        usuario.id,\r\n" +
+		 * "        usuario.login,\r\n" + "        usuario.senha \r\n" + "    from\r\n"
+		 * + "        usuario usuario", nativeQuery = true) public List<Usuario>
+		 * editUsuario();
+		 */
 		
 		
 }

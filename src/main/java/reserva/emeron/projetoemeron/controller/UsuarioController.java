@@ -135,8 +135,8 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("{id}")
-	private ModelAndView editCurso(@PathVariable("id") Long id) {
-		Iterable<Usuario> usuariosIT = this.usuarioService.listarUsuarios();
+	private ModelAndView editUsuario(@PathVariable("id") Long id) {
+		Iterable<Usuario> usuariosIT = this.usuarioService.listarUsuarios();;
 		
 		ModelAndView mv = new ModelAndView("usuario/usuarioform.html");
 		mv.addObject("userList", usuariosIT);

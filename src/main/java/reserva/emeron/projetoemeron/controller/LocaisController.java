@@ -39,6 +39,20 @@ public class LocaisController {
 		
 	}
 	
+	
+	
+	
+	@GetMapping("/listar")
+	private ModelAndView listarLocais() {
+
+		List<Locais> locaisList = locaisService.buscarTodosLocais();
+		ModelAndView mv = new ModelAndView("locais/listalocais.html");
+		mv.addObject("locais", locaisList);
+		
+		
+		return mv;
+	}
+	
 
 	@PostMapping("/salvar")
 	public String salvarLocais(@Valid Locais local,  BindingResult result, RedirectAttributes redirect) {

@@ -4,16 +4,16 @@
 	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
 	layout:decorate="layout">
 <head>
-<title>Cadastro de Usuario</title>
+<title>Cadastro de Usuário</title>
 
 </head>
 <body>
 	<section layout:fragment="header">
-		<h1>Cadastro de Usuario</h1>
+		<h1>Cadastro de Usuário</h1>
 
 		<ol class="breadcrumb">
 			<li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
-			<li class="active">Cadastrar Usuario</li>
+			<li class="active">Cadastrar Usuário</li>
 		</ol>
 
 
@@ -28,7 +28,7 @@
 				<div class="box box-info">
 					<div class="box-header with-border">
 						<h3 class="box-title">Adicionar 
-						Usuario</h3>
+						Usuário</h3>
 					</div>
 
 
@@ -54,7 +54,7 @@
 							</div>
 								<div class="form-group">
 									<label id="senha" class=" control-label">Senha do Usuário:</label>
-									<input type="password" id="password" name="senha" class="form-control" placeholder="senha" th:value="${usuario?.senha}">
+									<input autocomplete="off" type="password" id="password" name="senha" class="form-control" placeholder="senha" >
 									
 									<div class="form-group">
 
@@ -100,7 +100,7 @@
 							</a>
 							<button type="submit" class="btn btn-info pull-right"
 								th:href="@{/usuario/salvar}">
-								<i class="fa fa-save"></i> Salvar Usuario
+								<i class="fa fa-save"></i> Salvar Usuário
 							</button>
 						</div>
 					
@@ -122,7 +122,7 @@
 					</div> -->
 					
 					<div>
-					   <h2> Gereciador de Usuario: </h2>
+					   <h2> Gereciador de Usuário: </h2>
 					</div>
 					<br>
 					
@@ -131,9 +131,9 @@
                                     <thead class="thead">
 						             <tr>
 										    <th>ID</th>
-										     <th>Usuario</th>
+										     <th>Usuário</th>
 										 	
-										 <th>Perfil de Usuario</th>
+										 <th>Perfil de Usuário</th>
 										 <th>Ações</th>
 		                              </tr>
                                     </thead>
@@ -146,7 +146,7 @@
 										      
                                         <td>
                                             <a th:href="@{/usuario/{id}(id=${c.id})}" class="btn btn-primary btn-sm" title="Editar" ><i class="fa fa-edit" ></i> Editar</a>
-                                            <a th:href="@{excluir/{id}(id=${c.id})}" class="btn btn-danger btn purple deleteView" title="Delete"><i class="fa fa-trash-o"></i> Delete</a>
+                                            <a th:href="@{excluir/{id}(id=${c.id})}" class="btn btn-danger btn-sm" title="Delete"><i class="fa fa-trash-o"></i> Delete</a>
 										</td>
                                     </tr>
                                     </tbody>
