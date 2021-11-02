@@ -47,6 +47,9 @@ public class ReservaController {
 	@GetMapping("/novo")
 	private ModelAndView reserva( Reserva reserva) {
 		 
+
+		
+		
 		Usuario usuario = usuarioService.getUser();	 
 		ModelAndView mv = new ModelAndView("reserva/reservaform.html");
 		
@@ -54,6 +57,8 @@ public class ReservaController {
 		List<Curso> cursoList = this.cursoService.buscarTodosCursos();
 		
 		List<Locais> locaisList =  this.locaisService.buscarTodosLocais();
+		
+		
 		
 		
 		mv.addObject("reservalist", reservaList);
@@ -181,16 +186,16 @@ public class ReservaController {
 	
 	
 	
-//	@GetMapping("/listar")
-//	private ModelAndView listarReserva() {
-//		
-//		List<Reserva> reservaList =  reservaService.buscarTodos();
-//		ModelAndView mv = new ModelAndView("reserva/listareservas.html");
-//		mv.addObject("reservas", reservaList);
-//		
-//		return mv;
-//		
-//	}
+	@GetMapping("/listar")
+	private ModelAndView listarReserva() {
+		
+		List<Reserva> reservaList =  reservaService.buscarTodos();
+		ModelAndView mv = new ModelAndView("reserva/listareservas.html");
+		mv.addObject("reservalist", reservaList);
+		
+		return mv;
+		
+	}
 
 
 
@@ -233,7 +238,7 @@ public class ReservaController {
 	@GetMapping("/reservaspendentes")
 	private ModelAndView reservasPendentes() {
 
-//		Usuario usuario = usuarioService.getUser();	 
+		Usuario usuario = usuarioService.getUser();	 
 		ModelAndView mv = new ModelAndView("reserva/reservaspendentes.html");
 		
 		List<Reserva> reservaList = this.reservaService.reservaEmAnalise();
@@ -243,7 +248,7 @@ public class ReservaController {
 		
 		
 		mv.addObject("reservalist", reservaList);
-//		mv.addObject("usuarioid", usuario.getId());
+		mv.addObject("usuarioid", usuario.getId());
 		mv.addObject("cursolist", cursoList);
 		mv.addObject("locaislist", locaisList);
 	

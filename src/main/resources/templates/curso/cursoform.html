@@ -57,14 +57,14 @@
 
 							<div class="form-group">
 								<label id="nome" class=" control-label">Nome do Curso</label> 
-								<input minlength="3" maxlength="20" placeholder="Insira o Nome do Curso que Dejesa Cadastrar" type="text" class="form-control" id="nome" name="nome" th:value="${curso?.nome}">
+								<input minlength="3" maxlength="200" placeholder="Insira o Nome do Curso que Dejesa Cadastrar" type="text" class="form-control" id="nome" name="nome" th:value="${curso?.nome}">
 							</div>
 							
 							
 
                             <div class="form-group">
                              <label  id="descricao" class=" control-label">Descrição</label>
-                             <input  placeholder="Insira a Descrição do Curso que Dejesa Cadastrar" type="text" minlength="5" maxlength="50" class="form-control" id="descricao"  name="descricao"  th:value="${curso?.descricao}">
+                             <input  placeholder="Insira a Descrição do Curso que Dejesa Cadastrar" type="text" minlength="5" maxlength="500" class="form-control" id="descricao"  name="descricao"  th:value="${curso?.descricao}">
 <!--                                 <input name="descricao"  class="form-control" placeholder="descrição" th:field="*{descricao}"> -->
                             </div>
 							

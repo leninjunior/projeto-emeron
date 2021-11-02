@@ -38,20 +38,6 @@ xmlns="http://www.w3.org/1999/xhtml"
                             <button type="submit">Search</button>
                         </form>-->
                     </div>
-                    <div th:if="${param.success}">
-                        <div class="alert alert-success alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">Ã—</button>
-                            <h4><i class="icon fa fa-check"></i> Success!</h4>
-                            Information saved successfully.
-                        </div>
-                    </div>
-                    <div th:if="${param.deleted}">
-                        <div class="alert alert-info alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">Ã—</button>
-                            <h4><i class="icon fa fa-check"></i> Deleted!</h4>
-                            Information deleted successfully.
-                        </div>
-                    </div>
 
                     <!--<div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">-->
                         <div class="row">
@@ -64,22 +50,34 @@ xmlns="http://www.w3.org/1999/xhtml"
 										     <th>SOLICITANTE</th>
 										    <th>NOME</th>
 										    <th>CURSO</th>
+										     <th>LOCAL</th>
+										     <th>STATUS</th>
 										  	 <th>AÇÕES</th>
 		                              </tr>
                                     </thead>
                                     <tbody>
-                                   <tr th:each="g : ${reservas}">
+                                   <tr th:each="g : ${reservalist}">
                                    <td th:text="${g.id}">Alfreds Futterkiste</td>
                                  	  <td th:text="${g.usuario}"></td>
-									    
+									   
 									     <td th:text="${g.nome}">Alfreds Futterkiste</td>
 									      <td th:text="${g.curso.nome}"></td>
-									    
+									     <td th:text="${g.locais.nomeLocal}"></td>
+									         <td > 
+
+									       	<span th:text="${g.reservaStatus.nome}" class="label"
+									       	th:classappend="${#strings.toString(g.reservaStatus) == 'CANCELADO' ? 'label-danger' : #strings.toString(g.reservaStatus) == 'RESERVADO' ? 'label-success' : 'label-warning'}"
+									       	
+									       	></span>
+									       
+									        </td>
+									        
+									        
 									      
-<!-- 									      	 <td> -->
-<!--                                             <a th:href="@{/usuario/{id}(id=${g.id})}"class="btn btn-primary btn purple editView" title="Edit" ><i class="fa fa-edit"></i> Edit</a> -->
-<!--                                             <a th:href="@{excluir/{id}(id=${c.id})}" class="btn btn-danger btn purple deleteView" title="Delete"><i class="fa fa-trash-o"></i> Delete</a> -->
-<!--                                        		 </td> -->
+									      	 <td>
+                                          <!--  <a th:href="@{/reserva/{id}(id=${g.id})}" class="btn btn-primary btn-sm" title="Editar" ><i class="fa fa-edit" ></i> Editar</a> -->
+<!--                                            <a th:href="@{excluir/{id}(id=${c.id})}" class="btn btn-danger btn purple deleteView" title="Delete"><i class="fa fa-trash-o"></i> Cancelar</a> -->
+                                        		 </td> 
 									     
 									    </tr>
                                     	
