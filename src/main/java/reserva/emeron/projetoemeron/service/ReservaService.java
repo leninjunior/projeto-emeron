@@ -43,7 +43,22 @@ public class ReservaService {
 		 
 		}
 	
+	public Integer countReservaAnalise() {
+		
+		return reservaRepository.countAnalise();
+	}
 	
+	
+	public Integer countReservaCancelado() {
+		
+		return reservaRepository.countCancelado();
+	}
+	
+	
+	public Integer countReservaConfirmado() {
+		
+		return reservaRepository.countConfirmada();
+	}
 	
 	
 		public void confirmarReserva(Reserva id) {

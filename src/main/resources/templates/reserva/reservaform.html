@@ -51,7 +51,7 @@
 						<div class="box-body">
 
 							<div class="form-group">
-								<label id="nome" class=" control-label">Nome do Reserva</label>
+								<label id="nome" class=" control-label">Nome do Reserva:</label>
 								<input name="nome" class="form-control" placeholder="Nome" th:value="${reserva?.nome}">
 
 							</div>
@@ -93,7 +93,7 @@
 			<div sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_DEPED')">
 			
 			 <div class="form-group"  >
-				 <label for="reservaStatus" class="active">TesteEstatusREserva</label>
+				 <label for="reservaStatus" class="active">Status da Reserva:</label>
 				 <select class="form-control" th:field="*{reservaStatus}" id="reservastatus">
 						<option th:each = "l : ${T(reserva.emeron.projetoemeron.model.ReservaStatus).values()}" 
 						th:value="${l}" th:text="${l?.nome}">

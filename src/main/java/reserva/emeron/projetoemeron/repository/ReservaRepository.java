@@ -67,10 +67,16 @@ public interface  ReservaRepository extends JpaRepository<Reserva, Long>{
 		public void cancelarReserva(Reserva id);
 	  	
 	  	
+		@Query(value = "SELECT COUNT (*) FROM reserva WHERE reserva_status = 'ANALISE'", nativeQuery = true)
+	  	public Integer countAnalise();
 	  	
-	  	
-	  	
-	  	
+		@Query(value = "SELECT COUNT (*) FROM reserva WHERE reserva_status = 'CANCELADO'", nativeQuery = true)
+	  	public Integer countCancelado();
+		
+		
+		@Query(value = "SELECT COUNT (*) FROM reserva WHERE reserva_status = 'RESERVADO'", nativeQuery = true)
+	  	public Integer countConfirmada();
+		
 	
 //@Query(value = "select count(1) > 0 as existe from curso where nome = ?", nativeQuery = true)
 //public boolean cursoJaExiste(String nome);
