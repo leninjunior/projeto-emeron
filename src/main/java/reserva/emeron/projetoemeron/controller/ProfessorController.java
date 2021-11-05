@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import reserva.emeron.projetoemeron.model.Locais;
 import reserva.emeron.projetoemeron.model.Professor;
 import reserva.emeron.projetoemeron.service.ProfessorService;
 
