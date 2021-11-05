@@ -26,7 +26,7 @@
     <ul class="sidebar-menu">
         <li class="header"><strong>MENU</strong></li>
         
-       	<li class=""><a th:href="@{/index}"><i class="fa fa-dashboard"></i> DASHBOARD</a></li>
+       	<li class=""><a sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_DEPED')"  th:href="@{/dashboard}"><i class="fa fa-dashboard"></i> DASHBOARD</a></li>
         
         <li class="active treeview">
             <a href="#">
@@ -42,7 +42,7 @@
 
                 <li  class=""><a sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_DEPED')" th:href="@{/curso/novo}"><i class="fa fa-plus-square-o"></i> Cadastrar Curso</a></li>
                  <li class=""><a sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_DEPED')" th:href="@{/local/novo}"><i class="fa fa-plus-square-o"></i> Cadastrar Local</a></li>
-                  <li class="" ><a sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_DEPED')"  th:href="@{/curso/novo}"><i class="fa fa-plus-square-o"></i> Cadastrar Professores</a></li>
+                  <li class="" ><a sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_DEPED')"  th:href="@{/professor/novo}"><i class="fa fa-plus-square-o"></i> Cadastrar Professores</a></li>
                 <li><a th:href="@{/reserva/novo}"><i class="fa fa-plus-square-o"></i> Cadastrar Reserva</a></li>
                 <li  ><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/usuario/novo}"><i class="fa fa-plus-square-o"></i> Cadastrar Usuário</a></li>
                 <!--  <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}"><i class="fa fa-circle-o"></i> Logout</a></li> -->
@@ -65,7 +65,7 @@
                 <li ><a th:href="@{/reserva/listar}"><i class="fa fa-circle-o"></i> Listas Reservas</a></li>
                 <li ><a  th:href="@{/curso/listar}"><i class="fa fa-circle-o"></i> Listas Cursos</a></li>
                  <li ><a  th:href="@{/local/listar}"><i class="fa fa-circle-o"></i> Listas Locais</a></li>
-                  <li ><a  th:href="@{/reserva/reservaspendentes}"><i class="fa fa-circle-o"></i> Mural de Reservas</a></li>
+                  <li ><a  ><i class="fa fa-circle-o"></i> Mural de Reservas</a></li>
               <!--  <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}"><i class="fa fa-circle-o"></i> Logout</a></li> -->
             </ul>
 

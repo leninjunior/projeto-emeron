@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
 xmlns="http://www.w3.org/1999/xhtml"
       xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+       	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       layout:decorate="layout">
 <head>
 <meta lang="pt-br">
@@ -29,7 +30,7 @@ xmlns="http://www.w3.org/1999/xhtml"
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <div class="box-footer center">
+                    <div class="box-footer center" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_DEPED')">
                         <a th:href="@{/curso/novo}">
                             <button type="button" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Cadastrar Curso</button>
                         </a>

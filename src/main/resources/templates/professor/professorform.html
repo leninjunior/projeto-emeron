@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html 
+		xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="layout">
+<head>
+    <title>Product Details</title>
+</head>
+<body>
+<section layout:fragment="header">
+    <h1>
+        Cadastrar Professor:
+        
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Cadastrar Professor</li>
+
+    </ol>
+</section>
+
+
+
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Horizontal Form -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Adicionar Professor</h3>
+                </div>
+				
+				
+			
+                <!-- /.box-header -->
+                <!-- form start -->
+<!--                 <form th:action="@{/product/save}" th:object="${product}" method="post" class="form-horizontal"> -->
+<!--                 <form th:action=" ${curso.id == null} ?  @{/curso/salvar} : @{/curso/editar}" method="post" th:object="${curso}"> -->
+
+
+           
+          
+                  <form th:action="@{/professor/salvar}" method="post" th:object="${professor}">
+          
+       			   <th:block th:include="fragments/Mensagens">  </th:block>
+
+ 			<th:block th:include="fragments/modal">  </th:block>
+ 			
+ 		
+ 			
+ 				<!-- Button trigger modal -->
+			<input type="hidden" readonly id="id" name="id" th:value="${professor?.id}"/>
+
+						<div class="box-body">
+
+							<div class="form-group">
+								<label id="nome" class=" control-label">Nome do Professor</label> 
+								<input  placeholder="Nome do professor" type="text" class="form-control" id="nome" name="nome" th:field="*{nome}" >
+							</div>
+							
+					
+
+                            <div class="form-group">
+                            	 <div class="input-field col s6">
+									  <label for="dataNascimento" class="active">Data Nascimento:</label>
+									  <input type="date" id="dataNascimento"  
+									  name="dataNascimento" placeholder="Data Nasc."  th:field="*{dataNascimento}" >
+									 </div>
+                            </div>
+                            
+							
+						</div>
+
+                    <!-- /.box-body -->
+                    <div class="box-footer center">
+                        <button type="submit" class="btn btn-info pull-right" ><i class="fa fa-save"></i> Salvar Local</button>
+                    </div>
+                    <!-- /.box-footer -->
+                </form>
+                
+                
+                
+                
+                	  <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
+                                       aria-describedby="example1_info">
+                                    <thead class="thead">
+						             <tr>
+										    <th>ID PROFESSOR:</th>
+										     <th>PROFESSOR:</th>
+										     <th>DATA NASCIMENTO:</th>
+										 	<th>AÇÕES:</th>
+		                              </tr>
+                                    </thead>
+                                    <tbody>
+                                   <tr th:each="l : ${listprofessores}">
+										    <td th:text="${l.id}">Alfreds Futterkiste</td>
+										     <td th:text="${l.nome}">Alfreds Futterkiste</td>
+										      <td th:text="${#temporals.format(l.dataNascimento, 'dd/MM/yyyy')}">2017/08/14</td>
+                                        <td>
+                                        
+                                            <a  th:href="@{/local/{id}(id=${l.id})}" class="btn btn-primary btn-sm" title="Editar" ><i class="fa fa-edit" ></i> Editar</a>
+                                          
+										
+									 <button th:id="${ 'btn_local/excluir/' + l.id}" type="button" class="btn btn-danger btn-sm"
+		                            		data-toggle="modal" data-target="#myModal">
+		                                <span title="Exclusão desabilitada"  ><i class="fa fa-trash-o"></i> Excluir</span>
+		                                
+		                            </button>
+									
+								 
+								</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                
+  
+               
+
+
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+</div>
+
+<th:block layout:fragment="script">
+
+
+    <script>
+   
+    $(function () {
+
+      $('#example1').DataTable({
+        'paging'      : true,
+        'lengthChange': false,
+        'searching'   : true,
+        'ordering'    : true,
+        'info'        : false,
+        'autoWidth'   : false
+      })
+
+      jQuery('#example1_wrapper input').addClass("form-control input-sm"); // modify table search input
+    })
+
+
+</script>
+</th:block>
+
+</body>
+
+</html>

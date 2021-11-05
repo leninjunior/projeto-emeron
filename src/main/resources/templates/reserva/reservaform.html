@@ -5,7 +5,10 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	layout:decorate="layout">
 <head>
-<title>Product Details</title>
+
+<title> Formulário de Reserva</title>
+
+
 
 </head>
 <body>
@@ -101,6 +104,8 @@
 			 </div>
 				
 				</div>			
+				
+				
 							<input type="hidden" readonly id="idusuario" name="idusuario" th:value="${reserva?.usuario?.id}"/>
 							
 
@@ -118,7 +123,11 @@
 								<i class="fa fa-save"></i> Salvar Reserva
 							</button>
 						</div>
-						<!-- /.box-footer -->
+						
+					
+			<!-- /.box-footer -->
+			
+
 					</form>
 					
 					
@@ -218,10 +227,9 @@
 
 
 	</script>
-
-
+	
+	
 	</th:block>
-
 
 </body>
 

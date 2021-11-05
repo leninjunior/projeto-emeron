@@ -57,7 +57,7 @@ public class IndexController {
 				
 	}
 
-@GetMapping("/index")
+@GetMapping("/dashboard")
 public ModelAndView testeDashbord() {
 	
 	
