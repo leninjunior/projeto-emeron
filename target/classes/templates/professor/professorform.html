@@ -56,7 +56,7 @@
 
 							<div class="form-group">
 								<label id="nome" class=" control-label">Nome do Professor</label> 
-								<input  placeholder="Nome do professor" type="text" class="form-control" id="nome" name="nome" th:field="*{nome}" >
+								<input  placeholder="Nome do professor" type="text" class="form-control" id="nome" name="nome"  th:value="${professor?.nome}" th:field="*{nome}" >
 							</div>
 
 
@@ -70,7 +70,7 @@
 										
 										<input type="date" class="form-control pull-right"
 											 name="dataNascimento" id="datepicker" min = "1900-12-31" max="2021-11-30" 
-										placeholder="Data Nasc." th:field="*{dataNascimento}">
+										placeholder="Data Nasc." th:field="*{dataNascimento}" > 
 											
 									</div>
 									<!-- /.input group -->
@@ -113,7 +113,7 @@
 										      <td th:text="${#temporals.format(l.dataNascimento, 'dd/MM/yyyy')}">2017/08/14</td>
                                         <td>
                                         
-                                            <a  th:href="@{/local/{id}(id=${l.id})}" class="btn btn-primary btn-sm" title="Editar" ><i class="fa fa-edit" ></i> Editar</a>
+                                            <a  th:href="@{/professor/{id}(id=${l.id})}" class="btn btn-primary btn-sm" title="Editar" ><i class="fa fa-edit" ></i> Editar</a>
                                           
 										
 									 <button th:id="${ 'btn_local/excluir/' + l.id}" type="button" class="btn btn-danger btn-sm"

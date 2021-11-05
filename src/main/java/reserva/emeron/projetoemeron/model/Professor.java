@@ -31,7 +31,7 @@ public class Professor {
 	
 	
 	@DateTimeFormat(iso = ISO.DATE)
-	@Column(name ="data_nascimento", nullable = false, columnDefinition = "DATE")
+	@Column(name ="data_nascimento", nullable = false, columnDefinition = "DATE" )
 	private LocalDate dataNascimento;
 	
 	
