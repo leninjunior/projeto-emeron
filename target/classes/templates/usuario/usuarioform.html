@@ -58,7 +58,7 @@
 									
 									<div class="form-group">
 
-									<label id="senha" class=" control-label">Confirmação de Senha::</label>
+									<label id="senha" class=" control-label">Confirmação de Senha:</label>
 									 <input class="form-control" type="password" placeholder="Confirme a  Senha" id="confirm_password" required>
 									</div>
 									
@@ -75,7 +75,7 @@
 							<th:block th:each="grupo : ${grupos}">
 						
 								<div class="checkbox-inline">
-									<input type="checkbox" th:value="${grupo?.id}"
+									<input  type="checkbox" th:value="${grupo?.id}"
 										th:field="*{roles}"> <label
 										th:for="${#ids.prev('roles')}" th:text=${grupo?.descricao}></label>
 								</div>

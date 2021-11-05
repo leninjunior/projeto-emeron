@@ -73,7 +73,7 @@ public class ReservaController {
 	
 
 	
-	@PostMapping("/add/salvar")
+	@PostMapping("add/salvar")
 	private String salvar(@Valid Reserva reserva, BindingResult result, RedirectAttributes redirect, HttpServletRequest request) {
 		
 		Usuario usuario = usuarioService.getUser();	 

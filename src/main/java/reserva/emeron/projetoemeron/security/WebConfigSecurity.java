@@ -3,7 +3,6 @@ package reserva.emeron.projetoemeron.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -24,18 +23,44 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
 	
 	@Override // Configurar as solicitações de acesso por HTTP
 	protected void configure(HttpSecurity http) throws Exception {
+		
+		http.csrf().disable()
+		
+		.authorizeRequests()
+			
+			.antMatchers("/usuario/**").hasRole("ADMIN")	
+			.antMatchers("/reserva/reservaspendentes" , "/dashboard", "/curso/novo", "/local/novo" ).hasAnyRole("ADMIN", "DEPED")				
+			.anyRequest().authenticated()
+			.and()
+		.formLogin()
+			.loginPage("/login")
+			.defaultSuccessUrl("/reserva/novo", true)
+			.permitAll()
+		.and()
+			.exceptionHandling()
+			.accessDeniedPage("/403")
+			.and()
+			.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+		.and()
+			.sessionManagement()
+				.invalidSessionUrl("/login")
+				.maximumSessions(1)
+				.expiredUrl("/login");
+}
+	
 
-		http.csrf().disable() // Desativa as configurações padrão de memória.
-				.authorizeRequests() // Pertimir restringir acessos
-				.antMatchers(HttpMethod.GET, "/").permitAll() // Qualquer usuário acessa a pagina inicial
-				.anyRequest().authenticated().and()
-					.formLogin()
-					.loginPage("/login")
-					.permitAll() // permite qualquer usuário
-				.and().logout() // Mapeia URL de Logout e invalida usuário autenticado
-				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
-
-	}
+	/*
+	 * http.csrf().disable() // Desativa as configurações padrão de memória.
+	 * 
+	 * .authorizeRequests() // Pertimir restringir acessos
+	 * .antMatchers(HttpMethod.GET, "/").permitAll() // Qualquer usuário acessa a
+	 * pagina inicial .anyRequest().authenticated().and() .formLogin()
+	 * .loginPage("/login") .permitAll() // permite qualquer usuário .and().logout()
+	 * // Mapeia URL de Logout e invalida usuário autenticado
+	 * .logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+	 * 
+	 * }
+	 */
 
 	@Override // Cria autenticação do usuário com banco de dados ou em memória
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
