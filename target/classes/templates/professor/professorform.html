@@ -5,8 +5,8 @@
       xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
       layout:decorate="layout">
 <head>
-    <title>Product Details</title>
-</head>
+
+ 
 <body>
 <section layout:fragment="header">
     <h1>
@@ -58,18 +58,29 @@
 								<label id="nome" class=" control-label">Nome do Professor</label> 
 								<input  placeholder="Nome do professor" type="text" class="form-control" id="nome" name="nome" th:field="*{nome}" >
 							</div>
+
+
+
 							
+								<div class="form-group" >
+									<label for="dataNascimento" class="active">Data
+									Nascimento:</label>
+
+									<div class="input-group date" >
+										
+										<input type="date" class="form-control pull-right"
+											 name="dataNascimento" id="datepicker" min = "1900-12-31" max="2021-11-30" 
+										placeholder="Data Nasc." th:field="*{dataNascimento}">
+											
+									</div>
+									<!-- /.input group -->
+								</div>
+
+						
+
 					
 
-                            <div class="form-group">
-                            	 <div class="input-field col s6">
-									  <label for="dataNascimento" class="active">Data Nascimento:</label>
-									  <input type="date" id="dataNascimento"  
-									  name="dataNascimento" placeholder="Data Nasc."  th:field="*{dataNascimento}" >
-									 </div>
-                            </div>
-                            
-							
+
 						</div>
 
                     <!-- /.box-body -->
@@ -77,6 +88,9 @@
                         <button type="submit" class="btn btn-info pull-right" ><i class="fa fa-save"></i> Salvar Local</button>
                     </div>
                     <!-- /.box-footer -->
+                    
+                    
+         
                 </form>
                 
                 
@@ -123,6 +137,7 @@
         </div>
     </div>
 </div>
+
 
 <th:block layout:fragment="script">
 
