@@ -56,12 +56,26 @@
 
 							<div class="form-group">
 								<label id="nome" class=" control-label">Nome do Professor</label> 
-								<input  placeholder="Nome do professor" type="text" class="form-control" id="nome" name="nome" th:field="*{nome}" >
+								<input  placeholder="Nome do professor" type="text" class="form-control" id="nome" name="nome"  th:value="${professor?.nome}" th:field="*{nome}" >
 							</div>
 
 
 
-							
+
+                <div class="col-xs-3">
+                    <label>Telefone de Contato:</label>
+
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-phone"></i>
+                  </div>
+                 <input class="form-control" type="text" id="phone" name="phone" onkeypress="mask(this, mphone);" onblur="mask(this, mphone);" th:value="${professor?.telefone}"
+                 		th:field="*{telefone}" />
+                </div>
+                </div>
+                
+
+		
 								<div class="form-group" >
 									<label for="dataNascimento" class="active">Data
 									Nascimento:</label>
@@ -70,13 +84,23 @@
 										
 										<input type="date" class="form-control pull-right"
 											 name="dataNascimento" id="datepicker" min = "1900-12-31" max="2021-11-30" 
-										placeholder="Data Nasc." th:field="*{dataNascimento}">
+										placeholder="Data Nasc." th:field="*{dataNascimento}" > 
 											
 									</div>
 									<!-- /.input group -->
 								</div>
 
-						
+							
+			
+			 <div class="form-group"  >
+				 <label for="tipoProfessor" class="active">Função Professor:</label>
+				 <select class="form-control" th:field="*{tipoProfessor}" id="tipoprofessor">
+						<option th:each = "l : ${T(reserva.emeron.projetoemeron.model.TipoProfessor).values()}" 
+						th:value="${l}" th:text="${l?.nome}">
+				 </select>
+			 </div>
+				
+		
 
 					
 
@@ -101,7 +125,10 @@
                                     <thead class="thead">
 						             <tr>
 										    <th>ID PROFESSOR:</th>
-										     <th>PROFESSOR:</th>
+										    <th>FUNÇÃO PROFESSOR:</th>
+										     <th>NOME PROFESSOR:</th>
+										     <th>TELEFONE:</th>
+										    
 										     <th>DATA NASCIMENTO:</th>
 										 	<th>AÇÕES:</th>
 		                              </tr>
@@ -109,14 +136,16 @@
                                     <tbody>
                                    <tr th:each="l : ${listprofessores}">
 										    <td th:text="${l.id}">Alfreds Futterkiste</td>
+										    <td th:text="${l.tipoProfessor.nome}" ></td>
 										     <td th:text="${l.nome}">Alfreds Futterkiste</td>
+										     <td th:text="${l.telefone}"></td>
 										      <td th:text="${#temporals.format(l.dataNascimento, 'dd/MM/yyyy')}">2017/08/14</td>
                                         <td>
                                         
-                                            <a  th:href="@{/local/{id}(id=${l.id})}" class="btn btn-primary btn-sm" title="Editar" ><i class="fa fa-edit" ></i> Editar</a>
+                                            <a  th:href="@{/professor/{id}(id=${l.id})}" class="btn btn-primary btn-sm" title="Editar" ><i class="fa fa-edit" ></i> Editar</a>
                                           
 										
-									 <button th:id="${ 'btn_local/excluir/' + l.id}" type="button" class="btn btn-danger btn-sm"
+									 <button th:id="${ 'btn_professor/excluir/' + l.id}" type="button" class="btn btn-danger btn-sm"
 		                            		data-toggle="modal" data-target="#myModal">
 		                                <span title="Exclusão desabilitada"  ><i class="fa fa-trash-o"></i> Excluir</span>
 		                                
@@ -140,7 +169,32 @@
 
 
 <th:block layout:fragment="script">
+ 
+ <script type="text/javascript">
+ function mask(o, f) {
+	  setTimeout(function() {
+	    var v = mphone(o.value);
+	    if (v != o.value) {
+	      o.value = v;
+	    }
+	  }, 1);
+	}
 
+	function mphone(v) {
+	  var r = v.replace(/\D/g, "");
+	  r = r.replace(/^0/, "");
+	  if (r.length > 10) {
+	    r = r.replace(/^(\d\d)(\d{5})(\d{4}).*/, "($1) $2-$3");
+	  } else if (r.length > 5) {
+	    r = r.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, "($1) $2-$3");
+	  } else if (r.length > 2) {
+	    r = r.replace(/^(\d\d)(\d{0,5})/, "($1) $2");
+	  } else {
+	    r = r.replace(/^(\d*)/, "($1");
+	  }
+	  return r;
+	}
+</script>
 
     <script>
    

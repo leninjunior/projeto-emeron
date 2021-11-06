@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import reserva.emeron.projetoemeron.model.Professor;
 import reserva.emeron.projetoemeron.service.ProfessorService;
 
@@ -37,9 +37,36 @@ public class ProfessorController {
 		
 	
 	}
+	@GetMapping("excluir/{id}")
+	private String excluir(@PathVariable ("id") Long id , RedirectAttributes redirect) {
+		
+		try {
+			
+			professorService.excluir(id);
+			redirect.addFlashAttribute("cursodeletado", "Professor Excluido  com Sucesso!");
+		} catch (Exception e) {
+			redirect.addFlashAttribute("cursocomreserva", "Este Professor Pertece a uma reserva!!");
+			return "redirect:/professor/novo";
+		}
+		
+		return "redirect:/professor/novo";
+		
+	}
 	
 	
+	@GetMapping("{id}")
+	private ModelAndView editProfessor(@PathVariable("id") Long id) {
+		List<Professor> professorList = professorService.buscarTodosProfessores();
 
+		ModelAndView mv = new ModelAndView("professor/professorform.html");
+		mv.addObject("listprofessores", professorList);
+
+		
+		Professor professorEdit = this.professorService.findById(id);
+		mv.addObject("professor", professorEdit);
+
+	return mv;
+	}
 	
 	
 	
@@ -64,6 +91,9 @@ public class ProfessorController {
 					
 					redirect.addFlashAttribute("mensagemsucesso", "Professor  Adicionado com Sucesso!");
 
+				} else {
+					
+					redirect.addFlashAttribute("mensagemiguais", "Professor  Já cadastrado!!");
 				}
 
 			} else {
@@ -74,7 +104,9 @@ public class ProfessorController {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			redirect.addFlashAttribute("mensagemiguais", "Professor  Já cadastrado!!");
+			redirect.addFlashAttribute("mensagemiguais", "Data de Nascimento não pode ser Nulo!");
+			return "redirect:/professor/novo"; // na rota
+			
 		}
 		return "redirect:/professor/novo"; // na rota
 	}
