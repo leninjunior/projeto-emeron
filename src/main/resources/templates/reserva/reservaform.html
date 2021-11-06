@@ -92,6 +92,16 @@
 
 							</div>
 		 -->
+		 
+		 	<div class="form-group">
+								<label for="professor" id="professor">Selecione o Professor:</label> <select
+									name="professor" class="form-control" th:field="*{professor}">
+									<option th:each="professor: ${listprofessores}" th:value="${professor?.id}"
+										th:text="${professor?.nome}">
+								</select>
+
+							</div>
+					
 			
 			<div sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_DEPED')">
 			
@@ -103,7 +113,9 @@
 				 </select>
 			 </div>
 				
-				</div>			
+				</div>		
+				
+				
 				
 				
 							<input type="hidden" readonly id="idusuario" name="idusuario" th:value="${reserva?.usuario?.id}"/>
@@ -139,7 +151,8 @@
 						            <tr>
 										    <th>ID RESERVA</th>
 										     <th>SOLICITANTE</th>
-										    <th>NOME</th>
+										    <th>NOME RESERVA:</th>
+											<th>PROFESSOR:</th>
 										    <th>CURSO</th>
 										    <th>LOCAL</th>
 										     <th>STATUS</th>
@@ -152,6 +165,7 @@
                                  	  <td th:text="${g.usuario}"></td>
 									    
 									     <td th:text="${g.nome}">Alfreds Futterkiste</td>
+									     <td th:text="${g.professor.nome}">Alfreds Futterkiste</td>
 									      <td th:text="${g.curso.nome}"></td>
 									      <td th:text="${g.locais.nomeLocal}"></td>
 									       <td > 

@@ -48,6 +48,7 @@ xmlns="http://www.w3.org/1999/xhtml"
                                        aria-describedby="example1_info">
                                     <thead class="thead">
 						            <tr>
+						            		<th>ID LOCAL:</th>
 										     <th>LOCAL:</th>
 										     <th>QUANTIDADE DE PESSOAS NO LOCAL::</th>
 										 	
@@ -56,6 +57,8 @@ xmlns="http://www.w3.org/1999/xhtml"
                                     </thead>
                                     <tbody>
                                   <tr th:each="l : ${locais}">
+                                  		<td th:text="${l.id}" ></td>
+                                  		
 										   
 										     <td th:text="${l.nomeLocal}">Alfreds Futterkiste</td>
 										     <td th:text="${l.localQuant}">Alfreds Futterkiste</td>

@@ -45,6 +45,11 @@ public class Reserva {
 	@Enumerated(EnumType.STRING)
 	private ReservaStatus reservaStatus;
 	
+	
+	@JoinColumn(name = "professor")
+	@ManyToOne
+	private Professor professor;
+	
 	/*
 	 * @FutureOrPresent private LocalDate data;
 	 * 
@@ -60,6 +65,16 @@ public class Reserva {
 	
 	public Locais getLocais() {
 		return locais;
+	}
+
+
+	public Professor getProfessor() {
+		return professor;
+	}
+
+
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
 	}
 
 

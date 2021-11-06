@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import reserva.emeron.projetoemeron.model.Professor;
 import reserva.emeron.projetoemeron.service.ProfessorService;
 
@@ -109,6 +110,19 @@ public class ProfessorController {
 			
 		}
 		return "redirect:/professor/novo"; // na rota
+	}
+	
+	
+	
+	@GetMapping("/listar")
+	private ModelAndView listarReserva() {
+		
+		List<Professor> professorList =  professorService.buscarTodosProfessores();
+		ModelAndView mv = new ModelAndView("professor/listaprofessores.html");
+		mv.addObject("professorlistas", professorList);
+		
+		return mv;
+		
 	}
 	
 	

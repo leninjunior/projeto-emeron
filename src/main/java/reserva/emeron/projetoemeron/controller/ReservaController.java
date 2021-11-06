@@ -17,11 +17,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import reserva.emeron.projetoemeron.model.Curso;
 import reserva.emeron.projetoemeron.model.Locais;
+import reserva.emeron.projetoemeron.model.Professor;
 import reserva.emeron.projetoemeron.model.Reserva;
 import reserva.emeron.projetoemeron.model.ReservaStatus;
 import reserva.emeron.projetoemeron.model.Usuario;
 import reserva.emeron.projetoemeron.service.CursoService;
 import reserva.emeron.projetoemeron.service.LocaisService;
+import reserva.emeron.projetoemeron.service.ProfessorService;
 import reserva.emeron.projetoemeron.service.ReservaService;
 import reserva.emeron.projetoemeron.service.UsuarioService;
 
@@ -42,14 +44,13 @@ public class ReservaController {
 	@Autowired
 	private LocaisService locaisService;
 	
+	@Autowired
+	private ProfessorService professorService;
+	
 	
 	
 	@GetMapping("/novo")
-	private ModelAndView reserva( Reserva reserva) {
-		 
-
-		
-		
+	private ModelAndView reserva( Reserva reserva , HttpServletRequest request) {
 		Usuario usuario = usuarioService.getUser();	 
 		ModelAndView mv = new ModelAndView("reserva/reservaform.html");
 		
@@ -57,15 +58,32 @@ public class ReservaController {
 		List<Curso> cursoList = this.cursoService.buscarTodosCursos();
 		
 		List<Locais> locaisList =  this.locaisService.buscarTodosLocais();
+		List<Professor> professorList = professorService.buscarTodosProfessores();
+		
+		mv.addObject("listprofessores", professorList);
+		
+		if (request.isUserInRole("ROLE_ADMIN") || request.isUserInRole("ROLE_DEPED")) {
+
+			mv.addObject("reservalist", reservaList);
+			
+		} else {
+			
+			List<Reserva> reservaPorIdUsuario = reservaService.buscarReservaPorUsuario(usuario);
+			mv.addObject("reservalist", reservaPorIdUsuario);
+		
+		}
 		
 		
 		
 		
-		mv.addObject("reservalist", reservaList);
+		
+		
+		
+		
+		
 		mv.addObject("usuarioid", usuario.getId());
 		mv.addObject("cursolist", cursoList);
 		mv.addObject("locaislist", locaisList);
-		
 		
 	
 		return mv;
@@ -207,6 +225,10 @@ public class ReservaController {
 		List<Reserva> reservaList = this.reservaService.buscarTodos();
 
 		ModelAndView mv = new ModelAndView("reserva/reservaform.html");
+	List<Professor> professorList = professorService.buscarTodosProfessores();
+		
+		mv.addObject("listprofessores", professorList);
+		
 		
 		mv.addObject("reservalist", reservaList);
 		mv.addObject("cursolist", cursoList);
@@ -245,6 +267,9 @@ public class ReservaController {
 		List<Curso> cursoList = this.cursoService.buscarTodosCursos();
 		
 		List<Locais> locaisList =  this.locaisService.buscarTodosLocais();
+	List<Professor> professorList = professorService.buscarTodosProfessores();
+		
+		mv.addObject("listprofessores", professorList);
 		
 		
 		mv.addObject("reservalist", reservaList);

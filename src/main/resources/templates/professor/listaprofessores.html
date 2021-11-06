@@ -2,7 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org"
 xmlns="http://www.w3.org/1999/xhtml"
       xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
-       	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       layout:decorate="layout">
 <head>
 <meta lang="pt-br">
@@ -12,7 +11,7 @@ xmlns="http://www.w3.org/1999/xhtml"
 <body>
 <section layout:fragment="header">
     <h1>
-       Lista de Locais
+       Lista de Reservas
         
     </h1>
     <ol class="breadcrumb">
@@ -26,48 +25,44 @@ xmlns="http://www.w3.org/1999/xhtml"
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Lista de Locais Cadastrados</h3>
+                    <h3 class="box-title">Lista de Reservas</h3>
                 </div>
                 <!-- /.box-header -->
-                <div class="box-body" >
-                    <div class="box-footer center" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_DEPED')">
-                        <a th:href="@{/local/novo}">
-                            <button type="button" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Cadastrar Local</button>
+                <div class="box-body">
+                    <div class="box-footer center">
+                        <a th:href="@{/reserva/novo}">
+                            <button type="button" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Cadastrar Nova Reserva</button>
                         </a>
                         <!--<form th:action="@{/product/list}" method="get">
                             <input type="search" th:value="${param.search}" name='search' placeholder="search">
                             <button type="submit">Search</button>
                         </form>-->
                     </div>
-               
 
                     <!--<div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">-->
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
+                   	  <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
                                        aria-describedby="example1_info">
                                     <thead class="thead">
-						            <tr>
-						            		<th>ID LOCAL:</th>
-										     <th>LOCAL:</th>
-										     <th>QUANTIDADE DE PESSOAS NO LOCAL::</th>
-										 	
-										 	
+						             <tr>
+										    <th>ID PROFESSOR:</th>
+										    <th>FUNÇÃO PROFESSOR:</th>
+										     <th>NOME PROFESSOR:</th>
+										     <th>TELEFONE:</th>
+										     <th>DATA NASCIMENTO:</th>
+										
 		                              </tr>
                                     </thead>
                                     <tbody>
-                                  <tr th:each="l : ${locais}">
-                                  		<td th:text="${l.id}" ></td>
-                                  		
-										   
-										     <td th:text="${l.nomeLocal}">Alfreds Futterkiste</td>
-										     <td th:text="${l.localQuant}">Alfreds Futterkiste</td>
-                                 </tr>
-                                    	
+                                   <tr th:each="l : ${professorlistas}">
+										    <td th:text="${l.id}">Alfreds Futterkiste</td>
+										    <td th:text="${l.tipoProfessor.nome}" ></td>
+										     <td th:text="${l.nome}">Alfreds Futterkiste</td>
+										     <td th:text="${l.telefone}"></td>
+										      <td th:text="${#temporals.format(l.dataNascimento, 'dd/MM/yyyy')}">2017/08/14</td>
+
+                                    </tr>
                                     </tbody>
                                 </table>
-                            </div>
-                        </div>
                     <!--</div>-->
 
                     <!--<div class="dataTables_paginate paging_bootstrap">
@@ -99,7 +94,7 @@ xmlns="http://www.w3.org/1999/xhtml"
           'lengthChange': false,
           'searching'   : true,
           'ordering'    : true,
-          'info'        : false,
+          'info'        : true,
           'autoWidth'   : false
         })
 
