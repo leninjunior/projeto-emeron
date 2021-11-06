@@ -2,11 +2,15 @@ package reserva.emeron.projetoemeron.model;
 
 import java.time.LocalDate;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.validation.constraints.NotBlank;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -30,13 +34,41 @@ public class Professor {
 	
 	
 	
+	
+	
 	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name ="data_nascimento", nullable = false, columnDefinition = "DATE" )
 	private LocalDate dataNascimento;
 	
 	
+	@JoinColumn(name = "tipo_professor")
+	@Enumerated(EnumType.STRING)
+	private TipoProfessor tipoProfessor;
 	
 	
+	@JoinColumn(name = "telefone_professor")
+	private String telefone;
+	
+	
+	
+	public String getTelefone() {
+		return telefone;
+	}
+
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+
+	public TipoProfessor getTipoProfessor() {
+		return tipoProfessor;
+	}
+
+
+	public void setTipoProfessor(TipoProfessor tipoProfessor) {
+		this.tipoProfessor = tipoProfessor;
+	}
 
 
 	public Long getId() {

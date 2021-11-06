@@ -37,7 +37,21 @@ public class ProfessorController {
 		
 	
 	}
-	
+	@GetMapping("excluir/{id}")
+	private String excluir(@PathVariable ("id") Long id , RedirectAttributes redirect) {
+		
+		try {
+			
+			professorService.excluir(id);
+			redirect.addFlashAttribute("cursodeletado", "Professor Excluido  com Sucesso!");
+		} catch (Exception e) {
+			redirect.addFlashAttribute("cursocomreserva", "Este Professor Pertece a uma reserva!!");
+			return "redirect:/professor/novo";
+		}
+		
+		return "redirect:/professor/novo";
+		
+	}
 	
 	
 	@GetMapping("{id}")
