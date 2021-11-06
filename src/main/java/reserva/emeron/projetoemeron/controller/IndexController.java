@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import reserva.emeron.projetoemeron.model.Reserva;
 import reserva.emeron.projetoemeron.service.CursoService;
+import reserva.emeron.projetoemeron.service.ProfessorService;
 import reserva.emeron.projetoemeron.service.ReservaService;
 import reserva.emeron.projetoemeron.service.RoleService;
 import reserva.emeron.projetoemeron.service.UsuarioService;
@@ -31,6 +32,9 @@ public class IndexController {
 	
 	@Autowired
 	private ReservaService reservaService;
+	
+	@Autowired
+	private ProfessorService professorService;
 	
 	@GetMapping("/todasreservas")
 	public ModelAndView listarReservas() {
@@ -69,6 +73,7 @@ public ModelAndView testeDashbord() {
 	 mv.addObject("reservacancelado", reservaService.countReservaCancelado());
 	 mv.addObject("reservaconfirmada", reservaService.countReservaConfirmado());
 	 mv.addObject("grupos", roleService.buscarTodosPerfil());
+	 mv.addObject("quantidadeprofessores", professorService.countprofessors());
 	
 	 
 	

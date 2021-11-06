@@ -218,21 +218,37 @@ public class ReservaController {
 
 
 	@GetMapping("{id}")
-	private ModelAndView editReserva(@PathVariable("id") Long id) {
-
-		List<Curso> cursoList = this.cursoService.buscarTodosCursos();
+	private ModelAndView editReserva(@PathVariable("id") Long id,  HttpServletRequest request ) {
+		Usuario usuario = usuarioService.getUser();	 
 		List<Locais> locaisList = this.locaisService.buscarTodosLocais();
 		List<Reserva> reservaList = this.reservaService.buscarTodos();
 
 		ModelAndView mv = new ModelAndView("reserva/reservaform.html");
 	List<Professor> professorList = professorService.buscarTodosProfessores();
+	List<Curso> cursoList = this.cursoService.buscarTodosCursos();
+		
+		
+
+		if (request.isUserInRole("ROLE_ADMIN") || request.isUserInRole("ROLE_DEPED")) {
+
+			mv.addObject("reservalist", reservaList);
+			mv.addObject("listprofessores", professorList);
+			mv.addObject("cursolist", cursoList);
+				mv.addObject("locaislist", locaisList);
+			
+		}else {
+			List<Reserva> reservaPorIdUsuario = reservaService.buscarReservaPorUsuario(usuario);
+			mv.addObject("reservalist", reservaPorIdUsuario);
+		}
 		
 		mv.addObject("listprofessores", professorList);
-		
-		
-		mv.addObject("reservalist", reservaList);
 		mv.addObject("cursolist", cursoList);
-		mv.addObject("locaislist", locaisList);
+			mv.addObject("locaislist", locaisList);
+		
+
+
+	
+		
 
 		Reserva reservaEdit = this.reservaService.findById(id);
 

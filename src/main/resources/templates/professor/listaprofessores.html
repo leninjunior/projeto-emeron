@@ -6,18 +6,15 @@ xmlns="http://www.w3.org/1999/xhtml"
 <head>
 <meta lang="pt-br">
  <meta charset="utf-8">
-    <title>Dashboard</title>
+    <title>Lista de Professores</title>
 </head>
 <body>
 <section layout:fragment="header">
     <h1>
-       Lista de Reservas
+       Lista de Professores
         
     </h1>
-    <ol class="breadcrumb">
-        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
-    </ol>
+  
 </section>
 <div layout:fragment="content">
 
@@ -30,9 +27,7 @@ xmlns="http://www.w3.org/1999/xhtml"
                 <!-- /.box-header -->
                 <div class="box-body">
                     <div class="box-footer center">
-                        <a th:href="@{/reserva/novo}">
-                            <button type="button" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Cadastrar Nova Reserva</button>
-                        </a>
+                       
                         <!--<form th:action="@{/product/list}" method="get">
                             <input type="search" th:value="${param.search}" name='search' placeholder="search">
                             <button type="submit">Search</button>
