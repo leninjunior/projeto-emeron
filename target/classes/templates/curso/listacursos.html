@@ -48,6 +48,7 @@ xmlns="http://www.w3.org/1999/xhtml"
                                        aria-describedby="example1_info">
                                     <thead class="thead">
 						            <tr>
+						            		<th>ID CURSO:</th>
 										     <th>CURSOS:</th>
 										     <th>DESCRIÇÃO:</th>
 										 	
@@ -56,7 +57,7 @@ xmlns="http://www.w3.org/1999/xhtml"
                                     </thead>
                                     <tbody>
                                   <tr th:each="c : ${cursos}">
-										   
+										   		<td th:text="${c.id}"></td>
 										     <td th:text="${c.nome}">Alfreds Futterkiste</td>
 										     <td th:text="${c.descricao}">Alfreds Futterkiste</td>
                                  </tr>

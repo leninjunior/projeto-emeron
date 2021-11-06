@@ -49,6 +49,7 @@ xmlns="http://www.w3.org/1999/xhtml"
 										    <th>ID RESERVA</th>
 										     <th>SOLICITANTE</th>
 										    <th>NOME</th>
+										    <th>PROFESSOR:</th>
 										    <th>CURSO</th>
 										     <th>LOCAL</th>
 										     <th>STATUS</th>
@@ -61,6 +62,7 @@ xmlns="http://www.w3.org/1999/xhtml"
                                  	  <td th:text="${g.usuario}"></td>
 									   
 									     <td th:text="${g.nome}">Alfreds Futterkiste</td>
+									     	      <td th:text="${g.professor.nome}">Alfreds Futterkiste</td>
 									      <td th:text="${g.curso.nome}"></td>
 									     <td th:text="${g.locais.nomeLocal}"></td>
 									         <td > 
