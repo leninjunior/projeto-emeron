@@ -7,7 +7,7 @@ xmlns="http://www.w3.org/1999/xhtml"
 <head>
 <meta lang="pt-br">
  <meta charset="utf-8">
-    <title>Dashboard</title>
+    <title>Lista de Cursos</title>
 </head>
 <body>
 <section layout:fragment="header">
@@ -15,10 +15,7 @@ xmlns="http://www.w3.org/1999/xhtml"
        Lista de Cursos
         
     </h1>
-    <ol class="breadcrumb">
-        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
-    </ol>
+  
 </section>
 <div layout:fragment="content">
 
@@ -30,6 +27,8 @@ xmlns="http://www.w3.org/1999/xhtml"
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
+                
+                
                     <div class="box-footer center" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_DEPED')">
                         <a th:href="@{/curso/novo}">
                             <button type="button" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Cadastrar Curso</button>

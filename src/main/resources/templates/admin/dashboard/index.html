@@ -35,9 +35,9 @@
                   
                 </div>
                 <div class="icon">
-                    <i class="ion ion-bag"></i>
+                    <i class="ion-university"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+               
             </div>
         </div>
         
@@ -52,7 +52,7 @@
                 <div class="icon">
                     <i class="fa fa-calendar"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+             
             </div>
         </div>
         <!-- ./col -->
@@ -68,13 +68,29 @@
                 <div class="icon">
                     <i class="ion ion-pie-graph"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+               
             </div>
         </div>
              
-         
+           <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-aqua">
+                <div class="inner">
+                <h4> Professores Cadastrados:</h4>
+                    <h2 th:text="${quantidadeprofessores}"></h2>
+                   
+                  
+                </div>
+                <div class="icon">
+                    <i class="ion-university"></i>
+                </div>
+               
+            </div>
+        </div>
         
-        <div class="col-lg-3 col-xs-6" sec:authorize="hasRole('ROLE_ADMIN')">
+    
+        
+            <div class="col-lg-3 col-xs-6" sec:authorize="hasRole('ROLE_ADMIN')">
             <!-- small box -->
             <div class="small-box bg-yellow">
                 <div class="inner">
@@ -84,7 +100,7 @@
                 <div class="icon">
                     <i class="ion ion-person-add"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              
             </div>
         </div>
      
@@ -108,7 +124,7 @@
                 <div class="icon">
                     <i class="fa fa-calendar"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              
             </div>
         </div>
                <div class="col-lg-3 col-xs-6">
@@ -121,7 +137,7 @@
                 <div class="icon">
                     <i class="ion ion-pie-graph"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+               
             </div>
         </div>
         
@@ -135,9 +151,8 @@
                     
                 </div>
                 <div class="icon">
-                    <i class="fa fa-users"></i>
+                    <i class="ion-load-a"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div>
  </div>
