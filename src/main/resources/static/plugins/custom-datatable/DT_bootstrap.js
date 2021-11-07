@@ -4,6 +4,7 @@ $.extend( true, $.fn.dataTable.defaults, {
 	//"sDom": "<'row'<'col-md-6 col-sm-12'l><'col-md-12 col-sm-12'f>r>t<'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // defaukt datatable without  horizobtal scroll
 	"sPaginationType": "bootstrap",
 	"oLanguage": {
+		
 		"sLengthMenu": "_MENU_ records"
 	}
 } );

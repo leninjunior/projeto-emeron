@@ -123,8 +123,13 @@
     </div>
 </div>
 
+
+
 <th:block layout:fragment="script">
+
     <script>
+    
+  
    
     $(function () {
 
@@ -133,8 +138,8 @@
         'lengthChange': false,
         'searching'   : true,
         'ordering'    : true,
-        'info'        : false,
-        'autoWidth'   : false
+        'info'        : true,
+        'autoWidth'   : true
       })
 
       jQuery('#example1_wrapper input').addClass("form-control input-sm"); // modify table search input
