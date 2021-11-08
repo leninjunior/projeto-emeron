@@ -1,5 +1,7 @@
 package reserva.emeron.projetoemeron.controller;
 
+
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,8 @@ import reserva.emeron.projetoemeron.repository.UsuarioRepository;
 import reserva.emeron.projetoemeron.service.RoleService;
 import reserva.emeron.projetoemeron.service.UsuarioService;
 
+
+
 @Controller
 @RequestMapping(value = "/usuario")
 public class UsuarioController {
@@ -32,11 +36,18 @@ public class UsuarioController {
 	private UsuarioRepository usuarioRepository;
 	
 	
+
+	
+
+
+	
+	
 	
 	
 	@GetMapping("/novo")
 	public ModelAndView novo(Usuario usuario) {
 		Iterable<Usuario> usuariosIT = this.usuarioService.listarUsuarios();
+		
 		ModelAndView mv = new ModelAndView("usuario/usuarioform.html");
 		mv.addObject("grupos", roleService.buscarTodosPerfil());
 		mv.addObject("userList", usuariosIT );
@@ -117,6 +128,7 @@ public class UsuarioController {
 					redirect.addFlashAttribute("mensagemsucesso", "Usuario Adicionado com Sucesso!");
 
 				} else {
+					
 					redirect.addFlashAttribute("mensagemiguais", "Usuario Já cadastrado!!");
 				}
 
@@ -125,6 +137,7 @@ public class UsuarioController {
 			else {
 
 				usuarioService.update(usuario);
+				
 				redirect.addFlashAttribute("mensagemeditado", "Usuario Editado com Sucesso!");
 			}
 		} catch (Exception e) {
@@ -136,16 +149,19 @@ public class UsuarioController {
 	
 	@GetMapping("{id}")
 	private ModelAndView editUsuario(@PathVariable("id") Long id) {
-		Iterable<Usuario> usuariosIT = this.usuarioService.listarUsuarios();;
+		Iterable<Usuario> usuariosIT = this.usuarioService.listarUsuarios();
+	
 		
 		ModelAndView mv = new ModelAndView("usuario/usuarioform.html");
 		mv.addObject("userList", usuariosIT);
+		
 		mv.addObject("grupos", roleService.buscarTodosPerfil());
 		
 		
 		Usuario userEdit = this.usuarioService.findById(id);
 
 		mv.addObject("usuario", userEdit);
+	
 
 		return mv;
 	}
