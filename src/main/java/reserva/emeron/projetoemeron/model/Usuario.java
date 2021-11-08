@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -43,6 +45,27 @@ public class Usuario implements UserDetails {
 	@NotBlank
 	private String senha;
 	
+	@NotBlank
+	private String nome;
+	
+
+	@NotBlank
+	private String sobrenome;
+	
+	
+	private boolean ativo;
+	
+	// Relacionamentos
+	
+
+	@JoinColumn(name = "tipo_sexo")
+	@Enumerated(EnumType.STRING)
+	private TipoSexo tipoSexo;
+	
+	
+
+	
+	
 	
 	
 	@Size(min = 1, message = "Selecionar pelo menos 1 grupo")
@@ -68,6 +91,46 @@ public class Usuario implements UserDetails {
 	
 	
 
+
+	public TipoSexo getTipoSexo() {
+		return tipoSexo;
+	}
+
+	public void setTipoSexo(TipoSexo tipoSexo) {
+		this.tipoSexo = tipoSexo;
+	}
+
+
+
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+
+
+
+
+
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
+	}
+
+	public String getSobrenome() {
+		return sobrenome;
+	}
+
+	public void setSobrenome(String sobrenome) {
+		this.sobrenome = sobrenome;
+	}
 
 	public List<Reserva> getReservas() {
 		return reservas;

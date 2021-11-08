@@ -1,5 +1,7 @@
 package reserva.emeron.projetoemeron.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -20,6 +22,17 @@ public interface UsuarioRepository  extends JpaRepository<Usuario, Long>{
 		
 		@Query(value = "select count(1) > 0 as existe from usuario where login = ?", nativeQuery = true)
 		public boolean usuarioJaExiste(String login);
+		
+		
+
+		
+		@Query(value = "select * from usuario where tipo_status ='INATIVO'", nativeQuery = true)
+		public String usuarioInativo(String string);
+		
+		
+		@Query("select u from Usuario u where u.login =:login AND u.ativo=true")
+		Optional<Usuario> findByLoginAndAtivo(String login);
+		
 		
 	
 		/*
