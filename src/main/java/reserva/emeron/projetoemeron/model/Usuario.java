@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -52,7 +53,7 @@ public class Usuario implements UserDetails {
 	@NotBlank
 	private String sobrenome;
 	
-	
+	@NotNull
 	private boolean ativo;
 	
 	// Relacionamentos

@@ -45,5 +45,10 @@ public class LocaisService {
 		this.locaisRepository.deleteById(id);
 		
 	}
+	
+	public Integer countLocais() {
+		
+		return (int) this.locaisRepository.count();
+	}
 
 }

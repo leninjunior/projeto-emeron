@@ -85,7 +85,7 @@ public class ReservaService {
 		 */
 		  
 		  public void usuarioUpdate(Reserva reserva) {
-			  reservaRepository.updateTesteAgora(reserva.getNome(), reserva.getCurso(), reserva.getLocais() , reserva.getId());
+			  reservaRepository.updateTesteAgora(reserva.getNome(), reserva.getCurso(), reserva.getLocais() , reserva.getProfessor(), reserva.getId());
 		  }
 		  
 		  

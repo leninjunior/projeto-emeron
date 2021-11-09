@@ -20,7 +20,7 @@ public class UsuarioService {
 	private PasswordEncoder passwordEncoder;
 	
 	
-
+  	
 	
 	public Usuario getUser() {
 		Object object =  SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -61,7 +61,15 @@ public class UsuarioService {
 	 }
 	 
 
+public void inativarUser(Usuario id) {
+	
+	this.usuarioRepository.inativarUsuario(id);
+}
 
+public void ativarUser(Usuario id) {
+	
+	this.usuarioRepository.ativarUsuario(id);
+}
 
 	public void update(Usuario usuario) {
 		usuario.setSenha(this.passwordEncoder.encode(usuario.getSenha()));
