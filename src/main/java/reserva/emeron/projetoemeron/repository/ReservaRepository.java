@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import reserva.emeron.projetoemeron.model.Curso;
 import reserva.emeron.projetoemeron.model.Locais;
+import reserva.emeron.projetoemeron.model.Professor;
 import reserva.emeron.projetoemeron.model.Reserva;
 import reserva.emeron.projetoemeron.model.ReservaStatus;
 import reserva.emeron.projetoemeron.model.Usuario;
@@ -39,8 +40,8 @@ public interface  ReservaRepository extends JpaRepository<Reserva, Long>{
 
 	
 	@Modifying
-	@Query(value = "update reserva  r set r.nome =:nome, r.curso =:curso, r.locais =:codigo_locais  where r.id=:id")
-	public void updateTesteAgora(@Param("nome") String nome, @Param("curso") Curso curso,@Param("codigo_locais") Locais locais ,@Param("id") Long id);
+	@Query(value = "update reserva  r set r.nome =:nome, r.curso =:curso, r.locais =:codigo_locais, r.professor =:professor  where r.id=:id")
+	public void updateTesteAgora(@Param("nome") String nome, @Param("curso") Curso curso,@Param("codigo_locais") Locais locais,@Param("professor") Professor professor ,@Param("id") Long id);
 	
 	
 	@Modifying

@@ -39,11 +39,12 @@
 					<!-- form start -->
 					<!--                 <form th:action="@{/product/save}" th:object="${product}" method="post" class="form-horizontal"> -->
 
-
-					
+	
 
  			<form th:action="@{/usuario/salvar}" method="post" th:object="${usuario}">
           
+   
+       			  <th:block th:include="fragments/modalconfirm">  </th:block>
        			  
 						<th:block th:include="fragments/Mensagens"></th:block>
 
@@ -89,15 +90,20 @@
 									
 								</div>
 							
-							
+			
 								
-			<div class="form-group"> 
-						
-						<input type="checkbox" class="control" data-size="small" data-off-color="danger" 
-							data-on-text="Ativo" data-off-text="Inativo" th:field="*{ativo}" th:text="ATIVAR"/> 
-							
-						
-					</div>
+			<div class="form-group">
+							<div>
+							 <label>Status do Usuário:</label>
+							 
+							 </div>
+							 <div class="checkbox-inline">
+								<input type="checkbox" class="minimal" data-size="small" id="ativo"
+							data-on-text="Ativo" data-off-text="Inativo" th:field="*{ativo}"/> 
+							<label for="ativo" th:text=" ATIVAR"></label>
+						 </div>
+
+					
 							
 <!-- 								<th:block th:each="grupo : ${grupos}"> -->
 <!-- 									<div class="checkbox checkbox-inline"> -->
@@ -142,11 +148,7 @@
 					
 						<!--                     /.box-body -->
 						<div class="box-footer center">
-							<a th:href="@{/reserva/listar}">
-								<button type="button" class="btn bg-purple margin">
-									<i class="fa fa-right"></i> Listar Usuários
-								</button>
-							</a>
+					
 							<button type="submit" class="btn btn-info pull-right"
 								th:href="@{/usuario/salvar}">
 								<i class="fa fa-save"></i> Salvar Usuário
@@ -154,7 +156,7 @@
 						</div>
 					
 						<!-- /.box-footer -->
-						
+						</div>
 					
 					</form>
 				<!-- 		<div class="row">
@@ -200,15 +202,39 @@
 										      <td th:text="${c.nome}">Alfreds Futterkiste</td>
 										        <td th:text="${c.sobrenome}">Alfreds Futterkiste</td>
 										          <td th:text="${c.tipoSexo}">Alfreds Futterkiste</td>
-										            <td th:text="${c.ativo}">Alfreds Futterkiste
-										            
+										            <td> 
+										              
+										
+									       	<span th:text="${c.ativo == false} ? 'Inativo' : 'Ativo'"  class="label"
+									       	th:classappend="${#strings.toString(c.ativo) == 'false' ? 'label-danger' : #strings.toString(c.ativo) == 'true' ? 'label-success' : 'label-warning'}"
+									       	
+									       	></span>
+									       
+									        </td>
 										         
 										            
-										            </td>
+										            
 										
                                         <td>
-                                            <a th:href="@{/usuario/{id}(id=${c.id})}" class="btn btn-primary btn-sm" title="Editar" ><i class="fa fa-edit" ></i> Editar</a>
-                                            <a th:href="@{excluir/{id}(id=${c.id})}" class="btn btn-danger btn-sm" title="Delete"><i class="fa fa-trash-o"></i> Delete</a>
+                                        <button th:id="${ 'btn_usuario/inativar/' + c.id}" type="button" class="btn btn-danger btn-xs"
+		                            		data-toggle="modal" data-target="#modalInativar">
+		                                <span title="Inativar Usuario"  ><i class="glyphicon glyphicon-remove"></i> Inativar</span>
+		                                
+		                            </button>
+                                        <button th:id="${ 'btn_usuario/ativar/' + c.id}" type="button" class="btn btn-success btn-xs"
+		                            		data-toggle="modal" data-target="#modalAtivar">
+		                                <span title="Ativar Usuario"  ><i class="glyphicon glyphicon-check"></i> Ativar</span>
+		                                
+		                            </button >
+		                            
+                                            <a th:href="@{/usuario/{id}(id=${c.id})}" class="btn btn-primary btn-xs" title="Editar" ><i class="fa fa-edit" ></i> Editar</a>
+                                            
+                                             <button th:id="${ 'btn_usuario/excluir/' + c.id}" type="button" class="btn btn-danger btn-xs"
+		                            		data-toggle="modal" data-target="#myModalExcluir">
+		                                <span title="Exclusão desabilitada"  ><i class="fa fa-trash-o"></i> Excluir</span>
+		                                
+		                            </button>
+                                          
 										</td>
                                     </tr>
                                     </tbody>
@@ -244,6 +270,9 @@
 		</div>
 	</div>
 
+
+
+
 	<th:block layout:fragment="script">
 		<script>
 		var password = document.getElementById("password")
@@ -259,6 +288,27 @@
 
 		password.onchange = validatePassword;
 		confirm_password.onkeyup = validatePassword;
+
+</script>
+
+   <script>
+    
+  
+   
+    $(function () {
+
+      $('#example1').DataTable({
+        'paging'      : true,
+        'lengthChange': false,
+        'searching'   : true,
+        'ordering'    : true,
+        'info'        : true,
+        'autoWidth'   : true
+      })
+
+      jQuery('#example1_wrapper input').addClass("form-control input-sm"); // modify table search input
+    })
+
 
 </script>
 

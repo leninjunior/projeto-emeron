@@ -166,6 +166,21 @@ public class UsuarioController {
 		return mv;
 	}
 	
+	@GetMapping("/inativar/{id}")
+	private String inativarUsuario(Usuario id,RedirectAttributes redirect) {
+		
+		usuarioService.inativarUser(id);
+		redirect.addFlashAttribute("cursodeletado", "Usuario Inativado  com Sucesso!");
+		return "redirect:/usuario/novo"; // na rota
+	}
+	
+	@GetMapping("/ativar/{id}")
+	private String ativarUsuario(Usuario id, RedirectAttributes redirect) {
+		
+		usuarioService.ativarUser(id);
+		redirect.addFlashAttribute("mensagemsucesso", "Usuario Ativado com Sucesso!");
+		return "redirect:/usuario/novo"; // na rota
+	}
 	
 
 }

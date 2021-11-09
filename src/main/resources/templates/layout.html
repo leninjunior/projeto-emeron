@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+<!DOCTYPE html >
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -134,7 +134,42 @@ $('#ok_cancel').click(function() {
 });
 
 </script>
+<script type="text/javascript">
+var url = '';
 
+$('button[id*="btn_"]').click(function() {
+	url = "http://localhost:8080/" + $(this).attr('id').split("_")[1];
+});
+
+$('#ok_inativar').click(function() {
+	document.location.href = url;
+});
+
+</script>
+<script type="text/javascript">
+var url = '';
+
+$('button[id*="btn_"]').click(function() {
+	url = "http://localhost:8080/" + $(this).attr('id').split("_")[1];
+});
+
+$('#ok_ativar').click(function() {
+	document.location.href = url;
+});
+
+</script>
+<script type="text/javascript">
+var url = '';
+
+$('button[id*="btn_"]').click(function() {
+	url = "http://localhost:8080/" + $(this).attr('id').split("_")[1];
+});
+
+$('#ok_excluir').click(function() {
+	document.location.href = url;
+});
+
+</script>
 <th:block layout:fragment="script">
 
 
