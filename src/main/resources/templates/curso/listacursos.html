@@ -89,26 +89,25 @@ xmlns="http://www.w3.org/1999/xhtml"
 
 <th:block layout:fragment="script">
 
-    <script>
-    
-  
-   
-    $(function () {
+  <script>
+		
+	      $(function () {
 
-      $('#example1').DataTable({
-        'paging'      : true,
-        'lengthChange': false,
-        'searching'   : true,
-        'ordering'    : true,
-        'info'        : true,
-        'autoWidth'   : true
-      })
+	        $('#example1').DataTable({
+	          'paging'      : true,
+	          'lengthChange': false,
+	          'searching'   : true,
+	          'ordering'    : true,
+	          'info'        : true,
+	          'autoWidth'   : false,
+	          "scrollX": true
+	        })
 
-      jQuery('#example1_wrapper input').addClass("form-control input-sm"); // modify table search input
-    })
+	        jQuery('#example1_wrapper input').addClass("form-control input-sm"); // modify table search input
+	      })
 
 
-</script>
+	</script>
 </th:block>
 </body>
 
