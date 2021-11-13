@@ -94,6 +94,15 @@ public class ReservaController {
 	@PostMapping("add/salvar")
 	private String salvar(@Valid Reserva reserva, BindingResult result, RedirectAttributes redirect, HttpServletRequest request) {
 		
+		
+		if(reservaService.localJaReservado(reserva) == true || reservaService.localJaReservado1(reserva)== true) {
+		
+			redirect.addFlashAttribute("mensagem", "Local, Data, Hora Inicial e Hora final já cadastradas. Verifique todas as reservas. "); // mensagem na view
+			return "redirect:/reserva/novo"; // na rota
+		
+			
+		}
+		
 		Usuario usuario = usuarioService.getUser();	 
 		
 		reserva.setUsuario(usuario);
@@ -113,22 +122,23 @@ public class ReservaController {
 				if (reservaService.reservaExiste(reserva.getNome()) == false) {
 
 					if (request.isUserInRole("ROLE_ADMIN") || request.isUserInRole("ROLE_DEPED")) {
+						
 
 						reservaService.salvarDados(reserva);
 						redirect.addFlashAttribute("mensagemsucesso",
-								"Reserva  Adicionado com Sucesso (ADMINISTRADOR)!");
+								"Reserva  Adicionado com Sucesso!");
 					} else {
 
 						reserva.setReservaStatus(ReservaStatus.ANALISE);
 						reservaService.salvarDados(reserva);
 
-						redirect.addFlashAttribute("mensagemsucesso", "Reserva  Adicionado com Sucesso pelo um usuario comum!" );
+						redirect.addFlashAttribute("mensagemsucesso", "Reserva  Adicionado com Sucesso!" );
 					}
 
 				} else { 
 					
 					
-					redirect.addFlashAttribute("mensagemsucesso", "ja existe caralhoo!" ); 
+					redirect.addFlashAttribute("mensagemsucesso", "Reserva já Existente, por favor, verifique!" ); 
 					return "redirect:/reserva/novo"; // na rota
 					
 				
@@ -144,7 +154,7 @@ public class ReservaController {
 				if (request.isUserInRole("ROLE_ADMIN") || request.isUserInRole("ROLE_DEPED")) {
 				
 					reservaService.adminUpdate(reserva);
-					redirect.addFlashAttribute("mensagemeditado", "Reserva Editado com SucessoPOR ADMINCARAI!!");
+					redirect.addFlashAttribute("mensagemeditado", "Reserva Editado com Sucesso!");
 					return "redirect:/reserva/novo"; // na rota
 
 				}
@@ -165,7 +175,7 @@ public class ReservaController {
 			 */
 		} catch (Exception e) {
 			e.printStackTrace();
-			redirect.addFlashAttribute("mensagemiguais", "Reserva  Já cadastrado(EXCEPTION)!!");
+			redirect.addFlashAttribute("mensagemiguais", "Data da reserva não pode estar vazia!");
 		}
 		return "redirect:/reserva/novo"; // na rota
 	}

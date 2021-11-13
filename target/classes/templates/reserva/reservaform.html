@@ -9,7 +9,6 @@
 <title> Formulário de Reserva</title>
 
 
-
 </head>
 <body>
 	<section layout:fragment="header">
@@ -34,25 +33,27 @@
 
 					<!-- form start -->
 					<!--                 <form th:action="@{/product/save}" th:object="${product}" method="post" class="form-horizontal"> -->
+				
+	
 
 
 					<form th:action="@{/reserva/add/salvar}" method="post" th:object="${reserva}">
 						
+				 <th:block th:include="fragments/Mensagens">  </th:block>
+	
 <!-- 						${reserva?.id == null}? @{/reserva/add/salvar} : @{/reserva/add/update} -->
-	<th:block th:include="fragments/Mensagens">
-						</th:block>
+	
 			<input type="hidden" readonly id="id" name="id" th:value="${reserva?.id}"/>
 			
 			
-					
-
-
+	
 
 						<div class="box-body">
 
 							<div class="form-group">
 								<label id="nome" class=" control-label">Nome do Reserva:</label>
-								<input name="nome" class="form-control" placeholder="Nome" th:value="${reserva?.nome}">
+								<input name="nome" class="form-control" placeholder="Nome" th:value="${reserva?.nome}" 
+								th:classappend="${#fields.hasErrors('nome')} ? has-error">
 
 							</div>
 
@@ -91,6 +92,7 @@
 		 -->
 		 
 		 	<div class="form-group">
+		 	
 								<label for="professor" id="professor">Selecione o Professor:</label> <select
 									name="professor" class="form-control" th:field="*{professor}">
 									<option th:each="professor: ${listprofessores}" th:value="${professor?.id}"
@@ -99,7 +101,52 @@
 
 							</div>
 					
-			
+					
+					
+	
+								<div class="row" >
+								
+								<div class="col-xs-3">
+									<label for="dataNascimento" class="active">Data
+									:</label>
+
+									<div class="input-group date" >
+										
+										<input type="date" class="form-control pull-right"
+											 name="data" id="datepicker" min = "1900-12-31" max="2021-11-30" 
+										placeholder="Data" th:field="*{dataReserva}" > 
+											
+									</div>
+									
+									</div>
+									<div class="col-xs-3">
+									<label for="dataNascimento" class="active">Hora Inicial:</label>
+									
+									<div class="input-group date" >
+										
+										<input type="time" class="form-control timepicker"
+											 name="dataInicial" id="datepicker" 
+										 th:field="*{horaInicial}" > 
+											
+									</div>
+									
+									</div>
+							
+									<div class="col-xs-6">
+									<label for="dataNascimento" class="active">Hora Final:</label>
+									
+									<div class="input-group date" >
+										
+										<input type="time" class="form-control pull-right"
+											 name="dataFinal" id="datepicker"   required="required"
+										th:field="*{horaFinal}" > 
+											
+									</div>
+									<!-- /.input group -->
+									</div>	
+								</div>
+	
+		
 			<div sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_DEPED')">
 			
 			 <div class="form-group"  >
@@ -152,7 +199,11 @@
 											<th>PROFESSOR:</th>
 										    <th>CURSO</th>
 										    <th>LOCAL</th>
+										    <th>DATA:</th>
+										      <th>HORA INICIAL:</th>
+										            <th>HORA FINAL:</th>
 										     <th>STATUS</th>
+										     
 										  	 <th>AÇÕES</th>
 		                              </tr>
                                     </thead>
@@ -165,8 +216,13 @@
 									     <td th:text="${g.professor.nome}">Alfreds Futterkiste</td>
 									      <td th:text="${g.curso.nome}"></td>
 									      <td th:text="${g.locais.nomeLocal}"></td>
+									      <td th:text="${#temporals.format(g.dataReserva, 'dd/MM/yyyy')}">2017/08/14</td>
+									    <td th:text="${g.horaInicial}"></td>
+									     <td th:text="${g.horaFinal}"></td>
 									       <td > 
-
+	
+												  
+	
 									       	<span th:text="${g.reservaStatus.nome}" class="label"
 									       	th:classappend="${#strings.toString(g.reservaStatus) == 'CANCELADO' ? 'label-danger' : #strings.toString(g.reservaStatus) == 'RESERVADO' ? 'label-success' : 'label-warning'}"
 									       	
@@ -230,7 +286,8 @@
 	          'searching'   : true,
 	          'ordering'    : true,
 	          'info'        : true,
-	          'autoWidth'   : false
+	          'autoWidth'   : false,
+	          "scrollX": true
 	        })
 
 	        jQuery('#example1_wrapper input').addClass("form-control input-sm"); // modify table search input

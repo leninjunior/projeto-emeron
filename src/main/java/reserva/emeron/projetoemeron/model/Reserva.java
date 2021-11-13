@@ -1,5 +1,9 @@
 package reserva.emeron.projetoemeron.model;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -9,7 +13,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotEmpty;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 
 @Table(name = "reserva")
@@ -23,7 +31,7 @@ public class Reserva {
 	
 	
 	
-	@NotBlank
+	@NotEmpty(message = "O NOME NÃO PODE SER VAZIO")
 	private String nome;
 
 	@ManyToOne
@@ -50,22 +58,82 @@ public class Reserva {
 	@ManyToOne
 	private Professor professor;
 	
-	/*
-	 * @FutureOrPresent private LocalDate data;
-	 * 
-	 * @FutureOrPresent private LocalTime horaInicial;
-	 * 
-	 * private LocalTime horaFinal;
-	 */
+	
+	@DateTimeFormat(iso = ISO.DATE)
+	@Column(name ="data_reserva", nullable = false, columnDefinition = "DATE" )
+	@FutureOrPresent
+	private LocalDate dataReserva;
+	
+	
+
+	private LocalTime horaInicial;
+	
+	
+	private LocalTime horaFinal;
+	
+	
+	
+	
 	
 	
 
 
 	
 	
+	public LocalTime getHoraInicial() {
+		return horaInicial;
+	}
+
+
+
+
+
+	public void setHoraInicial(LocalTime horaInicial) {
+		this.horaInicial = horaInicial;
+	}
+
+
+
+
+
+	public LocalTime getHoraFinal() {
+		return horaFinal;
+	}
+
+
+
+
+
+	public void setHoraFinal(LocalTime horaFinal) {
+		this.horaFinal = horaFinal;
+	}
+
+
+
+
+
 	public Locais getLocais() {
 		return locais;
 	}
+
+
+
+
+
+	public LocalDate getDataReserva() {
+		return dataReserva;
+	}
+
+
+
+
+
+	public void setDataReserva(LocalDate dataReserva) {
+		this.dataReserva = dataReserva;
+	}
+
+
+
 
 
 	public Professor getProfessor() {

@@ -1,5 +1,7 @@
 package reserva.emeron.projetoemeron.repository;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -29,7 +31,21 @@ public interface  ReservaRepository extends JpaRepository<Reserva, Long>{
 
 	
 	
-
+	
+	
+	@Query(value = "select  count (*) > 0  from reserva r where r.locais =:codigo_locais and  r.dataReserva =:data_reserva and r.horaInicial <=:hora_inicial and r.horaFinal <=:hora_final and r.reservaStatus =reserva.emeron.projetoemeron.model.ReservaStatus.ANALISE")
+	public boolean isLocalJaReservado(@Param("codigo_locais") Locais locais,@Param("data_reserva") LocalDate dataReserva, @Param("hora_inicial") LocalTime horaInicial,@Param("hora_final") LocalTime horaFinal);
+	
+	@Query(value = "select  count (*) > 0  from reserva r where r.locais =:codigo_locais and  r.dataReserva =:data_reserva and r.horaInicial >=:hora_inicial and r.horaFinal <=:hora_final and  r.reservaStatus =reserva.emeron.projetoemeron.model.ReservaStatus.ANALISE")
+	public boolean isLocalJaReservado1(@Param("codigo_locais") Locais locais,@Param("data_reserva") LocalDate dataReserva, 
+	@Param("hora_inicial") LocalTime horaInicial,@Param("hora_final") LocalTime horaFinal);
+	/*
+	 * @Transactional
+	 * 
+	 * @Query(value =
+	 * "select  count (*) > 0  from reserva r where r.locais =:codigo_locais and  r.dataReserva =:data_reserva and r.horaInicial >=:hora_inicial and r.horaFinal <=:hora_final"
+	 * ) boolean reservaExistente();
+	 */
 	/*
 	 * @Modifying
 	 * 
@@ -40,14 +56,20 @@ public interface  ReservaRepository extends JpaRepository<Reserva, Long>{
 
 	
 	@Modifying
-	@Query(value = "update reserva  r set r.nome =:nome, r.curso =:curso, r.locais =:codigo_locais, r.professor =:professor  where r.id=:id")
-	public void updateTesteAgora(@Param("nome") String nome, @Param("curso") Curso curso,@Param("codigo_locais") Locais locais,@Param("professor") Professor professor ,@Param("id") Long id);
+	@Query(value = "update reserva  r set r.nome =:nome, r.curso =:curso, r.locais =:codigo_locais, r.professor =:professor, r.dataReserva =:data_reserva, r.horaInicial =:hora_inicial, r.horaFinal =:hora_final  where r.id=:id")
+	public void updateTesteAgora(@Param("nome") String nome, @Param("curso") Curso curso,@Param("codigo_locais") Locais locais,@Param("professor") Professor professor ,
+			@Param("data_reserva") LocalDate dataReserva,@Param("hora_inicial") LocalTime horaInicial,
+			@Param("hora_final") LocalTime horaFinal,@Param("id") Long id);
 	
 	
 	@Modifying
-	@Query(value = "update reserva  r set r.nome =:nome, r.curso =:curso, r.locais =:codigo_locais, r.reservaStatus =:reserva_status where r.id=:id")
-	public void adminUpdate(@Param("nome") String nome, @Param("curso") Curso curso,@Param("codigo_locais") Locais locais,@Param("reserva_status") ReservaStatus reservaStatus ,@Param("id") Long id);
+	@Query(value = "update reserva  r set r.nome =:nome, r.curso =:curso, r.locais =:codigo_locais, r.reservaStatus =:reserva_status, r.dataReserva =:data_reserva, r.horaInicial =:hora_inicial, r.horaFinal =:hora_final where r.id=:id")
+	public void adminUpdate(@Param("nome") String nome, @Param("curso") Curso curso,@Param("codigo_locais") Locais locais,@Param("reserva_status") ReservaStatus reservaStatus ,
+			@Param("data_reserva") LocalDate dataReserva ,@Param("hora_inicial") LocalTime horaInicial,
+			@Param("hora_final") LocalTime horaFinal,@Param("id") Long id);
 	 
+	
+	
 	  @Query(value = "select r from reserva r where r.usuario =:codigo_usuario")
 	  public List<Reserva> findByReservaUser(@Param("codigo_usuario") Usuario id);
 	  
@@ -78,6 +100,13 @@ public interface  ReservaRepository extends JpaRepository<Reserva, Long>{
 		@Query(value = "SELECT COUNT (*) FROM reserva WHERE reserva_status = 'RESERVADO'", nativeQuery = true)
 	  	public Integer countConfirmada();
 		
+		
+		
+		
+		
+		 
+		 
+		 
 	
 //@Query(value = "select count(1) > 0 as existe from curso where nome = ?", nativeQuery = true)
 //public boolean cursoJaExiste(String nome);

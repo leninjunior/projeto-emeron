@@ -26,6 +26,31 @@ public class ReservaService {
 		return reservaRepository.reservaExistente(nome);
 
 	}
+
+	/*
+	 * public boolean reservaExistente() {
+	 * 
+	 * return reservaRepository.reservaExistente();
+	 * 
+	 * }
+	 */
+	
+	
+	
+	  public boolean localJaReservado(Reserva reserva) {
+	  
+	  return reservaRepository.isLocalJaReservado(reserva.getLocais(),
+	  reserva.getDataReserva(), reserva.getHoraInicial(), reserva.getHoraFinal());
+	  
+	  }
+	  
+	  public boolean localJaReservado1(Reserva reserva) {
+		  
+		  return reservaRepository.isLocalJaReservado1(reserva.getLocais(),
+		  reserva.getDataReserva(), reserva.getHoraInicial(), reserva.getHoraFinal());
+		  
+		  }
+	 
 	
 	public void salvarDados(Reserva reserva){
 	     
@@ -85,12 +110,14 @@ public class ReservaService {
 		 */
 		  
 		  public void usuarioUpdate(Reserva reserva) {
-			  reservaRepository.updateTesteAgora(reserva.getNome(), reserva.getCurso(), reserva.getLocais() , reserva.getProfessor(), reserva.getId());
+			  reservaRepository.updateTesteAgora(reserva.getNome(), reserva.getCurso(), reserva.getLocais() , reserva.getProfessor(), reserva.getDataReserva(),
+					  reserva.getHoraInicial(), reserva.getHoraFinal(), reserva.getId());
 		  }
 		  
 		  
 		  public void adminUpdate(Reserva reserva) {
-			  reservaRepository.adminUpdate(reserva.getNome(), reserva.getCurso(), reserva.getLocais() , reserva.getReservaStatus(), reserva.getId());
+			  reservaRepository.adminUpdate(reserva.getNome(), reserva.getCurso(), reserva.getLocais() , reserva.getReservaStatus(), reserva.getDataReserva(),
+					  reserva.getHoraInicial(), reserva.getHoraFinal(), reserva.getId());
 		  }
 		 
 

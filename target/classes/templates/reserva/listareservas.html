@@ -43,14 +43,17 @@ xmlns="http://www.w3.org/1999/xhtml"
                                        aria-describedby="example1_info">
                                     <thead class="thead">
 						            <tr>
-										    <th>ID RESERVA</th>
-										     <th>SOLICITANTE</th>
-										    <th>NOME</th>
+										    <th>ID RESERVA:</th>
+										     <th>SOLICITANTE:</th>
+										    <th>NOME:</th>
 										    <th>PROFESSOR:</th>
-										    <th>CURSO</th>
-										     <th>LOCAL</th>
+										    <th>CURSO:</th>
+										     <th>LOCAL:</th>
+										      <th>DATA:</th>
+										      <th>HORA INICIAL:</th>
+										            <th>HORA FINAL:</th>
 										     <th>STATUS</th>
-										  	 <th>AÇÕES</th>
+										
 		                              </tr>
                                     </thead>
                                     <tbody>
@@ -62,6 +65,9 @@ xmlns="http://www.w3.org/1999/xhtml"
 									     	      <td th:text="${g.professor.nome}">Alfreds Futterkiste</td>
 									      <td th:text="${g.curso.nome}"></td>
 									     <td th:text="${g.locais.nomeLocal}"></td>
+									     <td th:text="${#temporals.format(g.dataReserva, 'dd/MM/yyyy')}">2017/08/14</td>
+									    <td th:text="${g.horaInicial}"></td>
+									     <td th:text="${g.horaFinal}"></td>
 									         <td > 
 
 									       	<span th:text="${g.reservaStatus.nome}" class="label"
@@ -108,22 +114,25 @@ xmlns="http://www.w3.org/1999/xhtml"
 
 <th:block layout:fragment="script">
  <script>
-      $(function () {
+		
+	      $(function () {
 
-        $('#example1').DataTable({
-          'paging'      : true,
-          'lengthChange': false,
-          'searching'   : true,
-          'ordering'    : true,
-          'info'        : true,
-          'autoWidth'   : false
-        })
+	        $('#example1').DataTable({
+	          'paging'      : true,
+	          'lengthChange': false,
+	          'searching'   : true,
+	          'ordering'    : true,
+	          'info'        : true,
+	          'autoWidth'   : false,
+	          "scrollX": true
+	        })
 
-        jQuery('#example1_wrapper input').addClass("form-control input-sm"); // modify table search input
-      })
+	        jQuery('#example1_wrapper input').addClass("form-control input-sm"); // modify table search input
+	      })
 
 
-</script>
+	</script>
+
 </th:block>
 </body>
 
