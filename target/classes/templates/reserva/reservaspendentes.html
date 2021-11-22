@@ -52,6 +52,9 @@ xmlns="http://www.w3.org/1999/xhtml"
 										    <th>PROFESSOR:</th>
 										    <th>CURSO</th>
 										     <th>LOCAL</th>
+										      <th>DATA:</th>
+										      <th>HORA INICIAL:</th>
+										            <th>HORA FINAL:</th>
 										     <th>STATUS</th>
 										  	 <th>AÇÕES</th>
 		                              </tr>
@@ -65,6 +68,9 @@ xmlns="http://www.w3.org/1999/xhtml"
 									      <td th:text="${g.professor.nome}">Alfreds Futterkiste</td>
 									      <td th:text="${g.curso.nome}"></td>
 									     <td th:text="${g.locais.nomeLocal}"></td>
+									      <td th:text="${#temporals.format(g.dataReserva, 'dd/MM/yyyy')}">2017/08/14</td>
+									    <td th:text="${g.horaInicial}"></td>
+									     <td th:text="${g.horaFinal}"></td>
 									         <td > 
 
 									       	<span th:text="${g.reservaStatus.nome}" class="label"

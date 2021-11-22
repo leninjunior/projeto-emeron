@@ -66,6 +66,7 @@
 								<label for="curso" id="curso">Selecionar Curso:</label> 
 								<select id="curso" th:field="*{curso}"
 									class="form-control">
+									
 									<option th:each="c: ${cursolist}" th:value="${c?.id}"
 										th:text="${c?.nome}">
 								</select>

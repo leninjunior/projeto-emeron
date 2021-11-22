@@ -50,6 +50,21 @@ public class ReservaService {
 		  reserva.getDataReserva(), reserva.getHoraInicial(), reserva.getHoraFinal());
 		  
 		  }
+	  
+ public boolean professorJaReservado1(Reserva reserva) {
+		  
+		  return reservaRepository.isProfessorJaReservado(reserva.getProfessor(),
+		  reserva.getDataReserva(), reserva.getHoraInicial(), reserva.getHoraFinal());
+		  
+		  }
+	  
+	  
+ public boolean professorJaReservado(Reserva reserva) {
+	  
+	  return reservaRepository.isProfessorJaReservado(reserva.getProfessor(),
+	  reserva.getDataReserva(), reserva.getHoraInicial(), reserva.getHoraFinal());
+	  
+	  }
 	 
 	
 	public void salvarDados(Reserva reserva){

@@ -32,12 +32,20 @@ public interface  ReservaRepository extends JpaRepository<Reserva, Long>{
 	
 	
 	
+	@Query(value = "select  count (*) > 0  from reserva r where r.locais =:codigo_locais and  r.dataReserva =:data_reserva and r.horaInicial <=:hora_inicial and r.horaFinal >=:hora_final and  r.reservaStatus =reserva.emeron.projetoemeron.model.ReservaStatus.RESERVADO")
+	public boolean isLocalJaReservado(@Param("codigo_locais") Locais locais,@Param("data_reserva") LocalDate dataReserva, 
+	@Param("hora_inicial") LocalTime horaInicial,@Param("hora_final") LocalTime horaFinal);
 	
-	@Query(value = "select  count (*) > 0  from reserva r where r.locais =:codigo_locais and  r.dataReserva =:data_reserva and r.horaInicial <=:hora_inicial and r.horaFinal <=:hora_final and r.reservaStatus =reserva.emeron.projetoemeron.model.ReservaStatus.ANALISE")
-	public boolean isLocalJaReservado(@Param("codigo_locais") Locais locais,@Param("data_reserva") LocalDate dataReserva, @Param("hora_inicial") LocalTime horaInicial,@Param("hora_final") LocalTime horaFinal);
-	
-	@Query(value = "select  count (*) > 0  from reserva r where r.locais =:codigo_locais and  r.dataReserva =:data_reserva and r.horaInicial >=:hora_inicial and r.horaFinal <=:hora_final and  r.reservaStatus =reserva.emeron.projetoemeron.model.ReservaStatus.ANALISE")
+	@Query(value = "select  count (*) > 0  from reserva r where r.locais =:codigo_locais and  r.dataReserva =:data_reserva and r.horaInicial >=:hora_inicial and r.horaFinal <=:hora_final and  r.reservaStatus =reserva.emeron.projetoemeron.model.ReservaStatus.RESERVADO")
 	public boolean isLocalJaReservado1(@Param("codigo_locais") Locais locais,@Param("data_reserva") LocalDate dataReserva, 
+	@Param("hora_inicial") LocalTime horaInicial,@Param("hora_final") LocalTime horaFinal);
+	
+	
+	@Query(value = "select  count (*) > 0  from reserva r where r.professor =:professor and  r.dataReserva =:data_reserva and r.horaInicial <=:hora_inicial and r.horaFinal >=:hora_final and r.reservaStatus =reserva.emeron.projetoemeron.model.ReservaStatus.RESERVADO")
+	public boolean isProfessorJaReservado(@Param("professor") Professor professor,@Param("data_reserva") LocalDate dataReserva, @Param("hora_inicial") LocalTime horaInicial,@Param("hora_final") LocalTime horaFinal);
+	
+	@Query(value = "select  count (*) > 0  from reserva r where r.professor =:professor and  r.dataReserva =:data_reserva and r.horaInicial >=:hora_inicial and r.horaFinal <=:hora_final and  r.reservaStatus =reserva.emeron.projetoemeron.model.ReservaStatus.RESERVADO")
+	public boolean isProfessorReservado1(@Param("professor") Professor professor,@Param("data_reserva") LocalDate dataReserva, 
 	@Param("hora_inicial") LocalTime horaInicial,@Param("hora_final") LocalTime horaFinal);
 	/*
 	 * @Transactional

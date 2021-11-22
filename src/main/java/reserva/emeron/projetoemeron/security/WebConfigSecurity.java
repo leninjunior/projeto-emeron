@@ -29,7 +29,7 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
 		.authorizeRequests()
 			
 			.antMatchers("/usuario/**").hasRole("ADMIN")	
-			.antMatchers("/reserva/reservaspendentes" , "/dashboard", "/curso/novo", "/local/novo" ).hasAnyRole("ADMIN", "DEPED")				
+			.antMatchers("/reserva/reservaspendentes" , "/dashboard", "/curso/novo", "/local/novo", "/relatorios/reservado").hasAnyRole("ADMIN", "DEPED")				
 			.anyRequest().authenticated()
 			.and()
 		.formLogin()
