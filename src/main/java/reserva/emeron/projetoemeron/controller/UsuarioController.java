@@ -71,9 +71,9 @@ public class UsuarioController {
 		try {
 			
 			usuarioRepository.deleteById(id);
-			redirect.addFlashAttribute("cursodeletado", "Usuario Excluido  com Sucesso!");
+			redirect.addFlashAttribute("cursodeletado", "Usuario Excluído  com Sucesso!");
 		} catch (Exception e) {
-			redirect.addFlashAttribute("cursocomreserva", "Este Usuario Pertence a uma reserva!!");
+			redirect.addFlashAttribute("cursocomreserva", "Este Usuário Pertence a uma reserva!!");
 			return "redirect:/usuario/novo";
 		}
 		

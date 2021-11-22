@@ -73,7 +73,28 @@
        	
     
     </ul>
-    <ul class="sidebar-menu">
+          <ul class="sidebar-menu"  sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_DEPED')" >
+    	 <li class="active treeview">
+            <a href="#">
+                <i class="fa fa-th"></i> <span>RELATÓRIOS</span>
+                <span class="pull-right-container">
+          <i class="fa fa-angle-left pull-right"></i>
+        </span>
+            </a>
+            <ul class="treeview-menu">
+<!--
+                <li class="active"><a href="/"><i class="fa fa-dashboard"></i> Dashboard v1</a></li>
+-->
+
+                <li ><a th:href="@{/relatorios/gerar}"><i class="fa fa-circle-o"></i> Relatório de Reservas</a></li>
+               
+              <!--  <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}"><i class="fa fa-circle-o"></i> Logout</a></li> -->
+            </ul>
+
+       	
+    
+    </ul>
+    <ul class="sidebar-menu" >
     	 <li class="active treeview">
             <a href="#">
                 <i class="fa fa-th"></i> <span>RESERVAS</span>

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorio-reservas" pageWidth="1000" pageHeight="595" orientation="Landscape" columnWidth="960" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f5632d72-33de-44f6-bf62-f3aac0cc3cc3">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Banco Reserva de Auditorio"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="data_inicio" class="java.util.Date"/>
+	<parameter name="data_fim" class="java.sql.Date"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT r.nome AS nome_reserva
+, r.reserva_status AS reserva_status
+, r.data_reserva AS data_reserva
+, r.hora_inicial AS hora_inicial
+, r.hora_final AS hora_final
+, c.nome AS nome_curso
+, l.nome_local AS local_nome
+, p.nome AS nome_professor
+
+FROM reserva r INNER JOIN curso c ON r.curso_id = c.id
+ INNER JOIN locais l ON r.codigo_locais = l.id
+ INNER JOIN professor p ON r.professor = p.id
+ AND r.data_reserva BETWEEN  $P{data_inicio}  AND  $P{data_fim} 
+ ORDER BY r.data_reserva ASC]]>
+	</queryString>
+	<field name="nome_reserva" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome_reserva"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reserva"/>
+	</field>
+	<field name="reserva_status" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="reserva_status"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reserva"/>
+	</field>
+	<field name="data_reserva" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="data_reserva"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reserva"/>
+	</field>
+	<field name="hora_inicial" class="java.sql.Time">
+		<property name="com.jaspersoft.studio.field.label" value="hora_inicial"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reserva"/>
+	</field>
+	<field name="hora_final" class="java.sql.Time">
+		<property name="com.jaspersoft.studio.field.label" value="hora_final"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reserva"/>
+	</field>
+	<field name="nome_curso" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome_curso"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="curso"/>
+	</field>
+	<field name="local_nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="local_nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="locais"/>
+	</field>
+	<field name="nome_professor" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome_professor"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="professor"/>
+	</field>
+	<variable name="reserva_status1" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{reserva_status}]]></variableExpression>
+	</variable>
+	<background>
+		<band height="33" splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="67" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="958" height="67" uuid="33d143af-968f-4a15-866f-5aa56fea5faf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial Black" size="33"/>
+				</textElement>
+				<text><![CDATA[Relatório de Reservas]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="39" splitType="Stretch">
+			<staticText>
+				<reportElement x="120" y="0" width="99" height="38" uuid="f8ec45e7-dbc5-4240-929c-c8d3e0be80e9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="72c738a0-051c-434d-ac75-cc65d686b949"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Curso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="0" width="180" height="39" uuid="b66f7865-6d66-452a-9427-24f759c54ecb">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="69cf9d84-0fe0-4237-8200-c4f94f78dc9d"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Local]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="870" y="0" width="88" height="38" uuid="88df1bfc-6d83-4ea5-a8f6-eb7669392c90">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="87b2862b-b095-45a2-89f2-856a1a3a0db1"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="0" width="180" height="38" uuid="ba1dc2f3-ae48-4b9d-93c6-34ab71237fec">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="72c738a0-051c-434d-ac75-cc65d686b949"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Professor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="670" y="0" width="100" height="39" uuid="1db646b0-9131-48ed-8a9b-dc0c5c12001e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="44f141b9-8586-4bbc-bb32-4cc64994619b"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Início]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="580" y="0" width="90" height="37" uuid="91c0b4b8-9cb8-42d7-a6e5-cb65ee618fa6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a21ea434-a996-47f6-9654-2b428563a355"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Data]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="770" y="1" width="100" height="38" uuid="a002e52e-3e77-4cc8-8a25-31807fbae269">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="85a6c289-7f84-4595-88f6-1eaf3ba5cbad"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Término]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="120" height="37" uuid="dda4578e-11c8-4d87-b0c3-13d588b5631f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6da61214-f9e4-425a-8e11-ef6bfe18cf22"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Reserva]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="91" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="-1" width="120" height="42" uuid="6deec0e4-54d5-448a-b52b-fa7686966e2e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6da61214-f9e4-425a-8e11-ef6bfe18cf22"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nome_reserva}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="0" width="100" height="41" uuid="28e57d34-3f50-48d3-be24-8820f5664f0a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="72c738a0-051c-434d-ac75-cc65d686b949"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nome_curso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="-3" width="180" height="44" uuid="14e3d1d7-a8b2-4f3f-a2b4-02b4373d7aff">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="69cf9d84-0fe0-4237-8200-c4f94f78dc9d"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{local_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="870" y="1" width="88" height="40" uuid="c5096986-5ccb-4e1d-956f-e49f8680f487">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="87b2862b-b095-45a2-89f2-856a1a3a0db1"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{reserva_status}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="220" y="-1" width="180" height="42" uuid="91906c30-87e9-4bd2-a8d9-ac797837bba8"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nome_professor}]]></textFieldExpression>
+			</textField>
+			<textField pattern="h:mm">
+				<reportElement x="670" y="1" width="100" height="40" uuid="ab1b2420-c438-4beb-84b3-95185d86de37">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="44f141b9-8586-4bbc-bb32-4cc64994619b"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{hora_inicial}]]></textFieldExpression>
+			</textField>
+			<textField pattern="d/M/yy">
+				<reportElement x="580" y="0" width="90" height="41" uuid="39ae8ba2-2127-4d3a-b1e9-59f9d9ce28fc">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a21ea434-a996-47f6-9654-2b428563a355"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{data_reserva}]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm">
+				<reportElement x="770" y="1" width="100" height="40" uuid="25f4aa13-a651-4845-b2fa-c327dfd7702e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="85a6c289-7f84-4595-88f6-1eaf3ba5cbad"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{hora_final}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="-1" y="41" width="959" height="1" uuid="ada8fe47-e8ec-402d-b1e6-756f35ae3558"/>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20">
+			<textField>
+				<reportElement x="850" y="0" width="120" height="20" uuid="6d0efc30-45ee-4410-b6c8-18cac18e2925"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

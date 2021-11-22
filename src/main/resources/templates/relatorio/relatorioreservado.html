@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+       	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="layout">
+<head>
+	<title>Relatório - Reservas </title>
+</head>
+
+
+<body>
+
+<section layout:fragment="header">
+    <h1>
+      RELATÓRIOS
+        
+    </h1>
+   
+</section>
+
+<div layout:fragment="content">
+
+
+
+   <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Emissão de Relatórios</h3>
+               
+
+
+
+
+	<form method="POST" th:object="${periodoRelatorio}" th:action="@{/relatorios/reservado}">
+			  <th:block th:include="fragments/Mensagens">  </th:block>
+			
+					<div class="form-group">
+			<div class="row">
+				<div class="form-group  col-sm-12">
+					<label for="dataInicio">Informe o Periodo da Reserva</label>
+					<div class="form-inline">
+						<input type="date" class="form-control" 
+							id="dataInicio" th:field="*{dataInicio}" autocomplete="off"/>
+						<label for="a" class="aw-form-label-between">a</label>
+						<input type="date" class="form-control" 
+							id="dataFim" th:field="*{dataFim}" autocomplete="off"/>
+					</div>
+				</div>
+			</div>
+			
+			</div>
+				
+			<button type="submit" class="btn  btn-primary">Emitir</button>
+		</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ </div>
+
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<th:block layout:fragment="script">
+</body>
+
+
+
+
+
+
+<!-- <section layout:fragment="content">
+
+	<div class="page-header">
+		<div class="container-fluid">
+			<h1>
+				Relatório de reservas
+			</h1>
+		</div>
+	</div>
+	
+	
+		<h2>TESTE RELARTORIOWETGWEG</h2>
+	<div class="container-fluid">
+		<form method="POST" th:object="${periodoRelatorio}" th:action="@{/relatorios/vendasEmitidas}">
+			<th:block th:include="fragments/MensagensErroValidacao"></th:block>
+			
+			<div class="row">
+				<div class="form-group  col-sm-12">
+					<label for="dataInicio">Data de criação</label>
+					<div class="form-inline">
+						<input type="text" class="form-control  aw-form-control-inline-sm  js-date" 
+							id="dataInicio" th:field="*{dataInicio}" autocomplete="off"/>
+						<label for="a" class="aw-form-label-between">a</label>
+						<input type="text" class="form-control  aw-form-control-inline-sm  js-date" 
+							id="dataFim" th:field="*{dataFim}" autocomplete="off"/>
+					</div>
+				</div>
+			</div>
+				
+			<button type="submit" class="btn  btn-primary">Emitir</button>
+		</form>
+	</div>
+</section>
+ -->
+</html>

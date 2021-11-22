@@ -94,14 +94,27 @@ public class ReservaController {
 	@PostMapping("add/salvar")
 	private String salvar(@Valid Reserva reserva, BindingResult result, RedirectAttributes redirect, HttpServletRequest request) {
 		
-		
-		if(reservaService.localJaReservado(reserva) == true || reservaService.localJaReservado1(reserva)== true) {
-		
-			redirect.addFlashAttribute("mensagem", "Local, Data, Hora Inicial e Hora final já cadastradas. Verifique todas as reservas. "); // mensagem na view
-			return "redirect:/reserva/novo"; // na rota
-		
-			
-		}
+		/*
+		 * if(reservaService.localJaReservado(reserva) == true ||
+		 * reservaService.localJaReservado1(reserva)== true) {
+		 * 
+		 * redirect.addFlashAttribute("mensagem",
+		 * "Local, Data, Hora Inicial e Hora final já cadastradas. Verifique todas as reservas. "
+		 * ); // mensagem na view return "redirect:/reserva/novo"; // na rota
+		 * 
+		 * 
+		 * }
+		 * 
+		 * if(reservaService.professorJaReservado(reserva) == true ||
+		 * reservaService.professorJaReservado1(reserva)== true) {
+		 * 
+		 * redirect.addFlashAttribute("mensagem",
+		 * "Professor já pertece a uma reserva. Verifique todas as reservas. "); //
+		 * mensagem na view return "redirect:/reserva/novo"; // na rota
+		 * 
+		 * 
+		 * }
+		 */
 		
 		Usuario usuario = usuarioService.getUser();	 
 		
