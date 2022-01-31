@@ -55,6 +55,9 @@ O diagrama de classes é essencial pois une as estruturas de negócio e interfac
 ## Back end
 Pré-requisitos: Java 8
 
+
+
+
 ```bash
 # clonar repositório
 git clone https://github.com/leninjunior/projeto-emeron.git
@@ -66,6 +69,16 @@ cd projetoemeron
 ./mvnw spring-boot:run
 ```
 
+```## Observações
+# Você precisará gerar uma senha no projeto para conseguir fazer o login, segue o código.
+
+	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+	String result = encoder.encode("123");
+ System.out.println(result);
+ 
+
+
+```
 
 # Autor
 
